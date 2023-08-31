@@ -6,6 +6,7 @@ import App from './App.jsx'
 // MUI
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ptBR } from '@mui/material/locale'
+import { deepPurple, amber } from '@mui/material/colors' // https://mui.com/material-ui/customization/color/
 
 const theme = createTheme({
   ptBR,
@@ -13,12 +14,27 @@ const theme = createTheme({
     fontFamily: "'Inter','sans-serif'"
   },
   palette: {
-    example: {
-      main: '#556ee6',
-      light: '#c8d0ff',
+    primary: {
+      main: deepPurple[500],
+      light: deepPurple[200],
+      contrastText: '#ffffff',
+      dark: deepPurple[600]
+    },
+    secondary: {
+      main: amber[400],
+      light: amber[200],
+      contrastText: '#ffffff',
+      dark: amber[600]
     },
   },
   components:{
+    MuiPaper: {
+      styleOverrides:{
+          root: {
+            boxShadow: '0 0 0.3em #ccc',
+          }
+      }
+    },
     MuiTextField: {
       defaultProps: {
         size: 'small',
@@ -75,10 +91,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <ThemeProvider theme={theme}>
 
-      <App />
+      <App/>
 
     </ThemeProvider>
 
-  </React.StrictMode>,
+  </React.StrictMode>
 
 )

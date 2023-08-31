@@ -1,8 +1,7 @@
 // Rotas
 import { auth_routes, open_routes } from './routes'
 // Layouts
-// import OpenLayout from './layouts/OpenLayout'
-// import AuthLayout from './layouts/AuthLayout'
+import AuthLayout from './layout/auth/AuthLayout'
 // Libs
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -19,7 +18,7 @@ function App() {
 
   const global_styles = {
     body: {
-      backgroundColor: '#efefef',
+      backgroundColor: '#f8f8f8',
       paddingBottom: '50px'
     },
     html: {
@@ -27,6 +26,9 @@ function App() {
     },
     '*': {
       fontFamily: "'Inter','sans-serif'"
+    },
+    a: {
+      color: '#2864ad'
     }
   }
 
@@ -58,7 +60,7 @@ function App() {
                 <Route
                   key={index}
                   path={route.path}
-                  element={route.component}/>
+                  element={<AuthLayout>{route.component}</AuthLayout>}/>
 
               )}
 
