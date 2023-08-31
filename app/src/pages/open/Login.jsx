@@ -9,6 +9,7 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import { authInstance } from "../../config/axios"
 // React hooks
 import { useContext } from 'react'
 import { AppContext } from '../../App'
@@ -32,12 +33,11 @@ const Login = ()=> {
         }
       })
 
-    const login = (data)=> {
+    const login = async(data)=> {
         setLoading(true)
         setTimeout(()=>{
-            toast.success('Login realizado com sucesso.', {toastId: 'login-success'})
-            console.log(data)
             setLoading(false)
+            toast.success('Login efetuado com sucesso.', {toastId: 'success-login'})
             sessionStorage.setItem('token', 'token')
             navigate('/home')
         },1500)
