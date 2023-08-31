@@ -21,12 +21,3 @@ const Mask = React.forwardRef((props, ref)=> {
 })
 
 export default Mask
-
-{/*
-<Controller
-  control={control}
-  name={'telefone'}
-  render={({field, fieldState: {error}}) => (
-    
-  )}
-/> */}
