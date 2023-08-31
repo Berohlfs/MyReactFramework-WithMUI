@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
+import { useNavigate } from 'react-router-dom'
 // React hooks
 import { useContext } from 'react'
 import { AppContext } from '../../App'
@@ -15,6 +16,8 @@ import { AppContext } from '../../App'
 const Login = ()=> {
 
     const {setLoading} = useContext(AppContext)
+
+    const navigate = useNavigate()
 
     const validacao_login = yup.object({
         cpf: yup.string().required('Obrigatório').length(14, 'Inválido'),
@@ -35,6 +38,8 @@ const Login = ()=> {
             toast.success('Login realizado com sucesso.', {toastId: 'login-success'})
             console.log(data)
             setLoading(false)
+            sessionStorage.setItem('token', 'token')
+            navigate('/home')
         },1500)
     }
 

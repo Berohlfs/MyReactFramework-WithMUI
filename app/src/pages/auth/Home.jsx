@@ -45,6 +45,7 @@ const Home = ()=> {
         <StyledBox>
 
             <Table
+                instance_key={'id'}
                 columns={[
                     {nome: 'Nome', chave: 'name', link: {path: 'home', id: 'id'}},
                     {nome: 'Espécie', chave: 'species'},

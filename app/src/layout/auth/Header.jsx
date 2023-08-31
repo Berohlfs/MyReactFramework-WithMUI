@@ -9,10 +9,19 @@ const Drawer = ()=> {
 
     const {setDrawerOpened} = useContext(AuthLayoutContext)
 
-    return (
-        <Paper square>
+    const header_style = {
+        position: 'fixed',
+        top: 0,
+        width: '100%',
+        left: 0,
+        height: 55,
+        zIndex: 3
+    }
 
-            <Stack direction={'row'} p={1}>
+    return (
+        <Paper square sx={header_style}>
+
+            <Stack direction={'row'} p={1} alignItems={'center'}>
 
                 <Tooltip title="Menu">
                     <IconButton onClick={()=>setDrawerOpened(true)}>

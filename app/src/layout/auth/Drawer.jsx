@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
 import MuiDrawer from '@mui/material/Drawer'
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from '@mui/material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider } from '@mui/material'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 // Libs
 import { useNavigate } from 'react-router-dom'
@@ -30,35 +30,39 @@ const Drawer = ()=> {
             open={drawer_opened}
             onClose={()=>setDrawerOpened(false)}>
 
-            <Box sx={{ width: 250 }}>
+            <Stack sx={{ width: 250 }}>
 
-                {navigation.map((group)=>(<>
+                {navigation.map((group, group_index)=>(
 
-                <List>
+                <Box key={group_index}>
 
-                    {group.map((item)=>(
+                    <List>
 
-                    <ListItem disablePadding>
+                        {group.map((item, item_index)=>(
 
-                        <ListItemButton onClick={()=>navigate(item.path)}>
+                        <ListItem disablePadding key={item_index}>
 
-                            <ListItemIcon><item.icon/></ListItemIcon>
+                            <ListItemButton onClick={()=>navigate(item.path)}>
 
-                            <ListItemText primary={item.title}/>
+                                <ListItemIcon><item.icon/></ListItemIcon>
 
-                        </ListItemButton>
+                                <ListItemText primary={item.title}/>
 
-                    </ListItem>
+                            </ListItemButton>
 
-                    ))}
+                        </ListItem>
 
-                </List>
+                        ))}
 
-                <Divider/>
+                    </List>
 
-                </>))}
+                    <Divider/>
 
-            </Box>
+                </Box>
+
+                ))}
+
+            </Stack>
 
       </MuiDrawer>
     )

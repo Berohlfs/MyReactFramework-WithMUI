@@ -18,7 +18,7 @@ function App() {
 
   const global_styles = {
     body: {
-      backgroundColor: '#f8f8f8',
+      backgroundColor: '#f7f7f7',
       paddingBottom: '50px'
     },
     html: {

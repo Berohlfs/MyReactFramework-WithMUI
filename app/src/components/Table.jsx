@@ -4,7 +4,7 @@ import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, IconB
 // Libs
 import { Link } from 'react-router-dom'
 
-const Table = ({ columns=[], data=[], actions=[]})=> {
+const Table = ({ columns=[], data=[], actions=[], instance_key='id'})=> {
 
   return (
 
@@ -36,7 +36,7 @@ const Table = ({ columns=[], data=[], actions=[]})=> {
 
             {data.map((instancia) => (
 
-              <TableRow key={instancia.token}>
+              <TableRow key={instancia[instance_key]}>
 
                 {columns.map((coluna, index)=> (
 
