@@ -1,4 +1,11 @@
-import { deepPurple, amber } from '@mui/material/colors' // https://mui.com/material-ui/customization/color/
+/*
+Definição da PALETA DE CORES da aplicação.
+Para ver todas as cores disponibilizadas pelo Material UI, acesse:
+https://mui.com/material-ui/customization/color/
+*/
+
+// MUI
+import { deepPurple, amber } from '@mui/material/colors'
 
 const palette = ()=> {
     return({

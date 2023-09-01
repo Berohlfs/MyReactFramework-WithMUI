@@ -15,8 +15,8 @@ const Drawer = ()=> {
     const header_style = {
         position: 'fixed',
         top: 0,
-        width: '100%',
         left: 0,
+        width: '100%',
         zIndex: 3
     }
 
@@ -27,9 +27,16 @@ const Drawer = ()=> {
     return (
         <Paper square sx={header_style}>
 
-            <Stack height={55} direction={'row'} paddingX={2} alignItems={'center'} justifyContent={'space-between'}>
+            <Stack
+                height={55}
+                direction={'row'}
+                paddingX={2}
+                alignItems={'center'}
+                justifyContent={'space-between'}>
 
-                <Stack direction={'row'} spacing={2} alignItems={'center'}>
+                <Stack
+                    direction={'row'}
+                    spacing={2} alignItems={'center'}>
 
                     <FaceIcon color={'primary'}/>
 

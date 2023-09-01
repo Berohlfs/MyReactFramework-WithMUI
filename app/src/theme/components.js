@@ -1,3 +1,7 @@
+/*
+Estilização personalizada de alguns COMPONENTES do Material UI.
+*/
+
 const components = ()=> {
     return ({
         MuiPaper: {

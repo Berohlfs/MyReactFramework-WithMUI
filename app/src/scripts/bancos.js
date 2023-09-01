@@ -1,3 +1,8 @@
+/*
+O objeto JSON abaixo contém a listagem de todos os bancos
+brasileiros, com seus respectivos códigos e nomes.
+*/
+
 export default bancos = [
     {
         "value": "001",

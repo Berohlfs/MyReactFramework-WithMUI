@@ -1,12 +1,12 @@
 // React
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// App
+// App component
 import App from './App.jsx'
 // MUI
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ptBR } from '@mui/material/locale'
-// Theme
+// Theme (MUI's Custom Styling)
 import components from './theme/components.js'
 import palette from './theme/palette.js'
 import typography from './theme/typography.js'
@@ -21,6 +21,9 @@ const theme = createTheme({
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <React.StrictMode>
+
+    {/* Todos os componentes do Material UI aninhados ao ThemeProvider
+    respeitarão as regras de estilização estabelecidas por 'theme'. */}
 
     <ThemeProvider theme={theme}>
 

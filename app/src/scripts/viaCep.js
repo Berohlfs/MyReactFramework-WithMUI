@@ -1,13 +1,20 @@
+/*
+A função 'viaCep' pode ser utilizada dentro de toda a aplicação.
+Para utilizá-la, basta passar o CEP desejado por parâmetro.
+*/
+
 // Libs
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
 const viaCep = async(cep)=> {
 
-    if(cep.replace(/\D/g, '').length != 8){ return false }
+    let clean_cep = String(cep).replace(/\D/g, '')
+
+    if(clean_cep.length != 8){ return false }
 
     try{
-        const res = await axios.get(`https://viacep.com.br/ws/${cep.replace(/\D/g, '')}/json/`)
+        const res = await axios.get(`https://viacep.com.br/ws/${clean_cep}/json/`)
         // console.log(res)
         if(res.data.erro){
             toast.warning('CEP não encontrado.', {toastId : 'viaCep-warning'})

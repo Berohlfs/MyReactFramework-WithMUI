@@ -8,6 +8,7 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 // Libs
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 // Components
 import Modal from '../../components/Modal'
 
@@ -19,6 +20,7 @@ const Drawer = ()=> {
 
     const navigate = useNavigate()
 
+    // Este array é um espelho do menu de navegação
     const navigation = [
         [
             {title: 'Page 01', icon: HomeOutlinedIcon, path: '/home'},
@@ -32,6 +34,7 @@ const Drawer = ()=> {
     const logout = ()=> {
         sessionStorage.clear()
         navigate('/')
+        toast.success('Logout realizado com sucesso', {toastId: 'success-logout'})
     }
 
     return (<>
@@ -41,7 +44,7 @@ const Drawer = ()=> {
             open={drawer_opened}
             onClose={()=>setDrawerOpened(false)}>
 
-            <Stack sx={{ width: 250 }} p={1}>
+            <Stack sx={{ width: 250 }} px={2}>
 
                 {navigation.map((group, group_index)=>(
 
@@ -75,6 +78,7 @@ const Drawer = ()=> {
 
                 <Button
                     sx={{mt: 2}}
+                    color={'error'}
                     onClick={()=>setLogoutModalOpen(true)}
                     endIcon={<LogoutIcon/>}>
                         Sair

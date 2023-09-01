@@ -1,6 +1,6 @@
 // MUI
 import { TextField, Stack, Button } from "@mui/material"
-// Componentes
+// Components
 import Mask from '../../components/Mask'
 import PageCard from '../../components/PageCard'
 // Libs
@@ -19,11 +19,13 @@ const Login = ()=> {
 
     const navigate = useNavigate()
 
+    // Schema para validação de formulário
     const validacao_login = yup.object({
         cpf: yup.string().required('Obrigatório').length(14, 'Inválido'),
         senha: yup.string().required('Obrigatório'),
     })
 
+    // Hook para controle de formulário
     const { handleSubmit, control } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
@@ -32,7 +34,9 @@ const Login = ()=> {
         }
       })
 
+    // onSubmit (Mock)
     const login = async(data)=> {
+        // console.log(data)
         setLoading(true)
         setTimeout(()=>{
             setLoading(false)
@@ -54,6 +58,9 @@ const Login = ()=> {
 
                 <Stack spacing={2}>
 
+                    {/* O Controller é um componente, disponibilizado pela lib 'react-hook-form',
+                    que oferece um state de controle para o input aninhado a ele. */}
+
                     <Controller name={'cpf'} control={control}
                         render={({field, fieldState: {error}}) => (
                         <TextField
@@ -62,6 +69,8 @@ const Login = ()=> {
                             {...field}
                             error={error ? true : false}
                             helperText={error?.message}
+                            /* Para adicionar uma máscara a um campo de texto, precisamos subsituir o
+                            input padrão renderizado pelo TextField por um 'input mascarado' (Mask). */
                             InputProps={{
                                 inputComponent: Mask,
                                 inputProps: {mask: '000.000.000-00'}

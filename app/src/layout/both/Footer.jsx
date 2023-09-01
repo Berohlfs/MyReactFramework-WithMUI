@@ -1,5 +1,4 @@
 // MUI
-import { ThemeContext } from '@emotion/react'
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
@@ -21,7 +20,7 @@ const Footer = ()=> {
 
         <StyledFooter>
 
-            <Typography fontSize={'11px'}>&copy;{year} - MyReactFramework </Typography>
+            <Typography fontSize={'10px'}>&copy;{year} - MyReactFramework </Typography>
 
         </StyledFooter>
 

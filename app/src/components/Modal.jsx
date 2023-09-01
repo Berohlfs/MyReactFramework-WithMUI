@@ -24,7 +24,13 @@ const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400})=
 
                 <Divider/>
 
-                <Box mt={1}>{children}</Box>
+                <Box mt={1}>
+
+
+                    {children}
+
+
+                </Box>
 
             </StyledPaper>
 
