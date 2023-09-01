@@ -1,7 +1,6 @@
 // MUI
 import { Typography, Stack, Paper, Box } from '@mui/material'
-// Imagens
-import logo from '../images/logo.png'
+import FaceIcon from '@mui/icons-material/Face'
 // Libs
 import { styled } from '@mui/material/styles'
 import { Link } from 'react-router-dom'
@@ -22,9 +21,6 @@ const LogoStack = styled(Stack)(({ theme }) => ({
     top: '80px',
     left: '20px',
     backgroundColor: '#eee',
-    '&>img': {
-        width: 40
-    }
 }))
 
 const OutsideLink = styled(Typography)(({ theme }) => ({
@@ -48,13 +44,13 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
 
                 <Typography
                     variant={'subtitle1'}
-                    color={'primary.contrastText'}>
+                    color={'primary.main'}>
                         {title}
                 </Typography>
 
                 <Typography
                     variant={'caption'}
-                    color={'primary.contrastText'}>
+                    color={'primary.main'}>
                         {caption}
                 </Typography>
 
@@ -62,7 +58,7 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
                     alignItems={'center'}
                     justifyContent={'center'}>
 
-                    <img src={logo} alt={'Webimob'}/>
+                    <FaceIcon color={'primary'}/>
 
                 </LogoStack>
 

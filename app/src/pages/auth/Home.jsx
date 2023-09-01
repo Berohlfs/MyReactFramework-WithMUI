@@ -1,5 +1,5 @@
 // MUI
-import { Box, TextField } from '@mui/material'
+import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined'
 // Componentes
@@ -8,7 +8,7 @@ import Table from '../../components/Table'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 // React hooks
-import { useEffect, useState, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../layout/auth/AuthLayout'
 
 const StyledBox = styled(Box)(({ theme }) => ({
@@ -17,8 +17,6 @@ const StyledBox = styled(Box)(({ theme }) => ({
 }))
 
 const Home = ()=> {
-
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
     const [characters, setCharacters] = useState([])
 
@@ -33,12 +31,14 @@ const Home = ()=> {
         }
     }
 
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+
     const action = (id)=> {
         toast(id)
     }
 
     useEffect(()=>{
-        setBreadcrumbs([{text: 'Home', link: '/home'},{text: 'Characters', link: '/home'}])
+        setBreadcrumbs([{text: 'MyReactFramework', link: '/home'},{text: 'Characters', link: '/home'}])
         getCharacters()
     },[])
 
@@ -53,7 +53,7 @@ const Home = ()=> {
                     {nome: 'Espécie', chave: 'species'},
                     {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
-                data={characters.slice(100)}
+                data={characters}
                 actions={[
                     {nome: 'Action', function: action, icon: TaskAltOutlinedIcon, param: 'id'},
                 ]}/>

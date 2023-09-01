@@ -3,14 +3,14 @@ import { deepPurple, amber } from '@mui/material/colors' // https://mui.com/mate
 const palette = ()=> {
     return({
         primary: {
-            main: deepPurple[500],
-            light: deepPurple[200],
+            main: deepPurple[400],
+            light: deepPurple[50],
             contrastText: '#ffffff',
             dark: deepPurple[600]
         },
         secondary: {
             main: amber[400],
-            light: amber[200],
+            light: amber[100],
             contrastText: '#ffffff',
             dark: amber[600]
         },

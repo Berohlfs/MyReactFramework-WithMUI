@@ -2,6 +2,7 @@
 import { auth_routes, open_routes } from './routes'
 // Layouts
 import AuthLayout from './layout/auth/AuthLayout'
+import OpenLayout from './layout/open/OpenLayout'
 // Libs
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -43,7 +44,7 @@ function App() {
 
       {loading && <LinearProgress sx={progress_style}/>}
 
-      <ToastContainer position={"top-right"} autoClose={3000}/>
+      <ToastContainer position={"top-right"} draggable={false} autoClose={3000}/>
 
       <CssBaseline/>
 
@@ -69,7 +70,7 @@ function App() {
                 <Route
                   key={index}
                   path={route.path}
-                  element={route.component}/>
+                  element={<OpenLayout>{route.component}</OpenLayout>}/>
 
               )}
 

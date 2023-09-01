@@ -9,7 +9,6 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
-import { authInstance } from "../../config/axios"
 // React hooks
 import { useContext } from 'react'
 import { AppContext } from '../../App'

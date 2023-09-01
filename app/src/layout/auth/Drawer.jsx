@@ -37,7 +37,7 @@ const Drawer = ()=> {
     return (<>
 
         <MuiDrawer
-            anchor={'left'}
+            anchor={'right'}
             open={drawer_opened}
             onClose={()=>setDrawerOpened(false)}>
 

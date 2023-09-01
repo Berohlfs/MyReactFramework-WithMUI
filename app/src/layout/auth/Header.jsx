@@ -4,8 +4,9 @@ import { AuthLayoutContext } from './AuthLayout'
 // Libs
 import { Link } from 'react-router-dom'
 // MUI
-import { Paper, Stack, Tooltip, IconButton, Breadcrumbs } from '@mui/material'
+import { Paper, Stack, Tooltip, IconButton, Breadcrumbs, Typography } from '@mui/material'
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined'
+import FaceIcon from '@mui/icons-material/Face'
 
 const Drawer = ()=> {
 
@@ -16,7 +17,6 @@ const Drawer = ()=> {
         top: 0,
         width: '100%',
         left: 0,
-        height: 55,
         zIndex: 3
     }
 
@@ -27,28 +27,34 @@ const Drawer = ()=> {
     return (
         <Paper square sx={header_style}>
 
-            <Stack direction={'row'} p={1} spacing={1} alignItems={'center'}>
+            <Stack height={55} direction={'row'} paddingX={2} alignItems={'center'} justifyContent={'space-between'}>
+
+                <Stack direction={'row'} spacing={2} alignItems={'center'}>
+
+                    <FaceIcon color={'primary'}/>
+
+                    <Breadcrumbs>
+
+                    {breadcrumbs.map((item)=>(
+
+                        <Link
+                            style={link_style}
+                            key={`${item.link}-${item.text}`}
+                            to={item.link}>
+                                <Typography fontSize={12}>{item.text}</Typography>
+                        </Link>
+
+                    ))}
+
+                    </Breadcrumbs>
+
+                </Stack>
 
                 <Tooltip title="Menu">
                     <IconButton onClick={()=>setDrawerOpened(true)}>
                         <MenuOutlinedIcon/>
                     </IconButton>
                 </Tooltip>
-
-                <Breadcrumbs>
-
-                {breadcrumbs.map((item)=>(
-
-                    <Link
-                        style={link_style}
-                        key={`${item.link}-${item.text}`}
-                        to={item.link}>
-                            {item.text}
-                    </Link>
-
-                ))}
-
-                </Breadcrumbs>
 
             </Stack>
 

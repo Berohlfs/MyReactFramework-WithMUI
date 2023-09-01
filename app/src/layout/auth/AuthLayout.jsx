@@ -1,6 +1,7 @@
 // Layout components
 import Header from './Header'
 import Drawer from './Drawer'
+import Footer from '../both/Footer'
 // MUI
 import { Box } from '@mui/material'
 // Libs
@@ -41,6 +42,8 @@ const AuthLayout = ({children})=> {
         <Navigate to={'/'}/>
 
         }
+
+        <Footer/>
 
     </>)
 }
