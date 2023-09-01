@@ -13,13 +13,20 @@ const AuthLayout = ({children})=> {
 
     const [drawer_opened, setDrawerOpened] = useState(false)
 
+    const [breadcrumbs, setBreadcrumbs] = useState([])
+
     return (<>
 
         {sessionStorage.getItem('token')
 
         ?
 
-        <AuthLayoutContext.Provider value={{drawer_opened, setDrawerOpened}}>
+        <AuthLayoutContext.Provider value={{
+                drawer_opened,
+                setDrawerOpened,
+                breadcrumbs,
+                setBreadcrumbs
+            }}>
 
             <Drawer/>
 

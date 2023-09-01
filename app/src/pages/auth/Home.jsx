@@ -1,5 +1,5 @@
 // MUI
-import { Typography, Box } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import { styled } from '@mui/material/styles'
 import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined'
 // Componentes
@@ -8,7 +8,8 @@ import Table from '../../components/Table'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 // React hooks
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { AuthLayoutContext } from '../../layout/auth/AuthLayout'
 
 const StyledBox = styled(Box)(({ theme }) => ({
     width: '90%',
@@ -17,12 +18,14 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const Home = ()=> {
 
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+
     const [characters, setCharacters] = useState([])
 
     const getCharacters = async()=> {
         try{
             const res = await axios.get('https://hp-api.onrender.com/api/characters')
-            //console.log(res.data)
+            console.log(res.data)
             setCharacters(res.data)
         }catch(erro){
             toast.error('Não foi possível acessar a API.', {toastId: 'hp-error'})
@@ -35,14 +38,13 @@ const Home = ()=> {
     }
 
     useEffect(()=>{
+        setBreadcrumbs([{text: 'Home', link: '/home'},{text: 'Characters', link: '/home'}])
         getCharacters()
     },[])
 
-    return(<>
+    return(
 
-        <Typography variant={'h6'} m={2} textAlign={'center'}>HP Characters</Typography>
-
-        <StyledBox>
+        <StyledBox pt={3}>
 
             <Table
                 instance_key={'id'}
@@ -51,7 +53,7 @@ const Home = ()=> {
                     {nome: 'Espécie', chave: 'species'},
                     {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
-                data={characters}
+                data={characters.slice(100)}
                 actions={[
                     {nome: 'Action', function: action, icon: TaskAltOutlinedIcon, param: 'id'},
                 ]}/>
@@ -59,7 +61,7 @@ const Home = ()=> {
         </StyledBox>
 
 
-    </>)
+    )
 }
 
 export default Home

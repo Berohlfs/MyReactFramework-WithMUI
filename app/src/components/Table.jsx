@@ -9,7 +9,7 @@ const Table = ({ columns=[], data=[], actions=[], instance_key='id'})=> {
   return (
 
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer sx={{ maxHeight: 460 }}>
+      <TableContainer sx={{ maxHeight: 480 }}>
         <MuiTable stickyHeader>
 
           <TableHead>
