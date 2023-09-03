@@ -9,10 +9,10 @@ Para mais detalhes, acesse: https://axios-http.com/ptbr/docs/intro
 import axios from 'axios'
 
 /*
-'checkTokenInstance' é uma instância do axios que padroniza
+'openInstance' é uma instância do axios que padroniza
 o consumo das rotas não NÃO PROTEGIDAS de um servidor específico.
 */
-const checkTokenInstance = axios.create({
+const openInstance = axios.create({
     baseURL: 'http://192.168.0.30:8989',
 })
 
@@ -41,4 +41,4 @@ authInstance.interceptors.response.use((response)=>{
     return Promise.reject(error)
 })
 
-export { checkTokenInstance, authInstance }
+export { openInstance, authInstance }
