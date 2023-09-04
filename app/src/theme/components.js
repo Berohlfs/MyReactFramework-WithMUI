@@ -16,6 +16,13 @@ const components = ()=> {
                 size: 'small',
             }
         },
+        MuiSelect: {
+            styleOverrides: {
+                outlined: {
+                    padding: '6px 12px',
+                }
+            }
+        },
         MuiOutlinedInput: {
             styleOverrides: {
                 input: {
