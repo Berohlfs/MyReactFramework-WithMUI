@@ -15,7 +15,10 @@ export const AppContext = createContext()
 
 function App() {
 
-  // State para gerenciar a barra de carregamento
+  /*
+  State para gerenciar a barra de carregamento.
+  Obs: Alterar esse state 're-renderiza' toda a aplicação.
+  */
   const [loading, setLoading] = useState(false)
 
   const global_styles = {
