@@ -9,7 +9,7 @@ Para mais detalhes, acesse: https://axios-http.com/ptbr/docs/intro
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const APIInstance = (navigate)=> {
+const APIInstance = (navigate = ()=> console.log(`Default: 'navigate' not defined.`))=> {
     /*
     O método do hook 'useNavigate()' (react-router-dom) foi passado por parâmetro.
     Isso foi preciso pois hooks em React só podem ser inicializados dentro de componentes.
@@ -25,9 +25,10 @@ const APIInstance = (navigate)=> {
         error=> {
 
             if(error?.response?.status === 401){
+
                 navigate('/')
                 sessionStorage.clear()
-                toast.warning('Acesso inválido ou expirado. Faça seu login (401).', {toastId: 'invalid-token'})
+                toast.warning('Acesso inválido ou expirado (401).', {toastId: 'invalid-token'})
 
             }else if(error?.response?.status === 500){
 
