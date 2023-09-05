@@ -40,6 +40,8 @@ const APIInstance = (navigate = ()=> console.log(`Default: 'navigate' not define
 
             }
 
+            console.error(error)
+
             return Promise.reject(error)
 
     })
