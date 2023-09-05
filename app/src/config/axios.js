@@ -38,6 +38,10 @@ const APIInstance = (navigate = ()=> console.log(`Default: 'navigate' not define
 
                 toast.error('Não foi possível se conectar ao servidor.', {toastId: 'connection-error'})
 
+            }else{
+
+                toast.error('Erro não mapeado.', {toastId: 'generic-error'})
+
             }
 
             console.error(error)
