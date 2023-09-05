@@ -7,46 +7,43 @@ Para mais detalhes, acesse: https://axios-http.com/ptbr/docs/intro
 
 // Libs
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
-/*
-'openInstance' é uma instância do axios que padroniza
-o consumo das rotas não NÃO PROTEGIDAS de um servidor específico.
-*/
-const openInstance = ()=> {
+const APIInstance = (navigate)=> {
+    /*
+    O método do hook 'useNavigate()' (react-router-dom) foi passado por parâmetro.
+    Isso foi preciso pois hooks em React só podem ser inicializados dentro de componentes.
+    */
     const instance = axios.create({
         baseURL: 'http://192.168.0.248:8989',
-    })
-
-    return instance
-}
-
-/*
-'authInstance' é uma instância do axios que padroniza
-o consumo das rotas PROTEGIDAS de um servidor específico.
-*/
-const authInstance = ()=> {
-    const instance = axios.create({
-        baseURL: 'http://192.168.0.248:8989',
+        timeout: 10000,
         headers: {'Authorization': `Bearer ${sessionStorage.getItem('token')}`}
     })
-    /*
-    O trecho de código abaixo INTERCEPTA as requisições feitas pela instância
-    'authInstance'. Neste exemplo, caso a resposta da requisição retorne
-    'erro 401' ("não autorizado"), o usuário é redirecionado à página
-    de login.
-    */
-    instance.interceptors.response.use((response)=>{
-        return response
-    }, (error)=>{
-        if(error?.response?.status === 401){
-            // console.log(error)
-            window.location.href = '/'
-            sessionStorage.clear()
-        }
-        return Promise.reject(error)
+
+    instance.interceptors.response.use(
+        response=> response,
+        error=> {
+
+            if(error?.response?.status === 401){
+                navigate('/')
+                sessionStorage.clear()
+                toast.warning('Acesso inválido ou expirado. Faça seu login (401).', {toastId: 'invalid-token'})
+
+            }else if(error?.response?.status === 500){
+
+                toast.error('Erro interno do servidor (500).', {toastId: 'server-error'})
+
+            }else if(error.code === 'ECONNABORTED' && error.message.includes('timeout')) {
+
+                toast.error('Não foi possível se conectar ao servidor.', {toastId: 'connection-error'})
+
+            }
+
+            return Promise.reject(error)
+
     })
 
     return instance
 }
 
-export { openInstance, authInstance }
+export default APIInstance
