@@ -1,6 +1,5 @@
 // Layout components
-import Header from './Header'
-import Drawer from './Drawer'
+import Static from './Static'
 import Footer from '../both/Footer'
 // MUI
 import { Box } from '@mui/material'
@@ -11,8 +10,6 @@ import { createContext, useState } from 'react'
 export const AuthLayoutContext = createContext()
 
 const AuthLayout = ({children})=> {
-
-    const [drawer_opened, setDrawerOpened] = useState(false)
 
     const [breadcrumbs, setBreadcrumbs] = useState([])
 
@@ -29,15 +26,11 @@ const AuthLayout = ({children})=> {
         componentes aninhados, dispensando o uso desnecessário de props. */
 
         <AuthLayoutContext.Provider value={{
-                drawer_opened,
-                setDrawerOpened,
                 breadcrumbs,
                 setBreadcrumbs
             }}>
 
-            <Drawer/>
-
-            <Header/>
+            <Static/>
 
             <Box position={'relative'} top={'55px'}>
 
