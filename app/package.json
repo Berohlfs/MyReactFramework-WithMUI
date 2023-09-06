@@ -1,6 +1,6 @@
 {
-  "name": "app",
-  "private": true,
+  "name": "my-react-framework",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -33,5 +33,18 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "vite": "^4.4.5"
-  }
+  },
+  "description": "Simple React.js starter kit for modern applications",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git://https://github.com/Berohlfs/MyReactFramework"
+  },
+  "keywords": [
+    "Framework",
+    "React",
+    "Vite"
+  ],
+  "author": "Bernardo Cruz Rohlfs",
+  "license": "ISC"
 }
