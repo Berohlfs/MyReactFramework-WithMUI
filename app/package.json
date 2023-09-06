@@ -36,6 +36,9 @@
   },
   "description": "Simple React.js starter kit for modern applications",
   "main": "vite.config.js",
+  "files": [
+    "."
+  ],
   "repository": {
     "type": "git",
     "url": "git://https://github.com/Berohlfs/MyReactFramework"
