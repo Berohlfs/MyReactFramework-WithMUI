@@ -17,7 +17,6 @@ const Mask = forwardRef((props, ref)=> {
 
     <IMaskInput
       {...other}
-
       inputRef={ref}
       onAccept={(value) => onChange({ target: { name: props.name, value } })}
       overwrite

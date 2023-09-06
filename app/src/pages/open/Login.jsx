@@ -1,5 +1,5 @@
 // MUI
-import { TextField, Stack, Button } from "@mui/material"
+import { TextField, Stack, Button, FormControl, InputLabel, FormHelperText, Select, MenuItem } from "@mui/material"
 // Components
 import Mask from '../../components/Mask'
 import PageCard from '../../components/PageCard'
@@ -23,14 +23,16 @@ const Login = ()=> {
     const validacao_login = yup.object({
         cpf: yup.string().required('Obrigatório').length(14, 'Inválido'),
         senha: yup.string().required('Obrigatório'),
+        opcoes: yup.string().required('Obrigatório'),
     })
 
     // Hook para controle de formulário
-    const { handleSubmit, control } = useForm({
+    const { handleSubmit, control, formState: {errors} } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'cpf': '',
           'senha': '',
+          'opcoes': ''
         }
       })
 
@@ -45,6 +47,10 @@ const Login = ()=> {
             navigate('/home')
         },1500)
     }
+
+    const select_options = [
+        {label: 'Opção 01', value: '1'}
+    ]
 
     return (
 
@@ -89,6 +95,35 @@ const Login = ()=> {
                             type={'password'}
                         />)}
                     />
+
+                    <FormControl /* opcoes */>
+
+                        <InputLabel error={errors.opcoes ? true : false}>
+                            Opções
+                        </InputLabel>
+
+                        <Controller name={'opcoes'} control={control}
+                        render={({field, fieldState: {error}}) => (
+                            <Select {...field} label={'Opções'} error={error ? true : false}>
+
+                                {select_options.map((item)=> (
+                                    <MenuItem
+                                        key={item.value}
+                                        value={item.value}>
+                                            {item.label}
+                                    </MenuItem>
+                                ))}
+
+                            </Select>)}
+                        />
+
+                        {errors.opcoes &&
+
+                        <FormHelperText error={errors.opcoes ? true : false}>
+                            {errors.opcoes?.message}
+                        </FormHelperText>}
+
+                    </FormControl>
 
                     <Button type={'submit'}>Login</Button>
 

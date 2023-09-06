@@ -15,9 +15,9 @@ const APIInstance = (navigate = ()=> console.log(`Default: 'navigate' not define
     Isso foi preciso pois hooks em React só podem ser inicializados dentro de componentes.
     */
     const instance = axios.create({
-        baseURL: 'http://192.168.0.248:8989',
+        baseURL: 'https://hp-api.onrender.com',
         timeout: 10000,
-        headers: {'Authorization': `Bearer ${sessionStorage.getItem('token')}`}
+        // headers: {'Authorization': `Bearer ${sessionStorage.getItem('token')}`}
     })
 
     instance.interceptors.response.use(
@@ -40,7 +40,7 @@ const APIInstance = (navigate = ()=> console.log(`Default: 'navigate' not define
 
             }else{
 
-                toast.error('Erro não mapeado.', {toastId: 'generic-error'})
+                toast.error('Houve um erro.', {toastId: 'generic-error'})
 
             }
 

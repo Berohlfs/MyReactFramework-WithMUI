@@ -2,8 +2,9 @@
 import { useContext, useState } from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Breadcrumbs, Tooltip, IconButton, Drawer } from '@mui/material'
 import { Logout, HomeOutlined, MenuOutlined, Face } from '@mui/icons-material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button,
+        Typography, Paper, Breadcrumbs, Tooltip, IconButton, Drawer } from '@mui/material'
 // Libs
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -76,7 +77,9 @@ const Static = ()=> {
                             key={`${item.link}-${item.text}`}
                             to={item.link}
                             style={{textDecoration: 'none'}}>
-                                <Typography fontSize={12}>{item.text}</Typography>
+                                <Typography fontSize={12}>
+                                    {item.text}
+                                </Typography>
                         </Link>
 
                         ))}
@@ -162,7 +165,8 @@ const Static = ()=> {
                 </Button>
                 <Button
                     fullWidth
-                    onClick={logout} color={'error'}>
+                    onClick={logout}
+                    color={'error'}>
                         Sair
                 </Button>
             </Stack>

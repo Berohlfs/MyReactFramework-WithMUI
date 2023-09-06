@@ -20,7 +20,7 @@ const Footer = ()=> {
 
         <StyledFooter>
 
-            <Typography fontSize={'10px'}>&copy;{year} - MyReactFramework </Typography>
+            <Typography fontSize={'10px'}>&copy;{year} - MyReactFramework</Typography>
 
         </StyledFooter>
 

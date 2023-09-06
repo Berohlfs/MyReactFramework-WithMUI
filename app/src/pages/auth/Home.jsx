@@ -5,12 +5,14 @@ import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined'
 // Components
 import Table from '../../components/Table'
 // Libs
-import axios from 'axios'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 // React hooks
 import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../layout/auth/AuthLayout'
 import { AppContext } from '../../App'
+// Config
+import APIInstance from '../../config/axios'
 
 const StyledBox = styled(Box)(({ theme }) => ({
     width: '90%',
@@ -19,31 +21,36 @@ const StyledBox = styled(Box)(({ theme }) => ({
 
 const Home = ()=> {
 
+    // Método de navegação
+    const navigate = useNavigate()
+
+    // Loading - AppContext
     const {setLoading} = useContext(AppContext)
 
+    // Breadcrumbs - AuthContext
     const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
+    // GET - Characters (teste)
     const [characters, setCharacters] = useState([])
 
-    // Para fins de demonstração, utilizaremos a API de personagens do Harry Potter
     const getCharacters = async()=> {
         setLoading(true)
         try{
-            const res = await axios.get('https://hp-api.onrender.com/api/characters/house/gryffindor')
-            // console.log(res.data)
+            const res = await APIInstance(navigate).get('/api/characters/house/gryffindor')
             setCharacters(res.data)
         }catch(erro){
-            toast.error('Não foi possível acessar a API.', {toastId: 'hp-error'})
-            console.log(erro)
+            // O tratamento de erro é feito dentro de 'config/axios.js'.
         }finally{
             setLoading(false)
         }
     }
 
+    // Table mock action
     const action = (id)=> {
         toast(id)
     }
 
+    // Onload
     useEffect(()=>{
         // Cada objeto passado dentro do array abaixo será convertido em um nível do breadcrumb
         setBreadcrumbs([{text: 'MyReactFramework', link: '/home'},{text: 'Characters', link: '/home'}])

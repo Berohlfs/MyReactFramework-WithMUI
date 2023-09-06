@@ -40,6 +40,11 @@ const components = ()=> {
                 }
             }
         },
+        MuiFormControl: {
+            defaultProps: {
+                size: 'small'
+            }
+        },
         MuiFormControlLabel: {
             styleOverrides:{
                 label:{
@@ -51,6 +56,13 @@ const components = ()=> {
             styleOverrides: {
                 root: {
                     fontSize: 10
+                }
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    fontSize: 12
                 }
             }
         },
