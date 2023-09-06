@@ -117,7 +117,9 @@ const Static = ()=> {
 
                             <ListItemButton onClick={()=>navigate(item.path)}>
 
-                                <ListItemIcon><item.icon/></ListItemIcon>
+                                <ListItemIcon>
+                                    <item.icon/>
+                                </ListItemIcon>
 
                                 <ListItemText primary={item.title}/>
 
