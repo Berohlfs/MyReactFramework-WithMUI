@@ -1,6 +1,6 @@
 {
-  "name": "@berohlfs/app",
-  "private": false,
+  "name": "app",
+  "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -35,7 +35,6 @@
     "vite": "^4.4.5"
   },
   "description": "Simple React.js framework for modern applications.",
-  "main": "vite.config.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Berohlfs/MyReactFramework.git"
@@ -50,6 +49,5 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Berohlfs/MyReactFramework/issues"
-  },
-  "homepage": "https://github.com/Berohlfs/MyReactFramework#readme"
+  }
 }
