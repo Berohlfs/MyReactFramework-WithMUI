@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // App component
-import App from './App.jsx'
+import App from './App.js'
 // MUI
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { ptBR } from '@mui/material/locale'
