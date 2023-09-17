@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // App component
-import App from './App.tsx'
+import App from './App'
 // MUI
 import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
 import { ptBR } from '@mui/material/locale'
