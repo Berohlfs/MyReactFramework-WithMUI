@@ -1,8 +1,3 @@
-/*
-A função 'viaCep' pode ser utilizada dentro de toda a aplicação.
-Para utilizá-la, basta passar o CEP desejado por parâmetro.
-*/
-
 // Libs
 import axios from 'axios'
 import { toast } from 'react-toastify'

@@ -15,15 +15,9 @@ const AuthLayout = ({children})=> {
 
     return (<>
 
-        {/* O usuário é imediatamente redirecionado à página de login
-        caso não tenha um token de acesso. */}
-
         {sessionStorage.getItem('token')
 
         ?
-
-        /* O AuthLayoutContext possibilita a passagem de valores para
-        componentes aninhados, dispensando o uso desnecessário de props. */
 
         <AuthLayoutContext.Provider value={{
                 breadcrumbs,

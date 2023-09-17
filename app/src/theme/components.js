@@ -1,6 +1,4 @@
-/*
-Estilização personalizada de alguns COMPONENTES do Material UI.
-*/
+// https://mui.com/material-ui/customization/theme-components/
 
 const components = ()=> {
     return ({

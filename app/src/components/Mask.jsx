@@ -1,9 +1,3 @@
-/*
-Para mascarar inputs, utilizarem a lib 'react-imask'. Essa biblioteca
-fornece um componente que pode ser utilizado juntamente ao TextField
-do Material UI.
-*/
-
 // React hooks
 import { forwardRef } from 'react'
 // Libs

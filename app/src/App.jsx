@@ -15,10 +15,6 @@ export const AppContext = createContext()
 
 function App() {
 
-  /*
-  State para gerenciar a barra de carregamento.
-  Obs: Alterar esse state 're-renderiza' toda a aplicação.
-  */
   const [loading, setLoading] = useState(false)
 
   const global_styles = {
@@ -30,8 +26,6 @@ function App() {
       scrollBehavior: 'smooth'
     },
     '*': {
-      /* A declaração global da fonte desejada permite
-      sua utilização fora dos componentes do MUI. */
       fontFamily: "'Inter','sans-serif'"
     },
     a: {
@@ -52,20 +46,11 @@ function App() {
 
       <ToastContainer position={"top-right"} draggable={false} autoClose={3000}/>
 
-      {/* O CssBaseline injeta regras de estilo básicas para corrigir pré-definições
-      dos navegadores: 'margin', 'padding', 'box-sizing', 'lists', 'text-selection', etc. */}
-
       <CssBaseline/>
-
-      {/* O componente GlobalStyles facilita a adição de estilos
-      globais personalizados dentro da aplicação. */}
 
       <GlobalStyles styles={global_styles}/>
 
-      {/* O AppContext possibilita a passagem de valores para
-      componentes aninhados, dispensando o uso desnecessário de props */}
-
-      <AppContext.Provider value={{loading, setLoading}}>
+      <AppContext.Provider value={{setLoading}}>
 
         <BrowserRouter>
 

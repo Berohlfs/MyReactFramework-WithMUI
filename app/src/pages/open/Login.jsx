@@ -36,7 +36,7 @@ const Login = ()=> {
         }
       })
 
-    // onSubmit (Mock)
+    // onSubmit
     const login = async(data)=> {
         // console.log(data)
         setLoading(true)
@@ -64,9 +64,6 @@ const Login = ()=> {
 
                 <Stack spacing={2}>
 
-                    {/* O Controller é um componente, disponibilizado pela lib 'react-hook-form',
-                    que oferece um state de controle para o input aninhado a ele. */}
-
                     <Controller name={'cpf'} control={control}
                         render={({field, fieldState: {error}}) => (
                         <TextField
@@ -75,8 +72,6 @@ const Login = ()=> {
                             {...field}
                             error={error ? true : false}
                             helperText={error?.message}
-                            /* Para adicionar uma máscara a um campo de texto, precisamos subsituir o
-                            input padrão renderizado pelo TextField por um 'input mascarado' (Mask). */
                             InputProps={{
                                 inputComponent: Mask,
                                 inputProps: {mask: '000.000.000-00'}

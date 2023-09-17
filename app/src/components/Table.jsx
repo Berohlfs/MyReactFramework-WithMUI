@@ -8,16 +8,6 @@ import { useMemo } from 'react'
 
 const Table = ({ columns=[], data=[], actions=[], row_key})=> {
 
-  /*
-    Tabelas podem se tornar grandes e pesadas. Dito isso, para evitar que uma tabela seja
-    desnecessariamente 're-renderizada', utilizamos um hook nativo de React: o 'useMemo()'.
-
-    Em resumo, esse hook evita que uma função seja executada novamente em situações em que
-    o resultado é previsível. Na implementação abaixo, a tabela é renderizada apenas quando
-    os dados fornecidos (data) sofrem alguma alteração (aumentando significativamente a
-    performance da aplicação).
-  */
-
   const table = useMemo(()=> (
 
     <Paper sx={{overflow: 'hidden'}}>

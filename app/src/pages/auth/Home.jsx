@@ -30,7 +30,7 @@ const Home = ()=> {
     // Breadcrumbs - AuthContext
     const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
-    // GET - Characters (teste)
+    // GET - Characters
     const [characters, setCharacters] = useState([])
 
     const getCharacters = async()=> {
@@ -39,20 +39,19 @@ const Home = ()=> {
             const res = await APIInstance(navigate).get('/api/characters/house/gryffindor')
             setCharacters(res.data)
         }catch(erro){
-            // O tratamento de erro é feito dentro de 'config/axios.js'.
+            // Erros tratados dentro do arquivo 'config/axios.js'.
         }finally{
             setLoading(false)
         }
     }
 
-    // Table mock action
+    // Table action
     const action = (id)=> {
         toast(id)
     }
 
     // Onload
     useEffect(()=>{
-        // Cada objeto passado dentro do array abaixo será convertido em um nível do breadcrumb
         setBreadcrumbs([{text: 'MyReactFramework', link: '/home'},{text: 'Characters', link: '/home'}])
         getCharacters()
     },[])
@@ -64,14 +63,11 @@ const Home = ()=> {
             <Table
                 row_key={'id'}
                 columns={[
-                    // Adicione o atributo 'link' para uma coluna de LINKS.
                     {nome: 'Nome', chave: 'name', link: {path: 'home', chave: 'id'}},
                     {nome: 'Espécie', chave: 'species'},
-                    // Adicione o atributo 'enum' para uma coluna de CHIPS.
                     {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
                 data={characters}
-                // Adicione actions para colunas com disparo de funções.
                 actions={[
                     {nome: 'Action', function: action, icon: TaskAltOutlinedIcon, param: 'id'},
                 ]}/>

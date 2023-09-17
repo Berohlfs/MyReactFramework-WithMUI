@@ -1,9 +1,6 @@
-/*
-O objeto JSON abaixo contém a listagem de todos os bancos
-brasileiros, com seus respectivos códigos e nomes.
-*/
+// Bancos brasileiros
 
-export default bancos = [
+const bancos = [
     {
         "value": "001",
         "label": "Banco do Brasil S.A."
@@ -777,3 +774,5 @@ export default bancos = [
         "label": "Banco Keb Hana do Brasil S. A."
     }
 ]
+
+export default bancos
