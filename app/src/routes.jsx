@@ -2,7 +2,9 @@
 import Login from './pages/open/Login'
 import NotFound from './pages/open/NotFound'
 // Páginas protegidas
-import Home from './pages/auth/Home'
+import EntityIndex from './pages/auth/entity01/Index'
+import EntityShow from './pages/auth/entity01/Show'
+import EntityCreate from './pages/auth/entity01/Create'
 
 export const open_routes = [
     {path: '/', component: <Login/>},
@@ -10,5 +12,7 @@ export const open_routes = [
 ]
 
 export const auth_routes = [
-    {path: '/home', component: <Home/>}
+    {path: '/characters', component: <EntityIndex/>},
+    {path: '/characters/:id', component: <EntityShow/>},
+    {path: '/novo/characters', component: <EntityCreate/>},
 ]

@@ -1,25 +1,25 @@
 // MUI
 import { Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
-import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined'
+import { TaskAltOutlined } from '@mui/icons-material'
 // Components
-import Table from '../../components/Table'
+import Table from '../../../components/Table'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 // React hooks
 import { useEffect, useContext, useState } from 'react'
-import { AuthLayoutContext } from '../../layout/auth/AuthLayout'
-import { AppContext } from '../../App'
+import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
+import { AppContext } from '../../../App'
 // Config
-import APIInstance from '../../config/axios'
+import APIInstance from '../../../config/axios'
 
 const StyledBox = styled(Box)(({ theme }) => ({
     width: '90%',
     margin: '0 auto'
 }))
 
-const Home = ()=> {
+const EntityIndex = ()=> {
 
     // Método de navegação
     const navigate = useNavigate()
@@ -61,20 +61,21 @@ const Home = ()=> {
         <StyledBox pt={3}>
 
             <Table
-                row_key={'id'}
+                title={'Characters'}
+                id={'id'}
                 columns={[
                     {nome: 'Nome', chave: 'name', link: {path: 'home', chave: 'id'}},
                     {nome: 'Espécie', chave: 'species'},
                     {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
                 data={characters}
-                actions={[
-                    {nome: 'Action', function: action, icon: TaskAltOutlinedIcon, param: 'id'},
-                ]}/>
+                hidden_actions={[{name: 'Renovar', function: action}]}
+                actions={[{name: 'Renovar', function: action, icon: TaskAltOutlined}]}
+                add_link={'/novo/characters'}/>
 
         </StyledBox>
 
     )
 }
 
-export default Home
+export default EntityIndex

@@ -2,10 +2,26 @@
 
 const components = ()=> {
     return ({
+        MuiTableCell: {
+            styleOverrides: {
+                head: {
+                    color: '#888',
+                    fontSize: '12px',
+                    padding: '10px 12px',
+                },
+                body: {
+                    padding: '8px 12px',
+                    fontSize: '11px'
+                },
+                root: {
+                    whiteSpace: 'nowrap',
+                }
+            }
+        },
         MuiPaper: {
             styleOverrides:{
                 root: {
-                    boxShadow: '0 0 0.3em #aaa',
+                    boxShadow: '0 0 0.4em #ddd',
                 }
             }
         },
@@ -38,11 +54,6 @@ const components = ()=> {
                 }
             }
         },
-        MuiFormControl: {
-            defaultProps: {
-                size: 'small'
-            }
-        },
         MuiFormControlLabel: {
             styleOverrides:{
                 label:{
@@ -57,13 +68,6 @@ const components = ()=> {
                 }
             }
         },
-        MuiMenuItem: {
-            styleOverrides: {
-                root: {
-                    fontSize: 12
-                }
-            }
-        },
         MuiCheckbox: {
             defaultProps: {
                 size: 'small'
@@ -72,7 +76,22 @@ const components = ()=> {
         MuiButton: {
             defaultProps: {
                 size: 'small',
-                variant: 'contained'
+                variant: 'contained',
+            },
+            styleOverrides: {
+                root: {
+                    textTransform: 'none'
+                }
+            }
+        },
+        MuiChip: {
+            defaultProps: {
+                size: 'small'
+            },
+            styleOverrides: {
+                root: {
+                    fontSize: '10px'
+                }
             }
         }
     })

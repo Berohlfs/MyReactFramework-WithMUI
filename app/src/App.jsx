@@ -23,13 +23,28 @@ function App() {
       paddingBottom: '50px'
     },
     html: {
-      scrollBehavior: 'smooth'
-    },
-    '*': {
-      fontFamily: "'Inter','sans-serif'"
+      scrollBehavior: 'smooth',
     },
     a: {
       color: '#2864ad'
+    },
+    '*': {
+      fontFamily: "'Inter','sans-serif'",
+      /* Firefox */
+      scrollbarWidth: 'thin',
+      scrollbarColor: '#bbb #e7e7e7'
+    },
+    /* Chrome, Edge and Safari */
+    '*::-webkit-scrollbar': {
+      width: '5px',
+      height: '5px'
+    },
+    '*::-webkit-scrollbar-track': {
+      backgroundColor: '#e7e7e7'
+    },
+    '*::-webkit-scrollbar-thumb': {
+      borderRadius: '20px',
+      backgroundColor: '#bbb'
     }
   }
 

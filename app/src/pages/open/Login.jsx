@@ -44,7 +44,7 @@ const Login = ()=> {
             setLoading(false)
             toast.success('Login efetuado com sucesso.', {toastId: 'success-login'})
             sessionStorage.setItem('token', 'token')
-            navigate('/home')
+            navigate('/characters')
         },1500)
     }
 

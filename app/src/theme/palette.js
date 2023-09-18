@@ -1,12 +1,12 @@
 // https://mui.com/material-ui/customization/color/
 
 // MUI
-import { deepPurple, amber } from '@mui/material/colors'
+import { deepPurple, amber, green } from '@mui/material/colors'
 
 const palette = ()=> {
     return({
         primary: {
-            main: deepPurple[400],
+            main: deepPurple[500],
             light: deepPurple[50],
             contrastText: '#ffffff',
             dark: deepPurple[600]
@@ -17,6 +17,9 @@ const palette = ()=> {
             contrastText: '#ffffff',
             dark: amber[600]
         },
+        success: {
+            main: green[500]
+        }
     })
 }
 
