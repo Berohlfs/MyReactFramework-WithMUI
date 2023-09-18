@@ -12,7 +12,7 @@ const palette = ()=> {
             dark: deepPurple[600]
         },
         secondary: {
-            main: amber[400],
+            main: amber[600],
             light: amber[100],
             contrastText: '#ffffff',
             dark: amber[600]

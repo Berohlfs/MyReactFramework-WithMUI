@@ -39,9 +39,7 @@ const LongMenu = ({hidden_actions, param})=> {
             key={action.name}
             onClick={()=>{handleClose(); action.function(param)}}>
 
-            <Typography variant={'caption'}>
-                {action.name}
-            </Typography>
+              {action.name}
 
           </MenuItem>
 

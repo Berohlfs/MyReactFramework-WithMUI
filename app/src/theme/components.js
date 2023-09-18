@@ -21,8 +21,13 @@ const components = ()=> {
         MuiPaper: {
             styleOverrides:{
                 root: {
-                    boxShadow: '0 0 0.4em #ddd',
+                    boxShadow: '0 0 0.2em #ddd',
                 }
+            }
+        },
+        MuiFormControl: {
+            defaultProps: {
+                size: 'small'
             }
         },
         MuiTextField: {
@@ -86,11 +91,20 @@ const components = ()=> {
         },
         MuiChip: {
             defaultProps: {
-                size: 'small'
+                size: 'small',
+                variant: 'outlined'
             },
             styleOverrides: {
                 root: {
-                    fontSize: '10px'
+                    fontSize: '10px',
+                    fontWeight: 'bold'
+                }
+            }
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    fontSize: 12
                 }
             }
         }

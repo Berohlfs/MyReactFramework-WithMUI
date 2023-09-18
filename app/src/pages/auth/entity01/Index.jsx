@@ -16,7 +16,8 @@ import APIInstance from '../../../config/axios'
 
 const StyledBox = styled(Box)(({ theme }) => ({
     width: '90%',
-    margin: '0 auto'
+    margin: '0 auto',
+    marginTop: 30
 }))
 
 const EntityIndex = ()=> {
@@ -52,25 +53,25 @@ const EntityIndex = ()=> {
 
     // Onload
     useEffect(()=>{
-        setBreadcrumbs([{text: 'MyReactFramework', link: '/home'},{text: 'Characters', link: '/home'}])
+        setBreadcrumbs([{text: 'Characters', link: '/characters'}])
         getCharacters()
     },[])
 
     return(
 
-        <StyledBox pt={3}>
+        <StyledBox>
 
             <Table
                 title={'Characters'}
                 id={'id'}
                 columns={[
-                    {nome: 'Nome', chave: 'name', link: {path: 'home', chave: 'id'}},
+                    {nome: 'Nome', chave: 'name', link: {path: 'characters', chave: 'id'}},
                     {nome: 'Espécie', chave: 'species'},
                     {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
                 data={characters}
-                hidden_actions={[{name: 'Renovar', function: action}]}
-                actions={[{name: 'Renovar', function: action, icon: TaskAltOutlined}]}
+                hidden_actions={[{name: 'Get ID', function: action}]}
+                actions={[{nome: 'Get ID', function: action, icon: TaskAltOutlined}]}
                 add_link={'/novo/characters'}/>
 
         </StyledBox>

@@ -2,7 +2,7 @@
 import { useContext, useState } from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
-import { Logout, HomeOutlined, MenuOutlined, Face } from '@mui/icons-material'
+import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
 import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button,
         Typography, Paper, Breadcrumbs, Tooltip, IconButton, Drawer } from '@mui/material'
 // Libs
@@ -10,6 +10,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 // Components
 import Modal from '../../components/Modal'
+
+import Avatar from '@mui/material/Avatar'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
+import Settings from '@mui/icons-material/Settings'
 
 const Static = ()=> {
 
@@ -52,6 +57,16 @@ const Static = ()=> {
         zIndex: 3
     }
 
+    const [anchorEl, setAnchorEl] = useState(null)
+
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget)
+    }
+    
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+
     return (<>
 
         <Paper square sx={header_style}>
@@ -67,7 +82,31 @@ const Static = ()=> {
                     direction={'row'}
                     spacing={2} alignItems={'center'}>
 
-                    <Face color={'primary'}/>
+                    <Tooltip>
+                        <IconButton
+                            onClick={handleClick}
+                            size="small">
+                            <Avatar
+                                sx={{ width: 32, height: 32}}>
+                                <PersonRounded/>
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
+
+                    <Menu
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                        onClick={handleClose}>
+
+                        <MenuItem
+                        onClick={()=>{handleClose; setLogoutModalOpen(true)}}>
+                            <ListItemIcon>
+                                <Logout fontSize="small" />
+                            </ListItemIcon>
+                            Sair desta conta
+                        </MenuItem>
+                    </Menu>
 
                     <Breadcrumbs>
 
@@ -136,14 +175,6 @@ const Static = ()=> {
                 </Box>
 
                 ))}
-
-                <Button
-                    sx={{mt: 2}}
-                    color={'error'}
-                    onClick={()=>setLogoutModalOpen(true)}
-                    endIcon={<Logout/>}>
-                        Sair
-                </Button>
 
             </Stack>
 

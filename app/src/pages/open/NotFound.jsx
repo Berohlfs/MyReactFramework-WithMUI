@@ -6,8 +6,8 @@ const NotFound = ()=> {
         <PageCard
             title={'Erro 404'}
             caption={'Página não encontrada'}
-            link={{text: 'Voltar à tela inicial?', path: '/home', label: 'Voltar'}}
-            />
+            link={{text: 'Voltar à tela inicial?', path: '/characters', label: 'Voltar'}}
+        />
     )
 }
 

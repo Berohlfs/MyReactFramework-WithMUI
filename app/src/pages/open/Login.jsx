@@ -27,7 +27,7 @@ const Login = ()=> {
     })
 
     // Hook para controle de formulário
-    const { handleSubmit, control, formState: {errors} } = useForm({
+    const { handleSubmit, control } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'cpf': '',
@@ -90,35 +90,6 @@ const Login = ()=> {
                             type={'password'}
                         />)}
                     />
-
-                    <FormControl /* opcoes */>
-
-                        <InputLabel error={errors.opcoes ? true : false}>
-                            Opções
-                        </InputLabel>
-
-                        <Controller name={'opcoes'} control={control}
-                        render={({field, fieldState: {error}}) => (
-                            <Select {...field} label={'Opções'} error={error ? true : false}>
-
-                                {select_options.map((item)=> (
-                                    <MenuItem
-                                        key={item.value}
-                                        value={item.value}>
-                                            {item.label}
-                                    </MenuItem>
-                                ))}
-
-                            </Select>)}
-                        />
-
-                        {errors.opcoes &&
-
-                        <FormHelperText error={errors.opcoes ? true : false}>
-                            {errors.opcoes?.message}
-                        </FormHelperText>}
-
-                    </FormControl>
 
                     <Button type={'submit'}>Login</Button>
 
