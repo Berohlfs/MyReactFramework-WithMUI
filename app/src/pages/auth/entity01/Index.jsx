@@ -5,17 +5,13 @@ import Table from '../../../components/Table'
 import AuthBlock from '../../../components/AuthBlock'
 // Libs
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 // React hooks
 import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
-// Config
-import APIInstance from '../../../config/axios'
 
 const EntityIndex = ()=> {
-
-    const navigate = useNavigate()
 
     const {setLoading} = useContext(AppContext)
 
@@ -27,10 +23,11 @@ const EntityIndex = ()=> {
     const getCharacters = async()=> {
         setLoading(true)
         try{
-            const res = await APIInstance(navigate).get('/api/characters/house/gryffindor')
+            const res = await axios.get('https://hp-api.onrender.com/api/characters/house/gryffindor')
             setCharacters(res.data)
         }catch(erro){
-            // Erros tratados dentro do arquivo 'config/axios.js'.
+            console.log(erro)
+            toast.warning('Houve um erro.', {toastId: 'error-getCharacters'})
         }finally{
             setLoading(false)
         }

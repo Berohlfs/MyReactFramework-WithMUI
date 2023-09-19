@@ -5,18 +5,25 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 
-const APIInstance = (navigate)=> {
+// Essa é uma instância de axios personalizada para meu uso pessoal.
+// Sua funcionalidade é compatível com as API's que desenvolvo.
+
+// ====== EXEMPLO DE UTILIZAÇÃO ======
+// import { APIInstance } from '?'
+// const res = await APIInstance(navigate, false).get('?')
+
+export const APIInstance = (navigate, success_toast = true)=> {
 
     const instance = axios.create({
         baseURL: 'https://hp-api.onrender.com',
         timeout: 10000,
-        // withCredentials: true
+        withCredentials: true
     })
 
     instance.interceptors.response.use(
         response=> {
 
-            toast.success(`${response?.data?.message} (${response.status})`, {toastId: 'server-success-feedback'})
+            success_toast && toast.success(`${response?.data?.message} (${response?.status})`, {toastId: 'server-success-feedback'})
 
             return response
 
@@ -29,7 +36,7 @@ const APIInstance = (navigate)=> {
 
             }else if(error?.response?.status){
 
-                if(error?.response?.status === 401){
+                if(error.response.status === 401){
                     navigate && navigate('/')
                     Cookies.remove('access')
                 }
@@ -38,7 +45,7 @@ const APIInstance = (navigate)=> {
 
             }else{
 
-                toast.error('Houve um erro.', {toastId: 'unmapped-error'})
+                toast.error('Houve um erro.', {toastId: 'unknown-error'})
 
             }
 
@@ -51,5 +58,3 @@ const APIInstance = (navigate)=> {
 
     return instance
 }
-
-export default APIInstance

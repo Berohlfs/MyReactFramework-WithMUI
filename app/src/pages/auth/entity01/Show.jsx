@@ -7,12 +7,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
+import axios from 'axios'
 // React hooks
 import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
-// Config
-import APIInstance from '../../../config/axios'
 // Components
 import DeleteBar from '../../../components/DeleteBar'
 import AuthBlock from '../../../components/AuthBlock'
@@ -33,7 +32,7 @@ const EntityIndex = ()=> {
     })
 
     // Hook form
-    const { handleSubmit, control, formState: {errors}, setValue } = useForm({
+    const { handleSubmit, control, setValue } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': ''
@@ -44,11 +43,12 @@ const EntityIndex = ()=> {
     const getCharacter = async()=> {
         setLoading(true)
         try{
-            const res = await APIInstance(navigate).get(`/api/character/${id}`)
+            const res = await axios.get(`https://hp-api.onrender.com/api/character/${id}`)
             console.log(res.data)
             setValue('name', res.data[0].name)
         }catch(erro){
-            // Erros tratados dentro do arquivo 'config/axios.js'.
+            console.log(erro)
+            toast.warning('Houve um erro.', {toastId: 'error-getCharacter'})
         }finally{
             setLoading(false)
         }
