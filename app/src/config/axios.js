@@ -14,15 +14,18 @@ const APIInstance = (navigate)=> {
     })
 
     instance.interceptors.response.use(
-        response=> response,
+        response=> {
+
+            toast.success(`${response?.data?.message} (${response.status})`, {toastId: 'server-success-feedback'})
+
+            return response
+
+        },
         error=> {
+
             if(error?.code === 'ECONNABORTED' && error?.message.includes('timeout')) {
 
                 toast.error('Servidor indisponível.', {toastId: 'timeout'})
-
-            }else if(error?.response?.status === 500){
-
-                toast.warning('Erro interno do servidor (500).', {toastId: 'internal-server-error'})
 
             }else if(error?.response?.status){
 
@@ -31,7 +34,7 @@ const APIInstance = (navigate)=> {
                     Cookies.remove('access')
                 }
 
-                toast.warning(`${error.response?.data?.message} (${error.response.status})`, {toastId: 'server-feedback'})
+                toast.warning(`${error.response?.data?.message} (${error.response.status})`, {toastId: 'server-error-feedback'})
 
             }else{
 
@@ -43,7 +46,8 @@ const APIInstance = (navigate)=> {
 
             return Promise.reject(error)
 
-    })
+        }
+    )
 
     return instance
 }
