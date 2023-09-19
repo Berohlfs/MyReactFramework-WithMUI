@@ -1,6 +1,6 @@
 // MUI
-import { Paper, Stack, Typography, Button, Divider, TextField } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { Stack, Typography, Button, Divider, TextField } from '@mui/material'
+import { Check, Clear } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -15,39 +15,32 @@ import { AppContext } from '../../../App'
 import APIInstance from '../../../config/axios'
 // Components
 import DeleteBar from '../../../components/DeleteBar'
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    width: '90%',
-    margin: '0 auto',
-    marginTop: 30
-}))
+import AuthBlock from '../../../components/AuthBlock'
 
 const EntityIndex = ()=> {
 
     const { id } = useParams()
 
-    // Schema para validação de formulário
+    const navigate = useNavigate()
+
+    const {setLoading} = useContext(AppContext)
+
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+
+    // Schema de validação
     const validacao_login = yup.object({
         name: yup.string().required('Obrigatório'),
     })
 
-    // Hook para controle de formulário
+    // Hook form
     const { handleSubmit, control, formState: {errors}, setValue } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': ''
         }
-      })
+    })
 
-    // Método de navegação
-    const navigate = useNavigate()
-
-    // Loading - AppContext
-    const {setLoading} = useContext(AppContext)
-
-    // Breadcrumbs - AuthContext
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
-
+    // GET - Character
     const getCharacter = async()=> {
         setLoading(true)
         try{
@@ -61,7 +54,7 @@ const EntityIndex = ()=> {
         }
     }
 
-    // Onload
+    // OnLoad
     useEffect(()=>{
         setBreadcrumbs([{text: 'Characters', link: '/characters'},{text: 'Edit', link: ''}])
         getCharacter()
@@ -71,7 +64,7 @@ const EntityIndex = ()=> {
 
         <form onSubmit={handleSubmit((data)=>toast('Mock save'))}>
 
-        <StyledPaper>
+        <AuthBlock type={'paper'}>
 
             <Stack padding={2} spacing={2}>
 
@@ -88,9 +81,18 @@ const EntityIndex = ()=> {
                         alignItems={'center'}
                         spacing={1}>
 
-                        <Button color={'error'} onClick={()=>getCharacter()}>Cancelar</Button>
+                        <Button
+                            color={'error'}
+                            onClick={()=>getCharacter()}
+                            endIcon={<Clear/>}>
+                                Cancel
+                        </Button>
 
-                        <Button type={'submit'}>Salvar</Button>
+                        <Button
+                            type={'submit'}
+                            endIcon={<Check/>}>
+                                Save
+                        </Button>
 
                     </Stack>
 
@@ -102,7 +104,7 @@ const EntityIndex = ()=> {
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={1}>
+                    spacing={2}>
 
                     <Controller name={'name'} control={control}
                         render={({field, fieldState: {error}}) => (
@@ -121,7 +123,7 @@ const EntityIndex = ()=> {
 
             </Stack>
 
-        </StyledPaper>
+        </AuthBlock>
 
         </form>
 

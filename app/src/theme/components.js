@@ -21,18 +21,13 @@ const components = ()=> {
         MuiPaper: {
             styleOverrides:{
                 root: {
-                    boxShadow: '0 0 0.2em #ddd',
+                    boxShadow: '0 0 0.2em #ccc',
                 }
             }
         },
         MuiFormControl: {
             defaultProps: {
                 size: 'small'
-            }
-        },
-        MuiTextField: {
-            defaultProps: {
-                size: 'small',
             }
         },
         MuiSelect: {

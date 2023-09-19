@@ -3,74 +3,86 @@ import { useContext, useState } from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
 import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button,
-        Typography, Paper, Breadcrumbs, Tooltip, IconButton, Drawer } from '@mui/material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Breadcrumbs, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
+import { styled } from '@mui/material/styles'
 // Libs
 import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import Cookies from 'js-cookie'
 // Components
 import Modal from '../../components/Modal'
 
-import Avatar from '@mui/material/Avatar'
-import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
-import Settings from '@mui/icons-material/Settings'
+const StyledHeader = styled(Paper)(({ theme }) => ({
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    width: '100%',
+    zIndex: 3
+}))
+
+const StyledMenu = styled(Paper)(({ theme }) => ({
+    position: 'fixed',
+    zIndex: 5,
+    top: 0,
+    right: 0,
+    height: '100%',
+    transition: '2',
+    '&.closed': {
+        right: '-300px'
+    }
+}))
+
+const Escape = styled(Box)(({ theme }) => ({
+    position: 'fixed',
+    top: 0,
+    width: '100%',
+    height: '100%',
+    backgroundColor: '#0000004e',
+    zIndex: 4
+}))
 
 const Static = ()=> {
 
-    // Método de navegação
     const navigate = useNavigate()
 
-    // Estado do menu (aberto ou fechado?)
     const [menu_opened, setMenuOpened] = useState(false)
 
-    // Estado do modal de logout (aberto ou fechado?)
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
 
-    // Breadcrumbs - AuthContext
     const {breadcrumbs} = useContext(AuthLayoutContext)
 
-    // Espelho da estrutura do menu lateral
+    // Espelho do menu lateral
     const navigation = [
         [
-            {title: 'Page 01', icon: HomeOutlined, path: '/home'},
+            {title: 'Page 01', icon: HomeOutlined, path: '/characters'},
         ],
         [
-            {title: 'Page 02', icon: HomeOutlined, path: '/home'},
-            {title: 'Page 03', icon: HomeOutlined, path: '/home'}
+            {title: 'Page 02', icon: HomeOutlined, path: '/characters'},
+            {title: 'Page 03', icon: HomeOutlined, path: '/characters'}
         ]
     ]
 
     // Handle logout
     const logout = ()=> {
-        sessionStorage.clear()
+        Cookies.remove('access')
         navigate('/')
         toast.success('Logout realizado com sucesso', {toastId: 'success-logout'})
     }
 
-    // Estilização do cabeçalho
-    const header_style = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        zIndex: 3
-    }
-
+    // Avatar's menu anchor
     const [anchorEl, setAnchorEl] = useState(null)
 
-    const handleClick = (event) => {
+    const handleAvatarClick = (event) => {
         setAnchorEl(event.currentTarget)
     }
-    
-    const handleClose = () => {
+
+    const handleAvatarMenuClose = () => {
         setAnchorEl(null)
     }
 
     return (<>
 
-        <Paper square sx={header_style}>
-
+        <StyledHeader square>
             <Stack
                 height={55}
                 direction={'row'}
@@ -80,11 +92,12 @@ const Static = ()=> {
 
                 <Stack
                     direction={'row'}
-                    spacing={2} alignItems={'center'}>
+                    spacing={2}
+                    alignItems={'center'}>
 
                     <Tooltip>
                         <IconButton
-                            onClick={handleClick}
+                            onClick={handleAvatarClick}
                             size="small">
                             <Avatar
                                 sx={{ width: 32, height: 32}}>
@@ -96,15 +109,17 @@ const Static = ()=> {
                     <Menu
                         anchorEl={anchorEl}
                         open={Boolean(anchorEl)}
-                        onClose={handleClose}
-                        onClick={handleClose}>
+                        onClose={handleAvatarMenuClose}
+                        onClick={handleAvatarMenuClose}>
 
-                        <MenuItem
-                        onClick={()=>{handleClose; setLogoutModalOpen(true)}}>
+                        <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
+
                             <ListItemIcon>
-                                <Logout fontSize="small" />
+                                <Logout fontSize="small"/>
                             </ListItemIcon>
+
                             Sair desta conta
+
                         </MenuItem>
                     </Menu>
 
@@ -116,9 +131,11 @@ const Static = ()=> {
                             key={`${item.link}-${item.text}`}
                             to={item.link}
                             style={{textDecoration: 'none'}}>
-                                <Typography fontSize={12}>
-                                    {item.text}
-                                </Typography>
+
+                            <Typography fontSize={12}>
+                                {item.text}
+                            </Typography>
+
                         </Link>
 
                         ))}
@@ -134,14 +151,9 @@ const Static = ()=> {
                 </Tooltip>
 
             </Stack>
+        </StyledHeader>
 
-        </Paper>
-
-        <Drawer
-            anchor={'right'}
-            open={menu_opened}
-            onClose={()=>setMenuOpened(false)}>
-
+        <StyledMenu className={menu_opened ? '' : 'closed'}>
             <Stack sx={{ width: 250 }} px={2}>
 
                 {navigation.map((group, group_index)=>(
@@ -177,8 +189,9 @@ const Static = ()=> {
                 ))}
 
             </Stack>
+        </StyledMenu>
 
-        </Drawer>
+        { menu_opened && <Escape onClick={()=>setMenuOpened(false)}/> }
 
         <Modal
             open={logout_modal_open}

@@ -1,56 +1,51 @@
 // MUI
-import { TextField, Stack, Button, FormControl, InputLabel, FormHelperText, Select, MenuItem } from "@mui/material"
+import { TextField, Stack, Button } from "@mui/material"
 // Components
 import Mask from '../../components/Mask'
 import PageCard from '../../components/PageCard'
+import PasswordAdornment from "../../components/PasswordAdornment"
 // Libs
-import { toast } from 'react-toastify'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from 'yup'
 import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 // React hooks
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AppContext } from '../../App'
 
 const Login = ()=> {
+
+    const [password_visible, setPasswordVisible] = useState(false)
 
     const {setLoading} = useContext(AppContext)
 
     const navigate = useNavigate()
 
-    // Schema para validação de formulário
+    // Schema de validação
     const validacao_login = yup.object({
         cpf: yup.string().required('Obrigatório').length(14, 'Inválido'),
-        senha: yup.string().required('Obrigatório'),
-        opcoes: yup.string().required('Obrigatório'),
+        senha: yup.string().required('Obrigatório')
     })
 
-    // Hook para controle de formulário
+    // Hook form
     const { handleSubmit, control } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'cpf': '',
-          'senha': '',
-          'opcoes': ''
+          'senha': ''
         }
       })
 
     // onSubmit
     const login = async(data)=> {
-        // console.log(data)
         setLoading(true)
         setTimeout(()=>{
             setLoading(false)
-            toast.success('Login efetuado com sucesso.', {toastId: 'success-login'})
-            sessionStorage.setItem('token', 'token')
+            Cookies.set('access', 'access')
             navigate('/characters')
         },1500)
     }
-
-    const select_options = [
-        {label: 'Opção 01', value: '1'}
-    ]
 
     return (
 
@@ -87,7 +82,14 @@ const Login = ()=> {
                             {...field}
                             error={error ? true : false}
                             helperText={error?.message}
-                            type={'password'}
+                            type={password_visible ? '' : 'password'}
+                            InputProps={{
+                                endAdornment: (
+                                    <PasswordAdornment
+                                        visible={password_visible}
+                                        setVisible={setPasswordVisible}/>
+                                )
+                            }}
                         />)}
                     />
 

@@ -5,6 +5,7 @@ import Footer from '../both/Footer'
 import { Box } from '@mui/material'
 // Libs
 import { Navigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
 // React hooks
 import { createContext, useState } from 'react'
 export const AuthLayoutContext = createContext()
@@ -15,14 +16,11 @@ const AuthLayout = ({children})=> {
 
     return (<>
 
-        {sessionStorage.getItem('token')
+        {Cookies.get('access')
 
         ?
 
-        <AuthLayoutContext.Provider value={{
-                breadcrumbs,
-                setBreadcrumbs
-            }}>
+        <AuthLayoutContext.Provider value={{ breadcrumbs, setBreadcrumbs }}>
 
             <Static/>
 
@@ -38,9 +36,7 @@ const AuthLayout = ({children})=> {
 
         :
 
-        <Navigate to={'/'}/>
-
-        }
+        <Navigate to={'/'}/> }
 
         <Footer/>
 

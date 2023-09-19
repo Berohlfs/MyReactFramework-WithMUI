@@ -1,8 +1,8 @@
 // MUI
 import { Typography, Stack, Paper, Box } from '@mui/material'
-import FaceIcon from '@mui/icons-material/Face'
-// Libs
+import { Face } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
+// Libs
 import { Link } from 'react-router-dom'
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -20,7 +20,8 @@ const LogoStack = styled(Stack)(({ theme }) => ({
     position: 'absolute',
     top: '80px',
     left: '20px',
-    backgroundColor: '#eee',
+    backgroundColor: '#fff',
+    boxShadow: '0 0 0.2em #ccc'
 }))
 
 const OutsideLink = styled(Typography)(({ theme }) => ({
@@ -31,7 +32,13 @@ const OutsideLink = styled(Typography)(({ theme }) => ({
     textAlign: 'center',
 }))
 
-const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 500, link})=> {
+const PageCard = ({
+    children,
+    title = 'Title',
+    caption = 'Caption',
+    max_width = 500,
+    link
+}) => {
 
     return(<>
 
@@ -39,7 +46,7 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
 
             <Stack sx={{
                 backgroundColor: 'primary.light',
-                padding: '20px 20px 35px',
+                padding: '20px 20px 40px',
                 marginBottom: '35px'}}>
 
                 <Typography
@@ -58,7 +65,7 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
                     alignItems={'center'}
                     justifyContent={'center'}>
 
-                    <FaceIcon color={'primary'}/>
+                    <Face color={'primary'}/>
 
                 </LogoStack>
 
@@ -75,11 +82,12 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
         {link &&
 
         <OutsideLink variant={'caption'}>
-            {link.text}{' '}
-            <Link to={link.path}><strong>{link.label}</strong></Link>
-        </OutsideLink>
 
-        }
+            {link.text}
+            {' '}
+            <Link to={link.path}><strong>{link.label}</strong></Link>
+
+        </OutsideLink> }
 
     </>)
 }

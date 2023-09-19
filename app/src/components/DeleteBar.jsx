@@ -14,7 +14,10 @@ const DeleteBar = ({deleteFunc})=> {
 
     return (
 
-        <Alert sx={{boxShadow: 0}} severity={"error"} onClick={confirm ? ()=> null : checkDelete}>
+        <Alert
+            sx={{boxShadow: 0}}
+            severity={"error"}
+            onClick={confirm ? ()=> null : checkDelete}>
 
             <Typography
                 variant={'caption'}
@@ -28,7 +31,6 @@ const DeleteBar = ({deleteFunc})=> {
                     sx={{cursor: 'pointer'}}
                     fontSize={11}
                     ml={2}
-                    variant={'text'}
                     color={'error'}
                     onClick={()=> setConfirm(false)}>
                         Manter
@@ -38,7 +40,6 @@ const DeleteBar = ({deleteFunc})=> {
                     sx={{cursor: 'pointer'}}
                     fontSize={11}
                     ml={2}
-                    variant={'text'}
                     color={'error'}
                     onClick={checkDelete}>
                         Excluir

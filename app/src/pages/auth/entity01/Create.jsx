@@ -1,6 +1,6 @@
 // MUI
-import { Paper, Stack, Typography, Button, Divider, TextField, FormControl, InputLabel, FormHelperText, Select, MenuItem } from '@mui/material'
-import { styled } from '@mui/material/styles'
+import { Stack, Typography, Button, Divider, TextField, FormControl, InputLabel, FormHelperText, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material'
+import { Add } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -10,50 +10,47 @@ import * as yup from 'yup'
 // React hooks
 import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
-
-const StyledPaper = styled(Paper)(({ theme }) => ({
-    width: '90%',
-    margin: '0 auto',
-    marginTop: 30
-}))
+// Components
+import AuthBlock from '../../../components/AuthBlock'
 
 const EntityIndex = ()=> {
 
-    // Schema para validação de formulário
+    const navigate = useNavigate()
+
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+
+    // Schema de validação
     const validacao_login = yup.object({
         name: yup.string().required('Obrigatório'),
     })
 
-    // Hook para controle de formulário
+    // Hook form
     const { handleSubmit, control, formState: {errors}} = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': '',
-          'species': ''
+          'species': '',
+          'wizard': true
         }
-      })
+    })
 
-    // Método de navegação
-    const navigate = useNavigate()
-
-    // Breadcrumbs - AuthContext
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
-
-    const create = ()=> {
+    const create = (data)=> {
         toast('Mock create')
+        // Mock navigate to recent created instance
         navigate('/characters/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8')
+        console.log(data)
     }
 
-    // Onload
+    // OnLoad
     useEffect(()=>{
         setBreadcrumbs([{text: 'Characters', link: '/characters'},{text: 'Create', link: ''}])
     },[])
 
     return(
 
-        <form onSubmit={handleSubmit((data)=>create())}>
+        <form onSubmit={handleSubmit((data)=>create(data))}>
 
-        <StyledPaper>
+        <AuthBlock type={'paper'}>
 
             <Stack padding={2} spacing={2}>
 
@@ -62,7 +59,7 @@ const EntityIndex = ()=> {
                     justifyContent={'space-between'}
                     alignItems={'center'}>
 
-                    <Typography color={'primary'}>Novo personagem</Typography>
+                    <Typography color={'primary'}>New Character</Typography>
 
                     <Stack
                         direction={'row'}
@@ -70,7 +67,11 @@ const EntityIndex = ()=> {
                         alignItems={'center'}
                         spacing={1}>
 
-                        <Button type={'submit'}>Criar</Button>
+                        <Button
+                            type={'submit'}
+                            endIcon={<Add/>}>
+                                Create
+                        </Button>
 
                     </Stack>
 
@@ -82,7 +83,7 @@ const EntityIndex = ()=> {
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={1}>
+                    spacing={2}>
 
                     <Controller name={'name'} control={control}
                         render={({field, fieldState: {error}}) => (
@@ -124,11 +125,19 @@ const EntityIndex = ()=> {
                         </FormHelperText>}
                     </FormControl>
 
+                    <Controller name={'wizard'} control={control}
+                        render={({field: {value, ...other}}) => (
+                        <FormControlLabel
+                            control={<Checkbox {...other} checked={value}/>}
+                            label="Wizard?"
+                        />)}
+                    />
+
                 </Stack>
 
             </Stack>
 
-        </StyledPaper>
+        </AuthBlock>
 
         </form>
 

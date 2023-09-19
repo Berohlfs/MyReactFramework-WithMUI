@@ -2,17 +2,17 @@
 import { Box, Typography } from '@mui/material'
 import { styled } from '@mui/material/styles'
 
-const Footer = ()=> {
+const StyledFooter = styled(Box)(({ theme }) => ({
+    position: 'fixed',
+    bottom: 0,
+    right: 0,
+    backgroundColor: theme.palette.primary.light,
+    borderTopLeftRadius: 10,
+    padding: '2px 10px',
+    color: theme.palette.primary.main
+}))
 
-    const StyledFooter = styled(Box)(({ theme }) => ({
-        position: 'fixed',
-        bottom: 0,
-        right: 0,
-        backgroundColor: theme.palette.primary.light,
-        borderTopLeftRadius: 10,
-        padding: '2px 10px',
-        color: theme.palette.primary.main
-    }))
+const Footer = ()=> {
 
     const year = new Date().getFullYear()
 
@@ -20,7 +20,7 @@ const Footer = ()=> {
 
         <StyledFooter>
 
-            <Typography fontSize={'10px'}>&copy;{year} - MyReactFramework</Typography>
+            <Typography fontSize={'9px'}>&copy;{year} - MyReactFramework</Typography>
 
         </StyledFooter>
 

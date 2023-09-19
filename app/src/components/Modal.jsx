@@ -1,3 +1,4 @@
+// MUI
 import MuiModal from '@mui/material/Modal'
 import { Paper, Typography, Divider, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
@@ -14,6 +15,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
 const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400})=> {
 
     return (
+
         <MuiModal open={open} onClose={handleClose}>
 
             <StyledPaper sx={{maxWidth: max_width}}>
@@ -35,6 +37,7 @@ const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400})=
             </StyledPaper>
 
         </MuiModal>
+
     )
 }
 

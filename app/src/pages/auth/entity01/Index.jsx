@@ -1,9 +1,8 @@
 // MUI
-import { Box } from '@mui/material'
-import { styled } from '@mui/material/styles'
 import { TaskAltOutlined } from '@mui/icons-material'
 // Components
 import Table from '../../../components/Table'
+import AuthBlock from '../../../components/AuthBlock'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
@@ -14,21 +13,12 @@ import { AppContext } from '../../../App'
 // Config
 import APIInstance from '../../../config/axios'
 
-const StyledBox = styled(Box)(({ theme }) => ({
-    width: '90%',
-    margin: '0 auto',
-    marginTop: 30
-}))
-
 const EntityIndex = ()=> {
 
-    // Método de navegação
     const navigate = useNavigate()
 
-    // Loading - AppContext
     const {setLoading} = useContext(AppContext)
 
-    // Breadcrumbs - AuthContext
     const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
     // GET - Characters
@@ -46,12 +36,12 @@ const EntityIndex = ()=> {
         }
     }
 
-    // Table action
+    // Table mock action
     const action = (id)=> {
         toast(id)
     }
 
-    // Onload
+    // OnLoad
     useEffect(()=>{
         setBreadcrumbs([{text: 'Characters', link: '/characters'}])
         getCharacters()
@@ -59,22 +49,23 @@ const EntityIndex = ()=> {
 
     return(
 
-        <StyledBox>
+        <AuthBlock type={'box'}>
 
             <Table
                 title={'Characters'}
                 id={'id'}
+                add_link={'/novo/characters'}
                 columns={[
-                    {nome: 'Nome', chave: 'name', link: {path: 'characters', chave: 'id'}},
-                    {nome: 'Espécie', chave: 'species'},
-                    {nome: 'Sexo', chave: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
+                    {name: 'Nome', key: 'name', link_path: 'characters'},
+                    {name: 'Espécie', key: 'species'},
+                    {name: 'Sexo', key: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
                 ]}
                 data={characters}
                 hidden_actions={[{name: 'Get ID', function: action}]}
-                actions={[{nome: 'Get ID', function: action, icon: TaskAltOutlined}]}
-                add_link={'/novo/characters'}/>
+                actions={[{name: 'Get ID', function: action, icon: TaskAltOutlined}]}
+            />
 
-        </StyledBox>
+        </AuthBlock>
 
     )
 }

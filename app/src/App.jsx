@@ -15,8 +15,6 @@ export const AppContext = createContext()
 
 function App() {
 
-  const [loading, setLoading] = useState(false)
-
   const global_styles = {
     body: {
       backgroundColor: '#f7f7f7',
@@ -30,11 +28,11 @@ function App() {
     },
     '*': {
       fontFamily: "'Inter','sans-serif'",
-      /* Firefox */
-      scrollbarWidth: 'thin',
+      /* Firefox scrollbar */
+      scrollbarWidth: '5px',
       scrollbarColor: '#bbb #e7e7e7'
     },
-    /* Chrome, Edge and Safari */
+    /* Chrome's, Edge's and Safari's scrollbar */
     '*::-webkit-scrollbar': {
       width: '5px',
       height: '5px'
@@ -55,11 +53,16 @@ function App() {
     zIndex: '10'
   }
 
+  const [loading, setLoading] = useState(false)
+
   return (<>
 
       {loading && <LinearProgress sx={progress_style}/>}
 
-      <ToastContainer position={"top-right"} draggable={false} autoClose={3000}/>
+      <ToastContainer
+        position={"top-right"}
+        draggable={false}
+        autoClose={3000}/>
 
       <CssBaseline/>
 

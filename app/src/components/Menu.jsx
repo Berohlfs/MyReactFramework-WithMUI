@@ -1,28 +1,25 @@
+// React hooks
 import { useState } from 'react'
-import { IconButton, Menu, MenuItem, Typography } from '@mui/material'
+// MUI
+import { IconButton, Menu, MenuItem } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
-
-const options = [
-  'None',
-  'Atria',
-  'Callisto'
-]
 
 const LongMenu = ({hidden_actions, param})=> {
 
+  // mMenu's anchor
   const [anchorEl, setAnchorEl] = useState(null)
 
-  const handleClick = (event) => {
+  const handleIconClick = (event) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleMenuClose = () => {
     setAnchorEl(null)
   }
 
   return (
     <>
-      <IconButton size={'small'} onClick={handleClick}>
+      <IconButton size={'small'} onClick={handleIconClick}>
 
         <MoreHoriz fontSize={'11px'}/>
 
@@ -31,13 +28,14 @@ const LongMenu = ({hidden_actions, param})=> {
       <Menu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
-        onClose={handleClose}>
+        onClose={handleMenuClose}
+        onClick={handleMenuClose}>
 
         {hidden_actions.map((action) => (
 
           <MenuItem
             key={action.name}
-            onClick={()=>{handleClose(); action.function(param)}}>
+            onClick={()=> action.function(param)}>
 
               {action.name}
 

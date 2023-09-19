@@ -9,7 +9,7 @@ import { useMemo } from 'react'
 // Components
 import Menu from './Menu'
 
-const Table = ({title, id, columns=[], data=[], actions=[], hidden_actions, add_link})=> {
+const Table = ({title, add_link, id, data=[], columns=[], actions=[], hidden_actions})=> {
 
   const navigate = useNavigate()
 
@@ -30,7 +30,7 @@ const Table = ({title, id, columns=[], data=[], actions=[], hidden_actions, add_
           variant={'outlined'}
           endIcon={<Add/>}
           onClick={()=>navigate(add_link)}>
-            Novo
+            Add new
         </Button>
 
       </Stack>
@@ -53,7 +53,7 @@ const Table = ({title, id, columns=[], data=[], actions=[], hidden_actions, add_
               {columns.map((column, index)=>(
 
                 <TableCell key={index}>
-                    {column.nome}
+                    {column.name}
                 </TableCell>
 
               ))}
@@ -91,22 +91,22 @@ const Table = ({title, id, columns=[], data=[], actions=[], hidden_actions, add_
                     {column.enum  ?
 
                     <Chip
-                      color={column.enum[row[column.chave]]}
-                      label={row[column.chave]}/>
+                      color={column.enum[row[column.key]]}
+                      label={row[column.key]}/>
 
                     :
 
-                    column.link  ?
+                    column.link_path  ?
 
-                    <Link to={`/${column.link.path}/${row[column.link.chave]}`}>
+                    <Link to={`/${column.link_path}/${row[id]}`}>
 
-                        {row[column.chave]}
+                        {row[column.key]}
 
                     </Link>
 
                     :
 
-                    row[column.chave]}
+                    row[column.key]}
 
                   </TableCell>
 
@@ -116,10 +116,16 @@ const Table = ({title, id, columns=[], data=[], actions=[], hidden_actions, add_
 
                   <TableCell key={index}>
 
-                    <Tooltip placement={'left'} title={action.nome}>
-                        <IconButton onClick={()=> action.function(row[id])}>
-                          <action.icon sx={{fontSize: '15px'}}/>
-                        </IconButton>
+                    <Tooltip
+                      placement={'left'}
+                      title={action.name}>
+
+                      <IconButton onClick={()=> action.function(row[id])}>
+
+                        <action.icon sx={{fontSize: '15px'}}/>
+
+                      </IconButton>
+
                     </Tooltip>
 
                   </TableCell>

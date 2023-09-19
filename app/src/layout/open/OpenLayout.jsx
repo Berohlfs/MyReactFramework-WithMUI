@@ -6,6 +6,7 @@ const OpenLayout = ({children})=> {
     return (<>
 
         {children}
+        
         <Footer/>
 
     </>)
