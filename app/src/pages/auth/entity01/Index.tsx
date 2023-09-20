@@ -34,7 +34,7 @@ const EntityIndex = ()=> {
     }
 
     // Table mock action
-    const action = (id)=> {
+    const action = (id: string)=> {
         toast(id)
     }
 
@@ -55,7 +55,7 @@ const EntityIndex = ()=> {
                 columns={[
                     {name: 'Nome', key: 'name', link_path: 'characters'},
                     {name: 'Espécie', key: 'species'},
-                    {name: 'Sexo', key: 'gender', enum: {'male' : 'primary', 'female': 'secondary'}},
+                    {name: 'Sexo', key: 'gender', enum: {'male': 'primary', 'female': 'secondary'}},
                 ]}
                 data={characters}
                 hidden_actions={[{name: 'Get ID', function: action}]}

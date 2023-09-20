@@ -5,11 +5,39 @@ import { Add } from '@mui/icons-material'
 // Libs
 import { Link, useNavigate } from 'react-router-dom'
 // React hooks
-import { useMemo } from 'react'
+import { useMemo, FC } from 'react'
 // Components
 import Menu from './Menu'
 
-const Table = ({title, add_link, id, data=[], columns=[], actions=[], hidden_actions})=> {
+type Column = {
+  name: string,
+  key: string,
+  link_path?: string,
+  // enum?: Object
+}
+
+type Action = {
+  name: string,
+  function: (id: string)=> void,
+  icon: FC
+}
+
+type HiddenAction = {
+  name: string,
+  function: (id: string)=> void
+}
+
+type Props = {
+  title: string,
+  add_link: string,
+  id: string,
+  data: any[],
+  columns: Column[],
+  actions?: Action[],
+  hidden_actions?: HiddenAction[],
+}
+
+const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Props)=> {
 
   const navigate = useNavigate()
 
@@ -58,11 +86,11 @@ const Table = ({title, add_link, id, data=[], columns=[], actions=[], hidden_act
 
               ))}
 
-              {actions.map((index)=>(
+              { actions && actions.map((action)=>(
 
-                <TableCell key={index}></TableCell>
+                <TableCell key={action.name}></TableCell>
 
-              ))}
+              )) }
 
             </TableRow>
 
@@ -112,7 +140,7 @@ const Table = ({title, add_link, id, data=[], columns=[], actions=[], hidden_act
 
                 ))}
 
-                {actions.map((action, index)=>(
+                { actions && actions.map((action, index)=>(
 
                   <TableCell key={index}>
 
@@ -130,7 +158,7 @@ const Table = ({title, add_link, id, data=[], columns=[], actions=[], hidden_act
 
                   </TableCell>
 
-                ))}
+                )) }
 
               </TableRow>
 

@@ -1,10 +1,11 @@
 // React hooks
 import { useState } from 'react'
 // MUI
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import MuiMenu from '@mui/material/Menu'
+import { IconButton, MenuItem } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
 
-const LongMenu = ({hidden_actions, param})=> {
+const Menu = ({hidden_actions, param})=> {
 
   // mMenu's anchor
   const [anchorEl, setAnchorEl] = useState(null)
@@ -25,7 +26,7 @@ const LongMenu = ({hidden_actions, param})=> {
 
       </IconButton>
 
-      <Menu
+      <MuiMenu
         anchorEl={anchorEl}
         open={Boolean(anchorEl)}
         onClose={handleMenuClose}
@@ -43,9 +44,9 @@ const LongMenu = ({hidden_actions, param})=> {
 
         ))}
 
-      </Menu>
+      </MuiMenu>
     </>
   )
 }
 
-export default LongMenu
+export default Menu
