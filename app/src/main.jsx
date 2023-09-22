@@ -3,9 +3,13 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 // App component
 import App from './App'
+// Libs
+import 'dayjs/locale/pt-br'
 // MUI
 import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
 import { ptBR } from '@mui/material/locale'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 // Theme
 import components from './theme/components'
 import palette from './theme/palette'
@@ -23,7 +27,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
     <ThemeProvider theme={responsiveFontSizes(theme)}>
 
-      <App/>
+      <LocalizationProvider
+        adapterLocale={'pt-br'}
+        dateAdapter={AdapterDayjs}>
+
+        <App/>
+
+      </LocalizationProvider>
 
     </ThemeProvider>
 

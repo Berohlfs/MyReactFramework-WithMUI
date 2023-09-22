@@ -1,5 +1,6 @@
 // MUI
 import { Stack, Typography, Button, Divider, TextField, FormControl, InputLabel, FormHelperText, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material'
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Add } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
@@ -12,6 +13,8 @@ import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
 import AuthBlock from '../../../components/AuthBlock'
+// Scripts
+import { species } from '../../../scripts/options'
 
 const EntityIndex = ()=> {
 
@@ -22,6 +25,7 @@ const EntityIndex = ()=> {
     // Schema de validação
     const validacao_login = yup.object({
         name: yup.string().required('Obrigatório'),
+        date_of_birth: yup.string().required('Obrigatório').not(['Invalid Date'], 'inválido')
     })
 
     // Hook form
@@ -30,7 +34,8 @@ const EntityIndex = ()=> {
         defaultValues: {
           'name': '',
           'species': '',
-          'wizard': true
+          'wizard': true,
+          'date_of_birth': ''
         }
     })
 
@@ -88,12 +93,26 @@ const EntityIndex = ()=> {
                     <Controller name={'name'} control={control}
                         render={({field, fieldState: {error}}) => (
                         <TextField
-                            label={'Nome'}
-                            placeholder={'Digite o nome'}
+                            label={'Name'}
+                            placeholder={"Type the character's name"}
                             {...field}
                             error={error ? true : false}
                             helperText={error?.message}
                         />)}
+                    />
+
+                    <Controller name={'date_of_birth'} control={control}
+                    render={({field, fieldState: {error}}) => (
+                        <DatePicker
+                            {...field}
+                            slotProps={{
+                            textField: {
+                                error: error ? true : false,
+                                helperText: error?.message
+                            }
+                            }}
+                            label={'Date of birth'}/>
+                        )}
                     />
 
                     <FormControl sx={{width: 150}}>
@@ -109,7 +128,7 @@ const EntityIndex = ()=> {
                                 // Label deve ser === InputLabel
                                 label={'Species'}>
 
-                                {[{label: 'Human', value: '1'},{label: 'Troll', value: '2'}].map((item)=> (
+                                {species.map((item)=> (
                                     <MenuItem
                                         key={item.value}
                                         value={item.value}>

@@ -71,6 +71,11 @@ const components = ()=> {
         MuiCheckbox: {
             defaultProps: {
                 size: 'small'
+            },
+            styleOverrides: {
+                root: {
+                    paddingLeft: 10
+                }
             }
         },
         MuiButton: {
