@@ -32,7 +32,7 @@ const EntityIndex = ()=> {
     })
 
     // Hook form
-    const { handleSubmit, control, setValue } = useForm({
+    const { handleSubmit, control, reset } = useForm({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': ''
@@ -45,7 +45,7 @@ const EntityIndex = ()=> {
         try{
             const res = await axios.get(`https://hp-api.onrender.com/api/character/${id}`)
             console.log(res.data)
-            setValue('name', res.data[0].name)
+            reset(res.data[0])
         }catch(erro){
             console.log(erro)
             toast.warning('Houve um erro.', {toastId: 'error-getCharacter'})
@@ -83,7 +83,7 @@ const EntityIndex = ()=> {
 
                         <Button
                             color={'error'}
-                            onClick={()=>getCharacter()}
+                            onClick={()=>reset()}
                             endIcon={<Clear/>}>
                                 Cancel
                         </Button>
