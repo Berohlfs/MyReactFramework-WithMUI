@@ -54,17 +54,17 @@ const components = ()=> {
                 }
             }
         },
-        MuiFormControlLabel: {
-            styleOverrides:{
-                label:{
-                    fontSize: 12,
-                }
-            }
-        },
         MuiFormHelperText: {
             styleOverrides: {
                 root: {
                     fontSize: 10
+                }
+            }
+        },
+        MuiFormControlLabel: {
+            styleOverrides:{
+                label:{
+                    fontSize: 12,
                 }
             }
         },

@@ -15,6 +15,7 @@ import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import AuthBlock from '../../../components/AuthBlock'
 // Scripts
 import { species } from '../../../scripts/options'
+import { date } from '../../../scripts/yupModules'
 
 const EntityIndex = ()=> {
 
@@ -25,7 +26,7 @@ const EntityIndex = ()=> {
     // Schema de validação
     const validacao_login = yup.object({
         name: yup.string().required('Obrigatório'),
-        date_of_birth: yup.string().required('Obrigatório').not(['Invalid Date'], 'inválido')
+        date_of_birth: date
     })
 
     // Hook form
