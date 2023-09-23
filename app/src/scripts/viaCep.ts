@@ -2,9 +2,9 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const viaCep = async(cep)=> {
+const viaCep = async(cep: string)=> {
 
-    let clean_cep = String(cep).replace(/\D/g, '')
+    let clean_cep = cep.replace(/\D/g, '')
 
     if(clean_cep.length != 8){ return false }
 

@@ -8,43 +8,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // MUI
-import { CssBaseline, GlobalStyles, LinearProgress } from '@mui/material'
+import { LinearProgress } from '@mui/material'
 // React hooks
 import { useState, createContext } from 'react'
 export const AppContext = createContext()
 
 function App() {
-
-  const global_styles = {
-    body: {
-      backgroundColor: '#f7f7f7',
-      paddingBottom: '50px'
-    },
-    html: {
-      scrollBehavior: 'smooth',
-    },
-    a: {
-      color: '#2864ad'
-    },
-    '*': {
-      fontFamily: "'Inter','sans-serif'",
-      /* Firefox scrollbar */
-      scrollbarWidth: '5px',
-      scrollbarColor: '#bbb #e7e7e7'
-    },
-    /* Chrome's, Edge's and Safari's scrollbar */
-    '*::-webkit-scrollbar': {
-      width: '5px',
-      height: '5px'
-    },
-    '*::-webkit-scrollbar-track': {
-      backgroundColor: '#e7e7e7'
-    },
-    '*::-webkit-scrollbar-thumb': {
-      borderRadius: '20px',
-      backgroundColor: '#bbb'
-    }
-  }
 
   const progress_style = {
     position: 'fixed',
@@ -63,10 +32,6 @@ function App() {
         position={"top-right"}
         draggable={false}
         autoClose={3000}/>
-
-      <CssBaseline/>
-
-      <GlobalStyles styles={global_styles}/>
 
       <AppContext.Provider value={{setLoading}}>
 

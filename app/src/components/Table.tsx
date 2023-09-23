@@ -9,11 +9,15 @@ import { useMemo, FC } from 'react'
 // Components
 import Menu from './Menu'
 
+type Enum = {
+  [key: string]: 'primary' | 'secondary' | 'success' | 'error' | 'warning',
+}
+
 type Column = {
   name: string,
   key: string,
-  link_path?: string,
-  // enum?: Object
+  show_domain_path?: string,
+  enum?: Enum
 }
 
 type Action = {
@@ -124,9 +128,9 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
 
                     :
 
-                    column.link_path  ?
+                    column.show_domain_path  ?
 
-                    <Link to={`/${column.link_path}/${row[id]}`}>
+                    <Link to={`${column.show_domain_path}/${row[id]}`}>
 
                         {row[column.key]}
 
@@ -150,7 +154,7 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
 
                       <IconButton onClick={()=> action.function(row[id])}>
 
-                        <action.icon sx={{fontSize: '15px'}}/>
+                        <action.icon/>
 
                       </IconButton>
 

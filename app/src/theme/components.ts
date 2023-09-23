@@ -1,6 +1,9 @@
 // https://mui.com/material-ui/customization/theme-components/
 
-const components = ()=> {
+// MUI
+import { Components } from "@mui/material"
+
+const components = (): Components => {
     return ({
         MuiTableCell: {
             styleOverrides: {

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from 'yup'
+import { object } from 'yup'
 import axios from 'axios'
 // React hooks
 import { useEffect, useContext, useState } from 'react'
@@ -15,6 +15,8 @@ import { AppContext } from '../../../App'
 // Components
 import DeleteBar from '../../../components/DeleteBar'
 import AuthBlock from '../../../components/AuthBlock'
+// Scripts
+import { default_optional } from '../../../scripts/yupModules'
 
 const EntityIndex = ()=> {
 
@@ -27,8 +29,8 @@ const EntityIndex = ()=> {
     const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
     // Schema de validação
-    const validacao_login = yup.object({
-        name: yup.string().required('Obrigatório'),
+    const validacao_login = object({
+        name: default_optional,
     })
 
     // Hook form
@@ -44,7 +46,6 @@ const EntityIndex = ()=> {
         setLoading(true)
         try{
             const res = await axios.get(`https://hp-api.onrender.com/api/character/${id}`)
-            console.log(res.data)
             reset(res.data[0])
         }catch(erro){
             console.log(erro)
@@ -62,7 +63,7 @@ const EntityIndex = ()=> {
 
     return(
 
-        <form onSubmit={handleSubmit((data)=>toast('Mock save'))}>
+        <form onSubmit={handleSubmit((data)=>console.log(data))}>
 
         <AuthBlock type={'paper'}>
 

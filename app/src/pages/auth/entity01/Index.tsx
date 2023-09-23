@@ -51,9 +51,9 @@ const EntityIndex = ()=> {
             <Table
                 title={'Characters'}
                 id={'id'}
-                add_link={'/novo/characters'}
+                add_link={'/new/characters'}
                 columns={[
-                    {name: 'Nome', key: 'name', link_path: 'characters'},
+                    {name: 'Nome', key: 'name', show_domain_path: '/characters'},
                     {name: 'Espécie', key: 'species'},
                     {name: 'Sexo', key: 'gender', enum: {'male': 'primary', 'female': 'secondary'}},
                 ]}

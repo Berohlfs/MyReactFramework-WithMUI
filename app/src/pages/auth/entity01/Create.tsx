@@ -1,5 +1,5 @@
 // MUI
-import { Stack, Typography, Button, Divider, TextField, FormControl, InputLabel, FormHelperText, Select, MenuItem, Checkbox, FormControlLabel } from '@mui/material'
+import { Stack, Typography, Button, Divider, TextField, Checkbox, FormControlLabel } from '@mui/material'
 import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { Add } from '@mui/icons-material'
 // Libs
@@ -7,15 +7,23 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from 'yup'
+import { object } from 'yup'
 // React hooks
 import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
 import AuthBlock from '../../../components/AuthBlock'
+import { Select } from '../../../components/widgets/Select'
 // Scripts
 import { species } from '../../../scripts/options'
-import { date } from '../../../scripts/yupModules'
+import { date, default_required } from '../../../scripts/yupModules'
+
+type Inputs = {
+    name: string,
+    species?: string,
+    wizard?: boolean,
+    date_of_birth: string
+}
 
 const EntityIndex = ()=> {
 
@@ -24,13 +32,13 @@ const EntityIndex = ()=> {
     const {setBreadcrumbs} = useContext(AuthLayoutContext)
 
     // Schema de validação
-    const validacao_login = yup.object({
-        name: yup.string().required('Obrigatório'),
-        date_of_birth: date
+    const validacao_login = object({
+        name: default_required,
+        date_of_birth: date,
     })
 
     // Hook form
-    const { handleSubmit, control, formState: {errors}} = useForm({
+    const { handleSubmit, control, formState: {errors}} = useForm<Inputs>({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': '',
@@ -40,7 +48,7 @@ const EntityIndex = ()=> {
         }
     })
 
-    const create = (data)=> {
+    const create = (data: Inputs)=> {
         toast('Mock create')
         // Mock navigate to recent created instance
         navigate('/characters/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8')
@@ -116,34 +124,13 @@ const EntityIndex = ()=> {
                         )}
                     />
 
-                    <FormControl sx={{width: 150}}>
-                        <InputLabel error={errors.species ? true : false}>
-                            Species
-                        </InputLabel>
-                        <Controller name={'species'} control={control}
-                        render={({field, fieldState: {error}}) => (
-
-                            <Select
-                                error={error ? true : false}
-                                {...field}
-                                // Label deve ser === InputLabel
-                                label={'Species'}>
-
-                                {species.map((item)=> (
-                                    <MenuItem
-                                        key={item.value}
-                                        value={item.value}>
-                                            {item.label}
-                                    </MenuItem>
-                                ))}
-
-                            </Select>)}/>
-
-                        {errors.species &&
-                        <FormHelperText error={errors.species ? true : false}>
-                            {errors.species?.message}
-                        </FormHelperText>}
-                    </FormControl>
+                   <Select
+                    label={'Species'}
+                    control={control}
+                    options={species}
+                    name={'species'}
+                    width={150}
+                    form_control_error={errors.species}/>
 
                     <Controller name={'wizard'} control={control}
                         render={({field: {value, ...other}}) => (

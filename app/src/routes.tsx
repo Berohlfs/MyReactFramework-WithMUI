@@ -14,5 +14,5 @@ export const open_routes = [
 export const auth_routes = [
     {path: '/characters', component: <EntityIndex/>},
     {path: '/characters/:id', component: <EntityShow/>},
-    {path: '/novo/characters', component: <EntityCreate/>},
+    {path: '/new/characters', component: <EntityCreate/>},
 ]
