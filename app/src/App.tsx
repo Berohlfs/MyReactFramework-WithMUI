@@ -1,4 +1,4 @@
-// Rotas
+// Routes
 import { auth_routes, open_routes } from './routes'
 // Layouts
 import AuthLayout from './layout/auth/AuthLayout'
@@ -10,10 +10,17 @@ import 'react-toastify/dist/ReactToastify.css'
 // MUI
 import { LinearProgress } from '@mui/material'
 // React hooks
-import { useState, createContext } from 'react'
-export const AppContext = createContext()
+import { useState, createContext, Dispatch, SetStateAction } from 'react'
+
+type AppValues = {
+  setLoading: Dispatch<SetStateAction<boolean>>
+}
+
+export const AppContext = createContext<AppValues | null>(null)
 
 function App() {
+
+  const [loading, setLoading] = useState(false)
 
   const progress_style = {
     position: 'fixed',
@@ -21,8 +28,6 @@ function App() {
     top: '0',
     zIndex: '10'
   }
-
-  const [loading, setLoading] = useState(false)
 
   return (<>
 

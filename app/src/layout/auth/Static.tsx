@@ -10,7 +10,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 // Components
-import Modal from '../../components/Modal'
+import Modal from '../../components/containers/Modal'
 
 const StyledHeader = styled(Paper)(({ theme }) => ({
     position: 'fixed',

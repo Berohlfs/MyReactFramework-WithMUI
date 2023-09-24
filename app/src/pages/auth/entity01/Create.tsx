@@ -12,7 +12,7 @@ import { object } from 'yup'
 import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
-import AuthBlock from '../../../components/AuthBlock'
+import { PageBlock } from '../../../components/containers/PageBlock'
 import { Select } from '../../../components/widgets/Select'
 // Scripts
 import { species } from '../../../scripts/options'
@@ -64,7 +64,7 @@ const EntityIndex = ()=> {
 
         <form onSubmit={handleSubmit((data)=>create(data))}>
 
-        <AuthBlock type={'paper'}>
+        <PageBlock type={'paper'}>
 
             <Stack padding={2} spacing={2}>
 
@@ -144,7 +144,7 @@ const EntityIndex = ()=> {
 
             </Stack>
 
-        </AuthBlock>
+        </PageBlock>
 
         </form>
 

@@ -1,5 +1,5 @@
 // Components
-import PageCard from "../../components/PageCard"
+import PageCard from "../../components/containers/PageCard"
 
 const NotFound = ()=> {
     return (

@@ -13,8 +13,8 @@ import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 // Components
-import DeleteBar from '../../../components/DeleteBar'
-import AuthBlock from '../../../components/AuthBlock'
+import DeleteBar from '../../../components/widgets/DeleteBar'
+import { PageBlock } from '../../../components/containers/PageBlock'
 // Scripts
 import { default_optional } from '../../../scripts/yupModules'
 
@@ -24,9 +24,9 @@ const EntityIndex = ()=> {
 
     const navigate = useNavigate()
 
-    const {setLoading} = useContext(AppContext)
+    const {setLoading} = useContext(AppContext)!
 
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // Schema de validação
     const validacao_login = object({
@@ -65,7 +65,7 @@ const EntityIndex = ()=> {
 
         <form onSubmit={handleSubmit((data)=>console.log(data))}>
 
-        <AuthBlock type={'paper'}>
+        <PageBlock type={'paper'}>
 
             <Stack padding={2} spacing={2}>
 
@@ -124,7 +124,7 @@ const EntityIndex = ()=> {
 
             </Stack>
 
-        </AuthBlock>
+        </PageBlock>
 
         </form>
 

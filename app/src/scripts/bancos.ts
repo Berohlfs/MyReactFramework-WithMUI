@@ -1,6 +1,6 @@
 // Bancos brasileiros
 
-const bancos = [
+export const bancos = [
     {
         "value": "001",
         "label": "Banco do Brasil S.A."
@@ -774,5 +774,3 @@ const bancos = [
         "label": "Banco Keb Hana do Brasil S. A."
     }
 ]
-
-export default bancos

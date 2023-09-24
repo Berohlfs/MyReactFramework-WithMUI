@@ -2,7 +2,7 @@
 import axios from 'axios'
 import { toast } from 'react-toastify'
 
-const viaCep = async(cep: string)=> {
+export const viaCep = async(cep: string)=> {
 
     let clean_cep = cep.replace(/\D/g, '')
 
@@ -22,5 +22,3 @@ const viaCep = async(cep: string)=> {
         return false
     }
 }
-
-export default viaCep

@@ -1,9 +1,9 @@
 // MUI
 import { TextField, Stack, Button } from "@mui/material"
 // Components
-import Mask from '../../components/Mask'
-import PageCard from '../../components/PageCard'
-import PasswordAdornment from "../../components/PasswordAdornment"
+import Mask from '../../components/widgets/Mask'
+import PageCard from '../../components/containers/PageCard'
+import PasswordAdornment from "../../components/widgets/PasswordAdornment"
 // Libs
 import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -18,7 +18,7 @@ const Login = ()=> {
 
     const [password_visible, setPasswordVisible] = useState(false)
 
-    const {setLoading} = useContext(AppContext)
+    const { setLoading } = useContext(AppContext)!
 
     const navigate = useNavigate()
 

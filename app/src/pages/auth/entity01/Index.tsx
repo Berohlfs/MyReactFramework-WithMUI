@@ -1,8 +1,8 @@
 // MUI
 import { TaskAltOutlined } from '@mui/icons-material'
 // Components
-import Table from '../../../components/Table'
-import AuthBlock from '../../../components/AuthBlock'
+import Table from '../../../components/widgets/Table'
+import { PageBlock } from '../../../components/containers/PageBlock'
 // Libs
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -46,7 +46,7 @@ const EntityIndex = ()=> {
 
     return(
 
-        <AuthBlock type={'box'}>
+        <PageBlock type={'box'}>
 
             <Table
                 title={'Characters'}
@@ -62,7 +62,7 @@ const EntityIndex = ()=> {
                 actions={[{name: 'Get ID', function: action, icon: TaskAltOutlined}]}
             />
 
-        </AuthBlock>
+        </PageBlock>
 
     )
 }

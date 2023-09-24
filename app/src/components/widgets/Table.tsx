@@ -23,7 +23,7 @@ type Column = {
 type Action = {
   name: string,
   function: (id: string)=> void,
-  icon: FC
+  icon: FC<{ sx?: { fontSize: number } }>
 }
 
 type HiddenAction = {
@@ -154,7 +154,7 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
 
                       <IconButton onClick={()=> action.function(row[id])}>
 
-                        <action.icon/>
+                        <action.icon sx={{fontSize: 15}}/>
 
                       </IconButton>
 

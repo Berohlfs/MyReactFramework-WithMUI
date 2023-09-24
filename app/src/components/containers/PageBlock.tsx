@@ -1,7 +1,7 @@
 // MUI
 import { Box, Paper } from '@mui/material'
 
-const AuthBlock = ({children, type='box'})=> {
+export const PageBlock = ({children, type='box'})=> {
 
     const block_styles = {
         width: '90%',
@@ -25,5 +25,3 @@ const AuthBlock = ({children, type='box'})=> {
         </Paper>
     )
 }
-
-export default AuthBlock

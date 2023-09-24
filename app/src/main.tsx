@@ -33,11 +33,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
         <App/>
 
+        <CssBaseline/>
+
+        <GlobalStyles styles={global_styles}/>
+
       </LocalizationProvider>
-
-      <CssBaseline/>
-
-      <GlobalStyles styles={global_styles}/>
 
     </ThemeProvider>
 
