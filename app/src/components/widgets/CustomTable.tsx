@@ -3,7 +3,7 @@ import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow
 import { Add } from '@mui/icons-material'
 // Libs
 import { Link, useNavigate } from 'react-router-dom'
-// React hooks
+// React
 import { useMemo, FC } from 'react'
 // Components
 import Menu from './Menu'
@@ -30,11 +30,15 @@ type HiddenAction = {
   function: (id: string)=> void
 }
 
+type DataInstance = {
+  [key: string] : any
+}
+
 type Props = {
   title: string,
   add_link: string,
   id: string,
-  data: any[],
+  data: DataInstance[],
   columns: Column[],
   actions?: Action[],
   hidden_actions?: HiddenAction[],
@@ -109,7 +113,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
                   <TableCell>
 
-                    <Menu param={row[id]} hidden_actions={hidden_actions}/>
+                    <Menu id={row[id]} hidden_actions={hidden_actions}/>
 
                   </TableCell>
 

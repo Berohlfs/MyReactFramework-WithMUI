@@ -1,4 +1,4 @@
-// React hooks
+// React
 import { forwardRef, useState } from 'react'
 // Libs
 import { IMaskInput } from 'react-imask'

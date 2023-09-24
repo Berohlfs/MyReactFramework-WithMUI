@@ -1,6 +1,6 @@
 // MUI
 import { Typography, Alert, Link } from '@mui/material'
-// React hooks
+// React
 import { useState } from 'react'
 
 type Props = {

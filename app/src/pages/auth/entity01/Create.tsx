@@ -15,7 +15,7 @@ import { PageBlock } from '../../../components/containers/PageBlock'
 import { CustomSelect } from '../../../components/widgets/CustomSelect'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
 import { CustomDatePicker } from '../../../components/widgets/CustomDatePicker'
-import { CustomCheckbox } from '../../../components/widgets/CustomCheckBox'
+import { CustomCheckbox } from '../../../components/widgets/CustomCheckbox'
 // Scripts
 import { species } from '../../../scripts/options'
 import { date, default_required } from '../../../scripts/yupModules'

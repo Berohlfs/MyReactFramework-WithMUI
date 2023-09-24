@@ -1,5 +1,5 @@
 // React
-import { useContext, useState, MouseEvent} from 'react'
+import { useContext, useState, MouseEvent } from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
 import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'

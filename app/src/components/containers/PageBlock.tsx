@@ -1,7 +1,14 @@
 // MUI
 import { Box, Paper } from '@mui/material'
+// React
+import { ReactNode } from 'react'
 
-export const PageBlock = ({children, type='box'})=> {
+type Props = {
+    children: ReactNode,
+    type: 'box' | 'paper'
+}
+
+export const PageBlock = ({children, type='box'}: Props)=> {
 
     const block_styles = {
         width: '90%',

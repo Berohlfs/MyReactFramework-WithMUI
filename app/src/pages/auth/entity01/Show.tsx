@@ -1,10 +1,10 @@
 // MUI
-import { Stack, Typography, Button, Divider, TextField } from '@mui/material'
+import { Stack, Typography, Button, Divider } from '@mui/material'
 import { Check, Clear } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { object } from 'yup'
 import axios from 'axios'
@@ -15,6 +15,7 @@ import { AppContext } from '../../../App'
 // Components
 import { DeleteBar } from '../../../components/widgets/DeleteBar'
 import { PageBlock } from '../../../components/containers/PageBlock'
+import { CustomTextField } from '../../../components/widgets/CustomTextField'
 // Scripts
 import { default_optional } from '../../../scripts/yupModules'
 
@@ -63,7 +64,7 @@ const EntityShow = ()=> {
 
     return(
 
-        <form onSubmit={handleSubmit((data)=>console.log(data))}>
+        <form onSubmit={handleSubmit((data)=>{toast('Mock save'); console.log(data)})}>
 
         <PageBlock type={'paper'}>
 
@@ -107,16 +108,11 @@ const EntityShow = ()=> {
                     useFlexGap
                     spacing={2}>
 
-                    <Controller name={'name'} control={control}
-                        render={({field, fieldState: {error}}) => (
-                        <TextField
-                            label={'Nome'}
-                            placeholder={'Digite o nome'}
-                            {...field}
-                            error={error ? true : false}
-                            helperText={error?.message}
-                        />)}
-                    />
+                    <CustomTextField
+                        name={'name'}
+                        control={control}
+                        label={'Name'}
+                        placeholder={"Type character's name"}/>
 
                 </Stack>
 
