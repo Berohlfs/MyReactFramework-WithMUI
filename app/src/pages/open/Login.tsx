@@ -1,44 +1,48 @@
 // MUI
-import { TextField, Stack, Button } from "@mui/material"
+import { Stack, Button } from "@mui/material"
 // Components
-import Mask from '../../components/widgets/Mask'
+import { CustomTextField } from '../../components/widgets/CustomTextField'
 import PageCard from '../../components/containers/PageCard'
-import PasswordAdornment from "../../components/widgets/PasswordAdornment"
 // Libs
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from 'yup'
+import { cpf, default_required } from '../../scripts/yupModules'
+import { object } from 'yup'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
-// React hooks
-import { useContext, useState } from 'react'
+// React
+import { useContext } from 'react'
 import { AppContext } from '../../App'
 
 const Login = ()=> {
-
-    const [password_visible, setPasswordVisible] = useState(false)
 
     const { setLoading } = useContext(AppContext)!
 
     const navigate = useNavigate()
 
     // Schema de validação
-    const validacao_login = yup.object({
-        cpf: yup.string().required('Obrigatório').length(14, 'Inválido'),
-        senha: yup.string().required('Obrigatório')
+    const validacao_login = object({
+        cpf: cpf,
+        password: default_required
     })
 
     // Hook form
-    const { handleSubmit, control } = useForm({
+    type Inputs = {
+        cpf: string,
+        password: string
+    }
+
+    const { handleSubmit, control } = useForm<Inputs>({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'cpf': '',
-          'senha': ''
+          'password': ''
         }
       })
 
     // onSubmit
-    const login = async(data)=> {
+    const login = async(data: Inputs)=> {
+        console.log(data)
         setLoading(true)
         setTimeout(()=>{
             setLoading(false)
@@ -59,39 +63,19 @@ const Login = ()=> {
 
                 <Stack spacing={2}>
 
-                    <Controller name={'cpf'} control={control}
-                        render={({field, fieldState: {error}}) => (
-                        <TextField
-                            label={'CPF'}
-                            placeholder={'Digite seu CPF'}
-                            {...field}
-                            error={error ? true : false}
-                            helperText={error?.message}
-                            InputProps={{
-                                inputComponent: Mask,
-                                inputProps: {mask: '000.000.000-00'}
-                            }}
-                        />)}
-                    />
+                    <CustomTextField
+                        control={control}
+                        name={'cpf'}
+                        label={'CPF'}
+                        placeholder={'Type the CPF'}
+                        mask_props={{mask:'000.000.000-00'}}/>
 
-                    <Controller name={'senha'} control={control}
-                        render={({field, fieldState: {error}}) => (
-                        <TextField
-                            label={'Senha'}
-                            placeholder={'Digite sua senha'}
-                            {...field}
-                            error={error ? true : false}
-                            helperText={error?.message}
-                            type={password_visible ? '' : 'password'}
-                            InputProps={{
-                                endAdornment: (
-                                    <PasswordAdornment
-                                        visible={password_visible}
-                                        setVisible={setPasswordVisible}/>
-                                )
-                            }}
-                        />)}
-                    />
+                    <CustomTextField
+                        control={control}
+                        name={'password'}
+                        label={'Password'}
+                        placeholder={'Type the password'}
+                        password={true}/>
 
                     <Button type={'submit'}>Login</Button>
 

@@ -2,8 +2,10 @@
 import MuiModal from '@mui/material/Modal'
 import { Paper, Typography, Divider, Box } from '@mui/material'
 import { styled } from '@mui/material/styles'
+// React
+import { ReactNode } from 'react'
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const StyledPaper = styled(Paper)((/*{theme}*/) => ({
     position: 'fixed',
     top: '50%',
     left: '50%',
@@ -12,7 +14,15 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: 14
 }))
 
-const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400})=> {
+type Props = {
+    children: ReactNode,
+    open: boolean,
+    max_width: number,
+    title: string,
+    handleClose: ()=> void
+}
+
+const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400}: Props)=> {
 
     return (
 

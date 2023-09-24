@@ -1,35 +1,30 @@
 // MUI
-import { Stack, Typography, Button, Divider, TextField, Checkbox, FormControlLabel } from '@mui/material'
-import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { Stack, Typography, Button, Divider } from '@mui/material'
 import { Add } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { object } from 'yup'
-// React hooks
+// React
 import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
 import { PageBlock } from '../../../components/containers/PageBlock'
-import { Select } from '../../../components/widgets/Select'
+import { CustomSelect } from '../../../components/widgets/CustomSelect'
+import { CustomTextField } from '../../../components/widgets/CustomTextField'
+import { CustomDatePicker } from '../../../components/widgets/CustomDatePicker'
+import { CustomCheckbox } from '../../../components/widgets/CustomCheckBox'
 // Scripts
 import { species } from '../../../scripts/options'
 import { date, default_required } from '../../../scripts/yupModules'
 
-type Inputs = {
-    name: string,
-    species?: string,
-    wizard?: boolean,
-    date_of_birth: string
-}
-
-const EntityIndex = ()=> {
+const EntityCreate = ()=> {
 
     const navigate = useNavigate()
 
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // Schema de validação
     const validacao_login = object({
@@ -38,6 +33,13 @@ const EntityIndex = ()=> {
     })
 
     // Hook form
+    type Inputs = {
+        name: string,
+        species?: string,
+        wizard?: boolean,
+        date_of_birth: string
+    }
+
     const { handleSubmit, control, formState: {errors}} = useForm<Inputs>({
         resolver: yupResolver(validacao_login),
         defaultValues: {
@@ -99,46 +101,30 @@ const EntityIndex = ()=> {
                     useFlexGap
                     spacing={2}>
 
-                    <Controller name={'name'} control={control}
-                        render={({field, fieldState: {error}}) => (
-                        <TextField
-                            label={'Name'}
-                            placeholder={"Type the character's name"}
-                            {...field}
-                            error={error ? true : false}
-                            helperText={error?.message}
-                        />)}
-                    />
+                    <CustomTextField
+                        name={'name'}
+                        control={control}
+                        label={'Name'}
+                        placeholder={"Type the character's name"}/>
 
-                    <Controller name={'date_of_birth'} control={control}
-                    render={({field, fieldState: {error}}) => (
-                        <DatePicker
-                            {...field}
-                            slotProps={{
-                            textField: {
-                                error: error ? true : false,
-                                helperText: error?.message
-                            }
-                            }}
-                            label={'Date of birth'}/>
-                        )}
-                    />
+                    <CustomDatePicker
+                        control={control}
+                        name={'date_of_birth'}
+                        width={200}
+                        label={'Date of birth'}/>
 
-                   <Select
-                    label={'Species'}
-                    control={control}
-                    options={species}
-                    name={'species'}
-                    width={150}
-                    form_control_error={errors.species}/>
+                   <CustomSelect
+                        label={'Species'}
+                        control={control}
+                        options={species}
+                        name={'species'}
+                        width={150}
+                        form_control_error={errors.species}/>
 
-                    <Controller name={'wizard'} control={control}
-                        render={({field: {value, ...other}}) => (
-                        <FormControlLabel
-                            control={<Checkbox {...other} checked={value}/>}
-                            label="Wizard?"
-                        />)}
-                    />
+                    <CustomCheckbox
+                        label={'Wizard?'}
+                        control={control}
+                        name={'wizard'}/>
 
                 </Stack>
 
@@ -151,4 +137,4 @@ const EntityIndex = ()=> {
     )
 }
 
-export default EntityIndex
+export default EntityCreate

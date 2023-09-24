@@ -1,6 +1,5 @@
 // MUI
-import MuiTable from '@mui/material/Table'
-import { Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Chip, Tooltip, Button, Stack, Divider, Typography } from '@mui/material'
+import { Table, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Chip, Tooltip, Button, Stack, Divider, Typography } from '@mui/material'
 import { Add } from '@mui/icons-material'
 // Libs
 import { Link, useNavigate } from 'react-router-dom'
@@ -41,7 +40,7 @@ type Props = {
   hidden_actions?: HiddenAction[],
 }
 
-const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Props)=> {
+export const CustomTable = ({title, add_link, id, data, columns, actions, hidden_actions}: Props)=> {
 
   const navigate = useNavigate()
 
@@ -70,7 +69,7 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
       <Divider/>
 
       <TableContainer sx={{ maxHeight: 420 }}>
-        <MuiTable stickyHeader>
+        <Table stickyHeader>
 
           <TableHead>
 
@@ -170,7 +169,7 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
 
           </TableBody>
 
-        </MuiTable>
+        </Table>
       </TableContainer>
 
     </Paper>
@@ -183,5 +182,3 @@ const Table = ({title, add_link, id, data, columns, actions, hidden_actions}: Pr
 
   )
 }
-
-export default Table

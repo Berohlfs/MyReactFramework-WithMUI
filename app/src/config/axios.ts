@@ -12,7 +12,7 @@ import Cookies from 'js-cookie'
 // import { APIInstance } from '?'
 // const res = await APIInstance(navigate, false).get('?')
 
-export const APIInstance = (navigate, success_toast = true)=> {
+export const APIInstance = (navigate?: (path: string)=> void, success_toast = true)=> {
 
     const instance = axios.create({
         baseURL: 'https://hp-api.onrender.com',

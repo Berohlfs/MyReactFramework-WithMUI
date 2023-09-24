@@ -18,9 +18,9 @@ import global_styles from './theme/globalStyles'
 import { ptBR } from '@mui/material/locale'
 
 const theme = createTheme({
-  typography: typography(),
-  palette: palette(),
-  components: components()
+  typography: typography,
+  palette: palette,
+  components: components
 }, ptBR)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

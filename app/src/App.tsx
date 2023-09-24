@@ -9,7 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 // MUI
 import { LinearProgress } from '@mui/material'
-// React hooks
+// React
 import { useState, createContext, Dispatch, SetStateAction } from 'react'
 
 type AppValues = {

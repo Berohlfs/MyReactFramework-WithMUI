@@ -8,17 +8,17 @@ import { useForm, Controller } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { object } from 'yup'
 import axios from 'axios'
-// React hooks
-import { useEffect, useContext, useState } from 'react'
+// React
+import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 // Components
-import DeleteBar from '../../../components/widgets/DeleteBar'
+import { DeleteBar } from '../../../components/widgets/DeleteBar'
 import { PageBlock } from '../../../components/containers/PageBlock'
 // Scripts
 import { default_optional } from '../../../scripts/yupModules'
 
-const EntityIndex = ()=> {
+const EntityShow = ()=> {
 
     const { id } = useParams()
 
@@ -131,4 +131,4 @@ const EntityIndex = ()=> {
     )
 }
 
-export default EntityIndex
+export default EntityShow

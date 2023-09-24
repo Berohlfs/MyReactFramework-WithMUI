@@ -6,8 +6,8 @@ import { Box } from '@mui/material'
 // Libs
 import { Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
-// React hooks
-import { createContext, useState, Dispatch, SetStateAction } from 'react'
+// React
+import { createContext, useState, Dispatch, SetStateAction, ReactNode } from 'react'
 
 type Breadcrumb = {
     text: string,
@@ -21,7 +21,11 @@ type AuthValues = {
 
 export const AuthLayoutContext = createContext<AuthValues | null>(null)
 
-const AuthLayout = ({children})=> {
+type Props = {
+    children: ReactNode
+}
+
+const AuthLayout = ({children}: Props)=> {
 
     const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
 

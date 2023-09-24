@@ -1,12 +1,18 @@
 // Layout components
 import Footer from '../both/Footer'
+// React
+import { ReactNode } from 'react'
 
-const OpenLayout = ({children})=> {
+type Props = {
+    children: ReactNode
+}
+
+const OpenLayout = ({children}: Props)=> {
 
     return (<>
 
         {children}
-        
+
         <Footer/>
 
     </>)

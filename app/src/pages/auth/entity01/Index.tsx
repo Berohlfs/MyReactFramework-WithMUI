@@ -1,24 +1,29 @@
 // MUI
 import { TaskAltOutlined } from '@mui/icons-material'
 // Components
-import Table from '../../../components/widgets/Table'
+import { CustomTable } from '../../../components/widgets/CustomTable'
 import { PageBlock } from '../../../components/containers/PageBlock'
 // Libs
 import { toast } from 'react-toastify'
 import axios from 'axios'
-// React hooks
+// React
 import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 
 const EntityIndex = ()=> {
 
-    const {setLoading} = useContext(AppContext)
+    const {setLoading} = useContext(AppContext)!
 
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)
+    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // GET - Characters
-    const [characters, setCharacters] = useState([])
+    type Character = {
+        [key: string]: string
+    }
+    type Characters = Character[]
+
+    const [characters, setCharacters] = useState<Characters>([])
 
     const getCharacters = async()=> {
         setLoading(true)
@@ -48,7 +53,7 @@ const EntityIndex = ()=> {
 
         <PageBlock type={'box'}>
 
-            <Table
+            <CustomTable
                 title={'Characters'}
                 id={'id'}
                 add_link={'/new/characters'}

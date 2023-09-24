@@ -1,5 +1,5 @@
-// React hooks
-import { useContext, useState } from 'react'
+// React
+import { useContext, useState, MouseEvent} from 'react'
 import { AuthLayoutContext } from './AuthLayout'
 // MUI
 import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
@@ -12,7 +12,7 @@ import Cookies from 'js-cookie'
 // Components
 import Modal from '../../components/containers/Modal'
 
-const StyledHeader = styled(Paper)(({ theme }) => ({
+const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     position: 'fixed',
     top: 0,
     left: 0,
@@ -20,7 +20,7 @@ const StyledHeader = styled(Paper)(({ theme }) => ({
     zIndex: 3
 }))
 
-const StyledMenu = styled(Paper)(({ theme }) => ({
+const StyledMenu = styled(Paper)(() => ({
     position: 'fixed',
     zIndex: 5,
     top: 0,
@@ -32,7 +32,7 @@ const StyledMenu = styled(Paper)(({ theme }) => ({
     }
 }))
 
-const Escape = styled(Box)(({ theme }) => ({
+const Escape = styled(Box)(() => ({
     position: 'fixed',
     top: 0,
     width: '100%',
@@ -49,7 +49,7 @@ const Static = ()=> {
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
 
-    const {breadcrumbs} = useContext(AuthLayoutContext)
+    const {breadcrumbs} = useContext(AuthLayoutContext)!
 
     // Espelho do menu lateral
     const navigation = [
@@ -70,9 +70,9 @@ const Static = ()=> {
     }
 
     // Avatar's menu anchor
-    const [anchorEl, setAnchorEl] = useState(null)
+    const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
 
-    const handleAvatarClick = (event) => {
+    const handleAvatarClick = (event: MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget)
     }
 
@@ -95,7 +95,7 @@ const Static = ()=> {
                     spacing={2}
                     alignItems={'center'}>
 
-                    <Tooltip>
+                    <Tooltip title={'Avatar'}>
                         <IconButton
                             onClick={handleAvatarClick}
                             size="small">

@@ -3,7 +3,11 @@ import { Typography, Alert, Link } from '@mui/material'
 // React hooks
 import { useState } from 'react'
 
-const DeleteBar = ({deleteFunc})=> {
+type Props = {
+    deleteFunc: ()=> void
+}
+
+export const DeleteBar = ({deleteFunc}: Props)=> {
 
     const [confirm, setConfirm] = useState(false)
 
@@ -51,5 +55,3 @@ const DeleteBar = ({deleteFunc})=> {
 
     )
 }
-
-export default DeleteBar

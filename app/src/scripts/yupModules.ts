@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import dayjs from 'dayjs'
 
 // Common error messages
-const messages = {
+export const messages = {
     required: 'Obrigatório',
     invalid: 'Inválido',
     large: 'Muito grande'

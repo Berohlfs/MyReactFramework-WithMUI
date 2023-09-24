@@ -1,6 +1,5 @@
 // MUI
-import { FormControl, InputLabel, FormHelperText, MenuItem } from '@mui/material'
-import MuiSelect from '@mui/material/Select'
+import { FormControl, InputLabel, FormHelperText, MenuItem, Select } from '@mui/material'
 // Libs
 import { Controller, FieldError, Control } from 'react-hook-form'
 
@@ -18,7 +17,7 @@ type Props = {
     width: number
 }
 
-export const Select = ({ control, form_control_error, label, name, options, width }: Props)=> {
+export const CustomSelect = ({ control, form_control_error, label, name, options, width }: Props)=> {
 
     return(
 
@@ -33,7 +32,7 @@ export const Select = ({ control, form_control_error, label, name, options, widt
             <Controller name={name} control={control}
             render={({field, fieldState: {error}}) => (
 
-                <MuiSelect
+                <Select
                     error={error ? true : false}
                     {...field}
                     label={label}>
@@ -46,7 +45,7 @@ export const Select = ({ control, form_control_error, label, name, options, widt
                         </MenuItem>
                     ))}
 
-                </MuiSelect>)}/>
+                </Select>)}/>
 
             {form_control_error &&
 

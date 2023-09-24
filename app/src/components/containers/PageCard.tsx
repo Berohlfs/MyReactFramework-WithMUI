@@ -4,8 +4,10 @@ import { Face } from '@mui/icons-material'
 import { styled } from '@mui/material/styles'
 // Libs
 import { Link } from 'react-router-dom'
+// React
+import { ReactNode } from 'react'
 
-const StyledPaper = styled(Paper)(({ theme }) => ({
+const StyledPaper = styled(Paper)((/*{theme}*/) => ({
     position: 'relative',
     left: '50%',
     transform: 'translate(-50%, 100px)',
@@ -13,7 +15,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     overflow: 'hidden'
 }))
 
-const LogoStack = styled(Stack)(({ theme }) => ({
+const LogoStack = styled(Stack)(() => ({
     height: '60px',
     width: '60px',
     borderRadius: '50%',
@@ -24,7 +26,7 @@ const LogoStack = styled(Stack)(({ theme }) => ({
     boxShadow: '0 0 0.2em #ccc'
 }))
 
-const OutsideLink = styled(Typography)(({ theme }) => ({
+const OutsideLink = styled(Typography)(() => ({
     position: 'relative',
     top: '120px',
     display: 'block',
@@ -32,13 +34,21 @@ const OutsideLink = styled(Typography)(({ theme }) => ({
     textAlign: 'center',
 }))
 
-const PageCard = ({
-    children,
-    title = 'Title',
-    caption = 'Caption',
-    max_width = 500,
-    link
-}) => {
+type Link = {
+    path: string,
+    text: string,
+    label: string
+}
+
+type Props = {
+    children?: ReactNode,
+    title: string,
+    caption: string,
+    max_width?: number,
+    link?: Link
+}
+
+const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 500, link}: Props) => {
 
     return(<>
 
