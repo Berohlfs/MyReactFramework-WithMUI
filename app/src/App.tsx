@@ -29,16 +29,16 @@ function App() {
     zIndex: '10'
   }
 
-  return (<>
-
-      {loading && <LinearProgress sx={progress_style}/>}
-
-      <ToastContainer
-        position={"top-right"}
-        draggable={false}
-        autoClose={3000}/>
+  return (
 
       <AppContext.Provider value={{setLoading}}>
+
+        {loading && <LinearProgress sx={progress_style}/>}
+
+        <ToastContainer
+          position={"top-right"}
+          draggable={false}
+          autoClose={3000}/>
 
         <BrowserRouter>
 
@@ -68,7 +68,7 @@ function App() {
 
       </AppContext.Provider>
 
-  </>)
+  )
 }
 
 export default App

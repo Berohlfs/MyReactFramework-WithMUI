@@ -77,19 +77,11 @@ const EntityCreate = ()=> {
 
                     <Typography color={'primary'}>New Character</Typography>
 
-                    <Stack
-                        direction={'row'}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}
-                        spacing={1}>
-
-                        <Button
-                            type={'submit'}
-                            endIcon={<Add/>}>
-                                Create
-                        </Button>
-
-                    </Stack>
+                    <Button
+                        type={'submit'}
+                        endIcon={<Add/>}>
+                            Create
+                    </Button>
 
                 </Stack>
 

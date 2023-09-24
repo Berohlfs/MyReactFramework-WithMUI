@@ -21,6 +21,7 @@ const EntityIndex = ()=> {
     type Character = {
         [key: string]: string
     }
+
     type Characters = Character[]
 
     const [characters, setCharacters] = useState<Characters>([])
