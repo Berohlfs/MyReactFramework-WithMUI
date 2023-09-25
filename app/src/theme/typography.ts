@@ -2,7 +2,7 @@
 
 const typography = {
 
-    fontFamily: "'Inter','sans-serif'"
+    fontFamily: "'Poppins','sans-serif'"
 
 }
 

@@ -1,5 +1,5 @@
 // MUI
-import { Stack, Typography, Button, Divider } from '@mui/material'
+import { Stack, Typography, Button, Divider, Paper } from '@mui/material'
 import { Add } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
@@ -11,7 +11,6 @@ import { object } from 'yup'
 import { useEffect, useContext } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
-import { PageBlock } from '../../../components/containers/PageBlock'
 import { CustomSelect } from '../../../components/widgets/CustomSelect'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
 import { CustomDatePicker } from '../../../components/widgets/CustomDatePicker'
@@ -66,7 +65,7 @@ const EntityCreate = ()=> {
 
         <form onSubmit={handleSubmit((data)=>create(data))}>
 
-        <PageBlock type={'paper'}>
+        <Paper>
 
             <Stack padding={2} spacing={2}>
 
@@ -97,6 +96,7 @@ const EntityCreate = ()=> {
                         name={'name'}
                         control={control}
                         label={'Name'}
+                        width={250}
                         placeholder={"Type the character's name"}/>
 
                     <CustomDatePicker
@@ -122,7 +122,7 @@ const EntityCreate = ()=> {
 
             </Stack>
 
-        </PageBlock>
+        </Paper>
 
         </form>
 

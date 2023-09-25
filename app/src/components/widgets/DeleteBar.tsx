@@ -1,5 +1,6 @@
 // MUI
 import { Typography, Alert, Link } from '@mui/material'
+import { DeleteOutlined } from '@mui/icons-material'
 // React
 import { useState } from 'react'
 
@@ -19,6 +20,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
     return (
 
         <Alert
+            icon={<DeleteOutlined/>}
             sx={{boxShadow: 0}}
             severity={"error"}
             onClick={confirm ? ()=> null : checkDelete}>
@@ -26,7 +28,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
             <Typography
                 variant={'caption'}
                 sx={{cursor: 'pointer'}}>
-                    {confirm ? "Tem certeza?" : "Excluir este registro."}
+                    {confirm ? "Tem certeza?" : "Clique para excluir este registro."}
             </Typography>
 
             {confirm && <>

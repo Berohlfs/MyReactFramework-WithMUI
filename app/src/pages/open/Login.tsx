@@ -56,8 +56,8 @@ const Login = ()=> {
         <PageCard
             max_width={300}
             title={'Login'}
-            caption={'Seja bem vindo!'}
-            link={{text: 'Ainda não é parceiro?', path: '/cadastro', label: 'Cadastre-se'}}>
+            caption={'Welcome!'}
+            link={{text: "Don't have an account?", path: '/register', label: 'Register now!'}}>
 
             <form onSubmit={handleSubmit((data)=>login(data))}>
 

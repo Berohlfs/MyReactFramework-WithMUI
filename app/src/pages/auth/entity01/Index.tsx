@@ -2,7 +2,6 @@
 import { TaskAltOutlined } from '@mui/icons-material'
 // Components
 import { CustomTable } from '../../../components/widgets/CustomTable'
-import { PageBlock } from '../../../components/containers/PageBlock'
 // Libs
 import { toast } from 'react-toastify'
 import axios from 'axios'
@@ -52,23 +51,18 @@ const EntityIndex = ()=> {
 
     return(
 
-        <PageBlock type={'box'}>
-
-            <CustomTable
-                title={'Characters'}
-                id={'id'}
-                add_link={'/new/characters'}
-                columns={[
-                    {name: 'Nome', key: 'name', show_domain_path: '/characters'},
-                    {name: 'Espécie', key: 'species'},
-                    {name: 'Sexo', key: 'gender', enum: {'male': 'primary', 'female': 'secondary'}},
-                ]}
-                data={characters}
-                hidden_actions={[{name: 'Get ID', function: action}]}
-                actions={[{name: 'Get ID', function: action, icon: TaskAltOutlined}]}
-            />
-
-        </PageBlock>
+        <CustomTable
+            title={'Characters'}
+            id={'id'}
+            add_link={'/new/characters'}
+            columns={[
+                {name: 'Nome', key: 'name', show_domain_path: '/characters'},
+                {name: 'Espécie', key: 'species'},
+                {name: 'Sexo', key: 'gender', enum: {'male': 'primary', 'female': 'secondary'}},
+            ]}
+            data={characters}
+            hidden_actions={[{name: 'Get ID', function: action}]}
+            actions={[{name: 'Get ID', function: action, icon: TaskAltOutlined}]}/>
 
     )
 }

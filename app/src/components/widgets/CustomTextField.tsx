@@ -30,7 +30,9 @@ const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 })
 
 type MaskProps = {
-  mask: string | Number
+  mask: string | NumberConstructor,
+  max?: number,
+  min?: number,
   radix?: string,
   scale?: number,
   padFractionalZeros?: boolean,
@@ -46,9 +48,10 @@ type Props = {
   password?: true
   full_width?: true
   width?: number
+  disabled?: true
 }
 
-export const CustomTextField = ({control, name, label, placeholder, mask_props, password, full_width, width}: Props)=> {
+export const CustomTextField = ({control, name, label, placeholder, mask_props, password, full_width, width, disabled}: Props)=> {
 
   const [visible, setVisible] = useState(false)
 
@@ -60,6 +63,7 @@ export const CustomTextField = ({control, name, label, placeholder, mask_props, 
 
         <TextField
             {...field}
+            disabled={disabled}
             fullWidth={full_width}
             sx={{width: width}}
             label={label}

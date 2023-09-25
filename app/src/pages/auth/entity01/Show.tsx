@@ -1,6 +1,6 @@
 // MUI
-import { Stack, Typography, Button, Divider } from '@mui/material'
-import { Check, Clear } from '@mui/icons-material'
+import { Stack, Typography, Button, Divider, Paper } from '@mui/material'
+import { Check, ReplayOutlined } from '@mui/icons-material'
 // Libs
 import { toast } from 'react-toastify'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -14,7 +14,6 @@ import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 // Components
 import { DeleteBar } from '../../../components/widgets/DeleteBar'
-import { PageBlock } from '../../../components/containers/PageBlock'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
 // Scripts
 import { default_required } from '../../../scripts/yupModules'
@@ -70,7 +69,7 @@ const EntityShow = ()=> {
 
         <form onSubmit={handleSubmit((data)=>{toast('Mock save'); console.log(data)})}>
 
-        <PageBlock type={'paper'}>
+        <Paper>
 
             <Stack padding={2} spacing={2}>
 
@@ -90,8 +89,8 @@ const EntityShow = ()=> {
                         <Button
                             color={'error'}
                             onClick={()=>reset()}
-                            endIcon={<Clear/>}>
-                                Cancel
+                            endIcon={<ReplayOutlined/>}>
+                                Restore
                         </Button>
 
                         <Button
@@ -116,6 +115,7 @@ const EntityShow = ()=> {
                         name={'name'}
                         control={control}
                         label={'Name'}
+                        width={250}
                         placeholder={"Type character's name"}/>
 
                 </Stack>
@@ -124,7 +124,7 @@ const EntityShow = ()=> {
 
             </Stack>
 
-        </PageBlock>
+        </Paper>
 
         </form>
 
