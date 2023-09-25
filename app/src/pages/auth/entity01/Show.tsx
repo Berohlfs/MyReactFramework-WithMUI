@@ -17,7 +17,7 @@ import { DeleteBar } from '../../../components/widgets/DeleteBar'
 import { PageBlock } from '../../../components/containers/PageBlock'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
 // Scripts
-import { default_optional } from '../../../scripts/yupModules'
+import { default_required } from '../../../scripts/yupModules'
 
 const EntityShow = ()=> {
 
@@ -31,11 +31,15 @@ const EntityShow = ()=> {
 
     // Schema de validação
     const validacao_login = object({
-        name: default_optional,
+        name: default_required,
     })
 
     // Hook form
-    const { handleSubmit, control, reset } = useForm({
+    type Inputs = {
+        name: string
+    }
+
+    const { handleSubmit, control, reset } = useForm<Inputs>({
         resolver: yupResolver(validacao_login),
         defaultValues: {
           'name': ''

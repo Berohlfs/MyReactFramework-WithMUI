@@ -51,7 +51,7 @@ const Static = ()=> {
 
     const {breadcrumbs} = useContext(AuthLayoutContext)!
 
-    // Espelho do menu lateral
+    // Menu mirror
     const navigation = [
         [
             {title: 'Page 01', icon: HomeOutlined, path: '/characters'},

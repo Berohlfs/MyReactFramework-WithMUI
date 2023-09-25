@@ -7,7 +7,7 @@ type Props = {
     control: Control<any, any>,
     label: string,
     name: string,
-    width: number
+    width?: number
 }
 
 export const CustomDatePicker = ({ control, label, name, width }: Props)=> {

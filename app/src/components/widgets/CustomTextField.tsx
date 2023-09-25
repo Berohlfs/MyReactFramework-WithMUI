@@ -8,6 +8,7 @@ import { Visibility, VisibilityOff } from '@mui/icons-material'
 import { InputAdornment, IconButton, TextField } from '@mui/material'
 
 type InputProps = {
+  // Simulating onChange event object
   onChange: (event: { target: { name: string; value: string } }) => void,
   name: string
 }
