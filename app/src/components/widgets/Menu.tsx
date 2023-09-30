@@ -15,7 +15,7 @@ type Props = {
   id: string
 }
 
-const Menu = ({hidden_actions, id}: Props)=> {
+export const Menu = ({hidden_actions, id}: Props)=> {
 
   // mMenu's anchor
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
@@ -58,5 +58,3 @@ const Menu = ({hidden_actions, id}: Props)=> {
     </>
   )
 }
-
-export default Menu

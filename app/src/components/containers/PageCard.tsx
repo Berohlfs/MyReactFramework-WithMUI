@@ -48,7 +48,7 @@ type Props = {
     link?: Link
 }
 
-const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 500, link}: Props) => {
+export const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 500, link}: Props) => {
 
     return(<>
 
@@ -101,5 +101,3 @@ const PageCard = ({children, title = 'Title', caption = 'Caption', max_width = 5
 
     </>)
 }
-
-export default PageCard

@@ -10,7 +10,7 @@ import { useEffect, useContext, useState } from 'react'
 import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 
-const EntityIndex = ()=> {
+export const EntityIndex = ()=> {
 
     const {setLoading} = useContext(AppContext)!
 
@@ -66,5 +66,3 @@ const EntityIndex = ()=> {
 
     )
 }
-
-export default EntityIndex

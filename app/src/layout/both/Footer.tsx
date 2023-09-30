@@ -12,7 +12,7 @@ const StyledFooter = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.main
 }))
 
-const Footer = ()=> {
+export const Footer = ()=> {
 
     const year = new Date().getFullYear()
 
@@ -26,5 +26,3 @@ const Footer = ()=> {
 
     )
 }
-
-export default Footer

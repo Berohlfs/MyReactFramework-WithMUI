@@ -10,14 +10,15 @@ import { useNavigate, Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 // Components
-import Modal from '../../components/containers/Modal'
+import { Modal } from '../../components/containers/Modal'
 
 const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    width: '100%',
-    zIndex: 3
+    width: 'calc(100% - 20px)',
+    zIndex: 3,
+    margin: 10
 }))
 
 const StyledMenu = styled(Paper)(() => ({
@@ -25,8 +26,9 @@ const StyledMenu = styled(Paper)(() => ({
     zIndex: 5,
     top: 0,
     right: 0,
-    height: '100%',
-    transition: '2',
+    height: 'calc(100% - 20px)',
+    margin: 10,
+    transition: '0.2s',
     '&.closed': {
         right: '-300px'
     }
@@ -41,7 +43,7 @@ const Escape = styled(Box)(() => ({
     zIndex: 4
 }))
 
-const Static = ()=> {
+export const Static = ()=> {
 
     const navigate = useNavigate()
 
@@ -221,5 +223,3 @@ const Static = ()=> {
 
     </>)
 }
-
-export default Static

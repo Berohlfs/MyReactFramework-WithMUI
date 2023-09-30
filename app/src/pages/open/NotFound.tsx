@@ -1,7 +1,7 @@
 // Components
-import PageCard from "../../components/containers/PageCard"
+import { PageCard } from "../../components/containers/PageCard"
 
-const NotFound = ()=> {
+export const NotFound = ()=> {
     return (
         <PageCard
             title={'Erro 404'}
@@ -10,5 +10,3 @@ const NotFound = ()=> {
         />
     )
 }
-
-export default NotFound

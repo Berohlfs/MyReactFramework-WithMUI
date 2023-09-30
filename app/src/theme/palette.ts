@@ -3,8 +3,8 @@
 // MUI
 import { deepPurple, amber, green } from '@mui/material/colors'
 
-const palette = {
-    
+export const palette = {
+
     primary: {
         main: deepPurple[500],
         light: deepPurple[50],
@@ -22,5 +22,3 @@ const palette = {
     }
 
 }
-
-export default palette

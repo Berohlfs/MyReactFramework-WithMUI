@@ -28,7 +28,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
             <Typography
                 variant={'caption'}
                 sx={{cursor: 'pointer'}}>
-                    {confirm ? "Tem certeza?" : "Clique para excluir este registro."}
+                    {confirm ? "Are you sure?" : "Click to delete this instance."}
             </Typography>
 
             {confirm && <>
@@ -39,7 +39,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
                     ml={2}
                     color={'error'}
                     onClick={()=> setConfirm(false)}>
-                        Manter
+                        Keep
                 </Link>
 
                 <Link
@@ -48,7 +48,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
                     ml={2}
                     color={'error'}
                     onClick={checkDelete}>
-                        Excluir
+                        Delete
                 </Link>
 
             </>}

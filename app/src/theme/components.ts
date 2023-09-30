@@ -3,7 +3,7 @@
 // MUI
 import { Components } from "@mui/material"
 
-const components: Components = {
+export const components: Components = {
 
     MuiTableCell: {
         styleOverrides: {
@@ -24,7 +24,8 @@ const components: Components = {
     MuiPaper: {
         styleOverrides:{
             root: {
-                boxShadow: '0 0 0.2em #ccc',
+                boxShadow: '0 0 0.3em #ccc',
+                borderRadius: 10
             }
         }
     },
@@ -113,5 +114,3 @@ const components: Components = {
     }
 
 }
-
-export default components

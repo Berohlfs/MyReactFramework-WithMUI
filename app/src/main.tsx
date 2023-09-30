@@ -2,7 +2,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 // App component
-import App from './App'
+import { App } from './App'
 // Libs
 import 'dayjs/locale/pt-br'
 // MUI
@@ -11,10 +11,10 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 // MUI's Theme
 import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
-import components from './theme/components'
-import palette from './theme/palette'
-import typography from './theme/typography'
-import global_styles from './theme/globalStyles'
+import { components } from './theme/components'
+import { palette } from './theme/palette'
+import { typography } from './theme/typography'
+import { global_styles } from './theme/globalStyles'
 import { ptBR } from '@mui/material/locale'
 
 const theme = createTheme({

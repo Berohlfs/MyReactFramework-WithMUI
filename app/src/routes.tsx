@@ -1,10 +1,10 @@
 // Open
-import Login from './pages/open/Login'
-import NotFound from './pages/open/NotFound'
+import { Login } from './pages/open/Login'
+import { NotFound } from './pages/open/NotFound'
 // Protected
-import EntityIndex from './pages/auth/entity01/Index'
-import EntityShow from './pages/auth/entity01/Show'
-import EntityCreate from './pages/auth/entity01/Create'
+import { EntityIndex } from './pages/auth/entity01/Index'
+import { EntityShow } from './pages/auth/entity01/Show'
+import { EntityCreate } from './pages/auth/entity01/Create'
 
 export const open_routes = [
     {path: '/', component: <Login/>},

@@ -27,15 +27,15 @@ export const numero_do_banco = yup.string().required(messages.required).length(3
 export const conta_corrente = yup.string().required(messages.required).max(10, messages.large)
 export const digito_cc = yup.string().required(messages.required).length(1, messages.invalid)
 export const agencia = yup.string().required(messages.required).length(4, messages.invalid)
-export const pix = yup.string().required(messages.required).max(40, messages.large)
+export const pix = default_required
 
 // 'Endereço'
 export const cep = yup.string().required(messages.required).length(10, messages.invalid)
-export const logradouro = yup.string().required(messages.required).max(40, messages.large)
-export const numero = yup.string().required(messages.required).max(15, messages.large)
+export const logradouro = default_required
+export const numero = yup.string().required(messages.required).max(10, messages.large)
 export const complemento = yup.string().max(15, messages.large)
-export const bairro = yup.string().required(messages.required).max(25, messages.large)
-export const cidade = yup.string().required(messages.required).max(40, messages.large)
+export const bairro = default_required
+export const cidade = default_required
 export const estado = yup.string().required(messages.required).length(2, messages.invalid)
 
 // 'Outros'

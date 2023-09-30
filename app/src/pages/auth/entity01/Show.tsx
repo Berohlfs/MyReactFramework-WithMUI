@@ -18,7 +18,7 @@ import { CustomTextField } from '../../../components/widgets/CustomTextField'
 // Scripts
 import { default_required } from '../../../scripts/yupModules'
 
-const EntityShow = ()=> {
+export const EntityShow = ()=> {
 
     const { id } = useParams()
 
@@ -130,5 +130,3 @@ const EntityShow = ()=> {
 
     )
 }
-
-export default EntityShow

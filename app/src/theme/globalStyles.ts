@@ -1,6 +1,6 @@
 // Application's global CSS
 
-const global_styles = {
+export const global_styles = {
 
     body: {
       backgroundColor: '#f7f7f7',
@@ -30,7 +30,5 @@ const global_styles = {
       borderRadius: '20px',
       backgroundColor: '#bbb'
     }
-    
-}
 
-export default global_styles
+}

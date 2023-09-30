@@ -1,6 +1,6 @@
 // Layout components
-import Static from './Static'
-import Footer from '../both/Footer'
+import { Static } from './Static'
+import { Footer } from '../both/Footer'
 // MUI
 import { Box } from '@mui/material'
 // Libs
@@ -25,7 +25,7 @@ type Props = {
     children: ReactNode
 }
 
-const AuthLayout = ({children}: Props)=> {
+export const AuthLayout = ({children}: Props)=> {
 
     const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
 
@@ -57,5 +57,3 @@ const AuthLayout = ({children}: Props)=> {
 
     </>)
 }
-
-export default AuthLayout

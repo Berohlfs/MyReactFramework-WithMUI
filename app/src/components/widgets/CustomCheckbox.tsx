@@ -19,7 +19,6 @@ export const CustomCheckbox = ({ control, label, name }: Props)=> {
             <FormControlLabel
                 control={<Checkbox {...other} checked={value}/>}
                 label={label}
-
             />)}
         />
 

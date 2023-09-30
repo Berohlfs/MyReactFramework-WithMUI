@@ -19,7 +19,7 @@ import { CustomCheckbox } from '../../../components/widgets/CustomCheckbox'
 import { species } from '../../../scripts/options'
 import { date, default_required } from '../../../scripts/yupModules'
 
-const EntityCreate = ()=> {
+export const EntityCreate = ()=> {
 
     const navigate = useNavigate()
 
@@ -128,5 +128,3 @@ const EntityCreate = ()=> {
 
     )
 }
-
-export default EntityCreate

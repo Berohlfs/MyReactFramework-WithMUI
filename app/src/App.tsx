@@ -1,8 +1,8 @@
 // Routes
 import { auth_routes, open_routes } from './routes'
 // Layouts
-import AuthLayout from './layout/auth/AuthLayout'
-import OpenLayout from './layout/open/OpenLayout'
+import { AuthLayout } from './layout/auth/AuthLayout'
+import { OpenLayout } from './layout/open/OpenLayout'
 // Libs
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -18,7 +18,7 @@ type AppValues = {
 
 export const AppContext = createContext<AppValues | null>(null)
 
-function App() {
+export function App() {
 
   const [loading, setLoading] = useState(false)
 
@@ -70,5 +70,3 @@ function App() {
 
   )
 }
-
-export default App

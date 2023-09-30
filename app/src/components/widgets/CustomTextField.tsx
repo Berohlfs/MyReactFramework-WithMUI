@@ -13,7 +13,7 @@ type InputProps = {
   name: string
 }
 
-const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
+export const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
 
   const { onChange, ...other } = props
 

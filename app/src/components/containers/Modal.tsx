@@ -22,7 +22,7 @@ type Props = {
     handleClose: ()=> void
 }
 
-const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400}: Props)=> {
+export const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400}: Props)=> {
 
     return (
 
@@ -50,5 +50,3 @@ const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400}: 
 
     )
 }
-
-export default Modal

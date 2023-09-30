@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 // React
 import { useMemo, FC } from 'react'
 // Components
-import Menu from './Menu'
+import { Menu } from './Menu'
 
 type Enum = {
   [key: string]: 'primary' | 'secondary' | 'success' | 'error' | 'warning',

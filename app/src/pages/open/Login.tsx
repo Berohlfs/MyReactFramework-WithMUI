@@ -2,7 +2,7 @@
 import { Stack, Button } from "@mui/material"
 // Components
 import { CustomTextField } from '../../components/widgets/CustomTextField'
-import PageCard from '../../components/containers/PageCard'
+import { PageCard } from '../../components/containers/PageCard'
 // Libs
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -14,7 +14,7 @@ import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { AppContext } from '../../App'
 
-const Login = ()=> {
+export const Login = ()=> {
 
     const { setLoading } = useContext(AppContext)!
 
@@ -87,5 +87,3 @@ const Login = ()=> {
 
     )
 }
-
-export default Login

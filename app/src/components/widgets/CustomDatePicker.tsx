@@ -21,10 +21,10 @@ export const CustomDatePicker = ({ control, label, name, width }: Props)=> {
                     {...field}
                     sx={{width: width}}
                     slotProps={{
-                    textField: {
-                        error: error ? true : false,
-                        helperText: error?.message
-                    }
+                        textField: {
+                            error: error ? true : false,
+                            helperText: error?.message
+                        }
                     }}
                     label={label}/>
 
