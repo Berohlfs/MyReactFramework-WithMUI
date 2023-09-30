@@ -2,23 +2,35 @@
 
 // MUI
 import { deepPurple, amber, green } from '@mui/material/colors'
+import { PaletteMode, PaletteOptions } from '@mui/material'
 
-export const palette = {
+export const palette = (mode: PaletteMode): PaletteOptions => ({
 
-    primary: {
-        main: deepPurple[500],
-        light: deepPurple[50],
-        contrastText: '#ffffff',
-        dark: deepPurple[600]
-    },
-    secondary: {
-        main: amber[600],
-        light: amber[100],
-        contrastText: '#ffffff',
-        dark: amber[600]
-    },
-    success: {
-        main: green[500]
-    }
+    mode,
 
-}
+    ...(mode === 'light' ?
+
+        {
+            primary: {
+                main: deepPurple[500],
+            },
+            background: {
+                default: '#f7efff',
+                paper: '#ffffff'
+            }
+        } :
+
+        {
+            primary: {
+                main: deepPurple[500]
+            },
+            background: {
+                default: '#13111c',
+                paper: '#221f2d'
+            },
+            text: {
+                primary: '#ffffff'
+            }
+        })
+
+})

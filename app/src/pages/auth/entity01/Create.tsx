@@ -64,7 +64,7 @@ export const EntityCreate = ()=> {
                     justifyContent={'space-between'}
                     alignItems={'center'}>
 
-                    <Typography color={'primary'}>New Character</Typography>
+                    <Typography>New Character</Typography>
 
                     <Button
                         type={'submit'}

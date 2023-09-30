@@ -19,7 +19,7 @@ import { ptBR } from '@mui/material/locale'
 
 const theme = createTheme({
   typography: typography,
-  palette: palette,
+  palette: palette('dark'),
   components: components
 }, ptBR)
 

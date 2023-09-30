@@ -8,7 +8,6 @@ export const components: Components = {
     MuiTableCell: {
         styleOverrides: {
             head: {
-                color: '#999',
                 fontSize: '12px',
                 padding: '10px 12px',
             },
@@ -22,10 +21,12 @@ export const components: Components = {
         }
     },
     MuiPaper: {
+        defaultProps: {
+            elevation: 0
+        },
         styleOverrides:{
             root: {
-                boxShadow: '0 0 0.3em #ccc',
-                borderRadius: 10
+                borderRadius: 8
             }
         }
     },
@@ -86,6 +87,7 @@ export const components: Components = {
         defaultProps: {
             size: 'small',
             variant: 'contained',
+            disableElevation: true
         },
         styleOverrides: {
             root: {
@@ -112,5 +114,4 @@ export const components: Components = {
             }
         }
     }
-
 }
