@@ -10,7 +10,6 @@ import { object } from 'yup'
 import axios from 'axios'
 // React
 import { useEffect, useContext } from 'react'
-import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 // Components
 import { DeleteBar } from '../../../components/widgets/DeleteBar'
@@ -25,8 +24,6 @@ export const EntityShow = ()=> {
     const navigate = useNavigate()
 
     const {setLoading} = useContext(AppContext)!
-
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // Schema de validação
     const validacao_login = object({
@@ -61,7 +58,6 @@ export const EntityShow = ()=> {
 
     // OnLoad
     useEffect(()=>{
-        setBreadcrumbs([{text: 'Characters', link: '/characters'},{text: 'Edit', link: ''}])
         getCharacter()
     },[])
 

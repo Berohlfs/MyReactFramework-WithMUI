@@ -7,19 +7,7 @@ import { Box } from '@mui/material'
 import { Navigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 // React
-import { createContext, useState, Dispatch, SetStateAction, ReactNode } from 'react'
-
-type Breadcrumb = {
-    text: string,
-    link: string
-}
-
-type AuthValues = {
-    breadcrumbs: Breadcrumb[],
-    setBreadcrumbs: Dispatch<SetStateAction<Breadcrumb[]>>
-}
-
-export const AuthLayoutContext = createContext<AuthValues | null>(null)
+import { ReactNode } from 'react'
 
 type Props = {
     children: ReactNode
@@ -27,27 +15,22 @@ type Props = {
 
 export const AuthLayout = ({children}: Props)=> {
 
-    const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>([])
-
     return (<>
 
         {Cookies.get('access')
 
         ?
-
-        <AuthLayoutContext.Provider value={{ breadcrumbs, setBreadcrumbs }}>
+            <>
 
             <Static/>
 
             <Box position={'relative'} top={'55px'} padding={3}>
 
-
                 {children}
-
 
             </Box>
 
-        </AuthLayoutContext.Provider>
+            </>
 
         :
 

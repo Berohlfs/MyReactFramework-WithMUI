@@ -8,7 +8,7 @@ export const components: Components = {
     MuiTableCell: {
         styleOverrides: {
             head: {
-                color: '#888',
+                color: '#999',
                 fontSize: '12px',
                 padding: '10px 12px',
             },

@@ -1,24 +1,26 @@
 // React
-import { useContext, useState, MouseEvent } from 'react'
-import { AuthLayoutContext } from './AuthLayout'
+import { useState, MouseEvent } from 'react'
 // MUI
 import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Breadcrumbs, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
 // Libs
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
 // Components
 import { Modal } from '../../components/containers/Modal'
 
-const StyledHeader = styled(Paper)((/*{theme}*/) => ({
+const StyledHeader = styled(Paper)(({theme}) => ({
     position: 'fixed',
     top: 0,
     left: 0,
-    width: 'calc(100% - 20px)',
+    width: '100%',
     zIndex: 3,
-    margin: 10
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    borderBottom: '3px solid',
+    borderColor: theme.palette.primary.light
 }))
 
 const StyledMenu = styled(Paper)(() => ({
@@ -50,8 +52,6 @@ export const Static = ()=> {
     const [menu_opened, setMenuOpened] = useState(false)
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
-
-    const {breadcrumbs} = useContext(AuthLayoutContext)!
 
     // Menu mirror
     const navigation = [
@@ -125,25 +125,6 @@ export const Static = ()=> {
                         </MenuItem>
                     </Menu>
 
-                    <Breadcrumbs>
-
-                        {breadcrumbs.map((item)=>(
-
-                        <Link
-                            key={`${item.link}-${item.text}`}
-                            to={item.link}
-                            style={{textDecoration: 'none'}}>
-
-                            <Typography fontSize={12}>
-                                {item.text}
-                            </Typography>
-
-                        </Link>
-
-                        ))}
-
-                    </Breadcrumbs>
-
                 </Stack>
 
                 <Tooltip title="Menu">
@@ -156,7 +137,7 @@ export const Static = ()=> {
         </StyledHeader>
 
         <StyledMenu className={menu_opened ? '' : 'closed'}>
-            <Stack sx={{ width: 250 }} px={2}>
+            <Stack sx={{ width: 250 }}>
 
                 {navigation.map((group, group_index)=>(
 
@@ -184,7 +165,7 @@ export const Static = ()=> {
 
                     </List>
 
-                    <Divider/>
+                    <Divider sx={{mx:2}}/>
 
                 </Box>
 
@@ -198,24 +179,24 @@ export const Static = ()=> {
         <Modal
             open={logout_modal_open}
             handleClose={()=>setLogoutModalOpen(false)}
-            title={'Deseja sair?'}
+            title={'Logout?'}
             max_width={300}>
 
             <Typography variant={'caption'}>
-                Será necessário efetuar o login novamente.
+                You'll have to login again later.
             </Typography>
 
             <Stack direction={'row'} spacing={1} mt={2}>
                 <Button
                     fullWidth
                     onClick={()=>setLogoutModalOpen(false)}>
-                        Cancelar
+                        Cancel
                 </Button>
                 <Button
                     fullWidth
                     onClick={logout}
                     color={'error'}>
-                        Sair
+                        Logout
                 </Button>
             </Stack>
 

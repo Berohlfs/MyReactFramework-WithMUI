@@ -4,7 +4,7 @@ export const global_styles = {
 
     body: {
       backgroundColor: '#f7f7f7',
-      paddingBottom: '50px'
+      paddingBottom: '100px'
     },
     html: {
       scrollBehavior: 'smooth',

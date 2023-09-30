@@ -50,7 +50,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
   const table = useMemo(()=> (
 
-    <Paper sx={{overflow: 'hidden', borderRadius: '10px'}}>
+    <Paper sx={{overflow: 'hidden'}}>
 
       <Stack
         direction={'row'}

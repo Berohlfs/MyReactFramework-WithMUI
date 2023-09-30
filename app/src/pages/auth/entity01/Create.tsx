@@ -7,9 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { object } from 'yup'
-// React
-import { useEffect, useContext } from 'react'
-import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 // Components
 import { CustomSelect } from '../../../components/widgets/CustomSelect'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
@@ -22,8 +19,6 @@ import { date, default_required } from '../../../scripts/yupModules'
 export const EntityCreate = ()=> {
 
     const navigate = useNavigate()
-
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // Schema de validação
     const validacao_login = object({
@@ -55,11 +50,6 @@ export const EntityCreate = ()=> {
         navigate('/characters/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8')
         console.log(data)
     }
-
-    // OnLoad
-    useEffect(()=>{
-        setBreadcrumbs([{text: 'Characters', link: '/characters'},{text: 'Create', link: ''}])
-    },[])
 
     return(
 

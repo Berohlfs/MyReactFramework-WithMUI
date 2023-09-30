@@ -54,7 +54,7 @@ export const Login = ()=> {
     return (
 
         <PageCard
-            max_width={300}
+            max_width={280}
             title={'Login'}
             caption={'Welcome!'}
             link={{text: "Don't have an account?", path: '/register', label: 'Register now!'}}>

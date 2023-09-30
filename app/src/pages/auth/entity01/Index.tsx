@@ -7,14 +7,11 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 // React
 import { useEffect, useContext, useState } from 'react'
-import { AuthLayoutContext } from '../../../layout/auth/AuthLayout'
 import { AppContext } from '../../../App'
 
 export const EntityIndex = ()=> {
 
     const {setLoading} = useContext(AppContext)!
-
-    const {setBreadcrumbs} = useContext(AuthLayoutContext)!
 
     // GET - Characters
     type Character = {
@@ -45,7 +42,6 @@ export const EntityIndex = ()=> {
 
     // OnLoad
     useEffect(()=>{
-        setBreadcrumbs([{text: 'Characters', link: '/characters'}])
         getCharacters()
     },[])
 
