@@ -1,7 +1,9 @@
 // https://mui.com/material-ui/customization/typography/
 
-export const typography = {
+import { TypographyOptions } from "@mui/material/styles/createTypography"
+
+export const typography = (): TypographyOptions => ({
 
     fontFamily: "'Inter','sans-serif'"
 
-}
+})

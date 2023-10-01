@@ -59,7 +59,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
         spacing={1}
         padding={2}>
 
-        <Typography color={'primary'}>{title}</Typography>
+        <Typography>{title}</Typography>
 
         <Button
           variant={'outlined'}

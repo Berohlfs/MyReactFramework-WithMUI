@@ -3,7 +3,7 @@
 export const global_styles = {
 
     body: {
-    
+
       paddingBottom: '100px'
     },
     html: {
@@ -30,5 +30,5 @@ export const global_styles = {
       borderRadius: '20px',
       backgroundColor: '#bbb'
     }
-
+    
 }

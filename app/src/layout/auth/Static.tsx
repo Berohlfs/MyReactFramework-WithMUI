@@ -1,8 +1,9 @@
 // React
-import { useState, MouseEvent } from 'react'
+import { useState, MouseEvent, useContext } from 'react'
+import { AppContext } from '../../App'
 // MUI
 import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem, FormControlLabel, Switch } from '@mui/material'
 import { styled } from '@mui/material/styles'
 // Libs
 import { useNavigate } from 'react-router-dom'
@@ -17,10 +18,9 @@ const StyledHeader = styled(Paper)(({theme}) => ({
     left: 0,
     width: '100%',
     zIndex: 3,
-    borderTopLeftRadius: 0,
-    borderTopRightRadius: 0,
-    borderBottom: '3px solid',
-    borderColor: theme.palette.primary.light
+    borderRadius: 0,
+    borderLeft: '0px',
+    borderRight: '0px',
 }))
 
 const StyledMenu = styled(Paper)(() => ({
@@ -52,6 +52,8 @@ export const Static = ()=> {
     const [menu_opened, setMenuOpened] = useState(false)
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
+
+    const {setDarkMode} = useContext(AppContext)!
 
     // Menu mirror
     const navigation = [
@@ -92,11 +94,6 @@ export const Static = ()=> {
                 alignItems={'center'}
                 justifyContent={'space-between'}>
 
-                <Stack
-                    direction={'row'}
-                    spacing={2}
-                    alignItems={'center'}>
-
                     <Tooltip title={'Avatar'}>
                         <IconButton
                             onClick={handleAvatarClick}
@@ -125,13 +122,22 @@ export const Static = ()=> {
                         </MenuItem>
                     </Menu>
 
-                </Stack>
+                <Stack
+                    direction={'row'}
+                    spacing={2}
+                    alignItems={'center'}>
 
-                <Tooltip title="Menu">
-                    <IconButton onClick={()=>setMenuOpened(true)}>
-                        <MenuOutlined/>
-                    </IconButton>
-                </Tooltip>
+                    <FormControlLabel
+                        control={<Switch defaultChecked onClick={()=>setDarkMode((state)=> !state)}/>}
+                        label={'Dark mode'}/>
+
+                    <Tooltip title="Menu">
+                        <IconButton onClick={()=>setMenuOpened(true)}>
+                            <MenuOutlined/>
+                        </IconButton>
+                    </Tooltip>
+
+                </Stack>
 
             </Stack>
         </StyledHeader>

@@ -7,13 +7,25 @@ import { OpenLayout } from './layout/open/OpenLayout'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import 'dayjs/locale/pt-br'
 // MUI
 import { LinearProgress } from '@mui/material'
+import { CssBaseline, GlobalStyles } from '@mui/material'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+// MUI's Theme
+import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
+import { components } from './theme/components'
+import { palette } from './theme/palette'
+import { typography } from './theme/typography'
+import { global_styles } from './theme/globalStyles'
+import { ptBR } from '@mui/material/locale'
 // React
 import { useState, createContext, Dispatch, SetStateAction } from 'react'
 
 type AppValues = {
-  setLoading: Dispatch<SetStateAction<boolean>>
+  setLoading: Dispatch<SetStateAction<boolean>>,
+  setDarkMode: Dispatch<SetStateAction<boolean>>
 }
 
 export const AppContext = createContext<AppValues | null>(null)
@@ -21,6 +33,14 @@ export const AppContext = createContext<AppValues | null>(null)
 export function App() {
 
   const [loading, setLoading] = useState(false)
+
+  const [dark_mode, setDarkMode] = useState(true)
+
+  const theme = createTheme({
+    typography: typography(),
+    palette: palette(dark_mode ? 'dark' : 'light'),
+    components: components()
+  }, ptBR)
 
   const progress_style = {
     position: 'fixed',
@@ -31,14 +51,23 @@ export function App() {
 
   return (
 
-      <AppContext.Provider value={{setLoading}}>
+    <ThemeProvider theme={responsiveFontSizes(theme)}>
+
+      <LocalizationProvider adapterLocale={'pt-br'} dateAdapter={AdapterDayjs}>
+
+      <AppContext.Provider value={{setLoading, setDarkMode}}>
 
         {loading && <LinearProgress sx={progress_style}/>}
 
         <ToastContainer
-          position={"top-right"}
+          position={"bottom-center"}
           draggable={false}
-          autoClose={3000}/>
+          autoClose={3000}
+          theme={'dark'}/>
+
+        <CssBaseline/>
+
+        <GlobalStyles styles={global_styles}/>
 
         <BrowserRouter>
 
@@ -67,6 +96,10 @@ export function App() {
         </BrowserRouter>
 
       </AppContext.Provider>
+
+      </LocalizationProvider>
+
+      </ThemeProvider>
 
   )
 }

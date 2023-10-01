@@ -3,31 +3,43 @@
 // MUI
 import { Components } from "@mui/material"
 
-export const components: Components = {
+export const components = (): Components => ({
 
-    MuiTableCell: {
-        styleOverrides: {
-            head: {
-                fontSize: '12px',
-                padding: '10px 12px',
-            },
-            body: {
-                padding: '8px 12px',
-                fontSize: '11px'
-            },
-            root: {
-                whiteSpace: 'nowrap',
-            }
-        }
-    },
     MuiPaper: {
         defaultProps: {
             elevation: 0
         },
         styleOverrides:{
-            root: {
-                borderRadius: 8
-            }
+            root: ({theme}: any)=> ({
+                borderRadius: 8,
+                border: '1px solid',
+                borderColor: theme.palette.info.main,
+            })
+        }
+    },
+    MuiDivider: {
+        styleOverrides:{
+            root: ({theme}: any)=> ({
+                borderColor: theme.palette.info.main
+            })
+        }
+    },
+    MuiTableCell: {
+        styleOverrides: {
+            head: ({theme}: any)=> ({
+                fontSize: '12px',
+                padding: '10px 12px',
+                color: theme.palette.text.secondary
+            }),
+            body: ({theme}: any)=> ({
+                padding: '8px 12px',
+                fontSize: '11px',
+                color: theme.palette.text.secondary
+            }),
+            root: ({theme}: any)=> ({
+                whiteSpace: 'nowrap',
+                borderColor: theme.palette.info.main,
+            })
         }
     },
     MuiFormControl: {
@@ -70,6 +82,7 @@ export const components: Components = {
         styleOverrides:{
             label:{
                 fontSize: 12,
+                marginLeft: 5
             }
         }
     },
@@ -81,6 +94,11 @@ export const components: Components = {
             root: {
                 paddingLeft: 10
             }
+        }
+    },
+    MuiSwitch: {
+        defaultProps: {
+            size: 'small'
         }
     },
     MuiButton: {
@@ -107,11 +125,20 @@ export const components: Components = {
             }
         }
     },
+    MuiMenu: {
+        defaultProps: {
+            slotProps: {
+                paper: {
+                    elevation: 0
+                }
+            }
+        }
+    },
     MuiMenuItem: {
         styleOverrides: {
             root: {
-                fontSize: 12
+                fontSize: 12,
             }
         }
     }
-}
+})
