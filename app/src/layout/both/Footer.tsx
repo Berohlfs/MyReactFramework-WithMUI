@@ -6,7 +6,9 @@ const StyledFooter = styled(Box)(({ theme }) => ({
     position: 'fixed',
     bottom: 0,
     right: 0,
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.background.default,
+    border: '1px solid',
+    borderColor: theme.palette.divider,
     borderTopLeftRadius: 10,
     padding: '2px 10px',
     color: theme.palette.primary.main

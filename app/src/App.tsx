@@ -50,6 +50,12 @@ export function App() {
     zIndex: '10'
   }
 
+  const toast_style = {
+    boxShadow: 'none',
+    backgroundColor: dark_mode ? '#13111c' : '#fff',
+    border: `1px solid ${dark_mode ? '#211f2d' : '#f2f1f3'}`
+  }
+
   return (
 
     <ThemeProvider theme={responsiveFontSizes(theme)}>
@@ -61,10 +67,11 @@ export function App() {
         {loading && <LinearProgress sx={progress_style}/>}
 
         <ToastContainer
-          position={"bottom-center"}
+          position={"top-right"}
           draggable={false}
-          autoClose={3000}
-          theme={'dark'}/>
+          autoClose={2500}
+          theme={dark_mode ? 'dark' : 'light'}
+          toastStyle={toast_style}/>
 
         <CssBaseline/>
 

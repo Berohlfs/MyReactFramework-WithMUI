@@ -74,7 +74,7 @@ export const EntityShow = ()=> {
                     justifyContent={'space-between'}
                     alignItems={'center'}>
 
-                    <Typography color={'primary'}>Character</Typography>
+                    <Typography>Character</Typography>
 
                     <Stack
                         direction={'row'}

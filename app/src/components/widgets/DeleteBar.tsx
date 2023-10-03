@@ -21,17 +21,12 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
 
         <Alert
             icon={<DeleteOutlined/>}
-            sx={{boxShadow: 0}}
             severity={"error"}
             onClick={confirm ? ()=> null : checkDelete}>
 
-            <Typography
-                variant={'caption'}
-                sx={{cursor: 'pointer'}}>
-                    {confirm ? "Are you sure?" : "Click to delete this instance."}
-            </Typography>
+                {confirm ? "Are you sure?" : "Click to delete this instance."}
 
-            {confirm && <>
+                {confirm && <>
 
                 <Link
                     sx={{cursor: 'pointer'}}
@@ -49,9 +44,7 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
                     color={'error'}
                     onClick={checkDelete}>
                         Delete
-                </Link>
-
-            </>}
+                </Link> </>}
 
         </Alert>
 

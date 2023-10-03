@@ -21,11 +21,11 @@ export const components = (): Components => ({
         styleOverrides: {
             head: ({theme}: any)=> ({
                 fontSize: '12px',
-                padding: '10px 12px',
+                padding: '8px 12px',
                 color: theme.palette.text.secondary
             }),
             body: ({theme}: any)=> ({
-                padding: '8px 12px',
+                padding: '5px 12px',
                 fontSize: '11px',
                 color: theme.palette.text.secondary
             }),
@@ -43,7 +43,7 @@ export const components = (): Components => ({
     MuiSelect: {
         styleOverrides: {
             outlined: {
-                padding: '5px', // 6 for 'inter'
+                padding: '5px 15px', // 6 for 'inter'
             }
         }
     },
@@ -131,6 +131,13 @@ export const components = (): Components => ({
             root: {
                 fontSize: 12,
             }
+        }
+    },
+    MuiAlert: {
+        styleOverrides: {
+            root: {
+                border: 'none',
+            },
         }
     }
 })
