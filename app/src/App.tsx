@@ -25,7 +25,8 @@ import { useState, createContext, Dispatch, SetStateAction } from 'react'
 
 type AppValues = {
   setLoading: Dispatch<SetStateAction<boolean>>,
-  setDarkMode: Dispatch<SetStateAction<boolean>>
+  setDarkMode: Dispatch<SetStateAction<boolean>>,
+  dark_mode: boolean
 }
 
 export const AppContext = createContext<AppValues | null>(null)
@@ -55,7 +56,7 @@ export function App() {
 
       <LocalizationProvider adapterLocale={'pt-br'} dateAdapter={AdapterDayjs}>
 
-      <AppContext.Provider value={{setLoading, setDarkMode}}>
+      <AppContext.Provider value={{setLoading, setDarkMode, dark_mode}}>
 
         {loading && <LinearProgress sx={progress_style}/>}
 
@@ -67,7 +68,7 @@ export function App() {
 
         <CssBaseline/>
 
-        <GlobalStyles styles={global_styles}/>
+        <GlobalStyles styles={global_styles(dark_mode ? 'dark' : 'light')}/>
 
         <BrowserRouter>
 

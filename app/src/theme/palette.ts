@@ -14,29 +14,22 @@ export const palette = (mode: PaletteMode): PaletteOptions => ({
             primary: {
                 main: deepPurple[500],
             },
-            info: {
-                main: '#f2f1f3'
-            },
             background: {
                 default: '#fff',
                 paper: '#fff'
-            }
+            },
+            divider: '#f2f1f3'
         } :
 
         {
             primary: {
                 main: deepPurple[500],
             },
-            info: {
-                main: '#211f2d'
-            },
             background: {
                 default: '#13111c',
                 paper: '#13111c'
             },
-            text: {
-                primary: '#ffffff'
-            }
+            divider: '#211f2d'
         })
 
 })

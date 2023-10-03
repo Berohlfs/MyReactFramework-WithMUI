@@ -2,8 +2,8 @@
 import { useState, MouseEvent, useContext } from 'react'
 import { AppContext } from '../../App'
 // MUI
-import { Logout, HomeOutlined, MenuOutlined, PersonRounded } from '@mui/icons-material'
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem, FormControlLabel, Switch } from '@mui/material'
+import { Logout, HomeOutlined, MenuOutlined, PersonRounded, ModeNightOutlined, LightModeOutlined } from '@mui/icons-material'
+import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
 // Libs
 import { useNavigate } from 'react-router-dom'
@@ -53,7 +53,7 @@ export const Static = ()=> {
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
 
-    const {setDarkMode} = useContext(AppContext)!
+    const {setDarkMode, dark_mode} = useContext(AppContext)!
 
     // Menu mirror
     const navigation = [
@@ -99,7 +99,7 @@ export const Static = ()=> {
                             onClick={handleAvatarClick}
                             size="small">
                             <Avatar
-                                sx={{ width: 32, height: 32}}>
+                                sx={{width: 32, height: 32}}>
                                 <PersonRounded/>
                             </Avatar>
                         </IconButton>
@@ -126,10 +126,6 @@ export const Static = ()=> {
                     direction={'row'}
                     spacing={2}
                     alignItems={'center'}>
-
-                    <FormControlLabel
-                        control={<Switch defaultChecked onClick={()=>setDarkMode((state)=> !state)}/>}
-                        label={'Dark mode'}/>
 
                     <Tooltip title="Menu">
                         <IconButton onClick={()=>setMenuOpened(true)}>
@@ -158,10 +154,10 @@ export const Static = ()=> {
                             <ListItemButton onClick={()=>navigate(item.path)}>
 
                                 <ListItemIcon>
-                                    <item.icon/>
+                                    <item.icon sx={{width: 20, pr: 0}}/>
                                 </ListItemIcon>
 
-                                <ListItemText primary={item.title}/>
+                                <ListItemText secondary={item.title}/>
 
                             </ListItemButton>
 
@@ -176,6 +172,14 @@ export const Static = ()=> {
                 </Box>
 
                 ))}
+
+                <Button
+                    variant={'outlined'}
+                    sx={{m: 2}}
+                    onClick={()=>setDarkMode((state)=>!state)}
+                    endIcon={dark_mode ? <LightModeOutlined/> : <ModeNightOutlined/>}>
+                        Switch theme
+                </Button>
 
             </Stack>
         </StyledMenu>

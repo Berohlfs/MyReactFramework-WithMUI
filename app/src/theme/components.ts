@@ -13,14 +13,7 @@ export const components = (): Components => ({
             root: ({theme}: any)=> ({
                 borderRadius: 8,
                 border: '1px solid',
-                borderColor: theme.palette.info.main,
-            })
-        }
-    },
-    MuiDivider: {
-        styleOverrides:{
-            root: ({theme}: any)=> ({
-                borderColor: theme.palette.info.main
+                borderColor: theme.palette.divider
             })
         }
     },
@@ -38,7 +31,7 @@ export const components = (): Components => ({
             }),
             root: ({theme}: any)=> ({
                 whiteSpace: 'nowrap',
-                borderColor: theme.palette.info.main,
+                borderColor: theme.palette.divider,
             })
         }
     },
@@ -50,24 +43,24 @@ export const components = (): Components => ({
     MuiSelect: {
         styleOverrides: {
             outlined: {
-                padding: '6px 12px',
+                padding: '5px', // 6 for 'inter'
             }
         }
     },
     MuiOutlinedInput: {
         styleOverrides: {
             input: {
-                fontSize: 12,
+                fontSize: 11,
             },
         }
     },
     MuiInputLabel: {
         styleOverrides:{
             root:{
-                fontSize: 12,
+                fontSize: 11, // 12 for 'inter'
             },
             shrink: {
-                fontSize: 16
+                fontSize: 15 // 16 for 'poppins'
             }
         }
     },
@@ -81,7 +74,7 @@ export const components = (): Components => ({
     MuiFormControlLabel: {
         styleOverrides:{
             label:{
-                fontSize: 12,
+                fontSize: 11,
                 marginLeft: 5
             }
         }
@@ -121,7 +114,6 @@ export const components = (): Components => ({
         styleOverrides: {
             root: {
                 fontSize: '10px',
-                fontWeight: 'bold'
             }
         }
     },

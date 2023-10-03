@@ -1,34 +1,37 @@
 // Application's global CSS
 
-export const global_styles = {
+export const global_styles = (theme: 'dark' | 'light')=> ({
 
     body: {
-
       paddingBottom: '100px'
     },
     html: {
       scrollBehavior: 'smooth',
     },
     a: {
-      color: '#2864ad'
+      color: theme === 'dark' ? '#2864ab' : '#2864dd',
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline'
+      }
     },
     '*': {
       fontFamily: "'Inter','sans-serif'",
       /* Firefox scrollbar */
       scrollbarWidth: '5px',
-      scrollbarColor: '#bbb #e7e7e7'
+      scrollbarColor: `${theme === 'dark' ? '#555' : '#aaa'} ${theme === 'dark' ? '#211f2d' : '#e9e9e9'}`
     },
     /* Chrome's, Edge's and Safari's scrollbar */
     '*::-webkit-scrollbar': {
       width: '5px',
       height: '5px'
     },
-    '*::-webkit-scrollbar-track': {
-      backgroundColor: '#e7e7e7'
-    },
     '*::-webkit-scrollbar-thumb': {
-      borderRadius: '20px',
-      backgroundColor: '#bbb'
+      borderRadius: '3px',
+      backgroundColor: theme === 'dark' ? '#555' : '#aaa'
+    },
+    '*::-webkit-scrollbar-track': {
+      backgroundColor: theme === 'dark' ? '#211f2d' : '#e9e9e9'
     }
-    
-}
+
+})
