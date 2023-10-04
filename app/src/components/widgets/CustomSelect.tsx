@@ -34,8 +34,8 @@ export const CustomSelect = ({ control, form_control_error, label, name, options
             render={({field, fieldState: {error}}) => (
 
                 <Select
-                    error={error ? true : false}
                     {...field}
+                    error={error ? true : false}
                     label={label}>
 
                     {options.map((item)=> (
@@ -46,11 +46,11 @@ export const CustomSelect = ({ control, form_control_error, label, name, options
                         </MenuItem>
                     ))}
 
-                </Select>)}/>
+                </Select> )}/>
 
             {form_control_error &&
 
-            <FormHelperText error={form_control_error ? true : false}>
+            <FormHelperText error={true}>
 
                 {form_control_error?.message}
 

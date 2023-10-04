@@ -17,7 +17,6 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
     const instance = axios.create({
         baseURL: 'https://hp-api.onrender.com',
         timeout: 10000,
-        withCredentials: true
     })
 
     instance.interceptors.response.use(

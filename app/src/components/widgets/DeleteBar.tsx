@@ -49,7 +49,7 @@ export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
                     color={'error'}
                     onClick={checkDelete}>
                         Delete
-                </Link> </>}
+                </Link> </> }
 
         </Alert>
 

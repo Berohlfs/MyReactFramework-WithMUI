@@ -17,7 +17,7 @@ type Props = {
 
 export const Menu = ({hidden_actions, id}: Props)=> {
 
-  // mMenu's anchor
+  // Menu's anchor
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
 
   const handleIconClick = (event: MouseEvent<HTMLElement>) => {

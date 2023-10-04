@@ -36,7 +36,7 @@ type DataInstance = {
 
 type Props = {
   title: string,
-  add_link: string,
+  add_link?: string,
   id: string,
   data: DataInstance[],
   columns: Column[],
@@ -61,12 +61,13 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
         <Typography>{title}</Typography>
 
+        {add_link &&
         <Button
           variant={'outlined'}
           endIcon={<Add/>}
           onClick={()=>navigate(add_link)}>
             Add new
-        </Button>
+        </Button> }
 
       </Stack>
 
@@ -87,15 +88,13 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
               {columns.map((column, index)=>(
 
-                <TableCell key={index}>
-                    {column.name}
-                </TableCell>
+                <TableCell key={index}>{column.name}</TableCell>
 
               ))}
 
               { actions && actions.map((action)=>(
 
-                <TableCell key={action.name}></TableCell>
+                <TableCell key={action.name}>{action.name}</TableCell>
 
               )) }
 
@@ -135,7 +134,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
                     <Link to={`${column.show_domain_path}/${row[id]}`}>
 
-                        {row[column.key]}
+                      {row[column.key]}
 
                     </Link>
 

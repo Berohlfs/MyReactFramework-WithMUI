@@ -50,7 +50,7 @@ export const EntityShow = ()=> {
             reset(res.data[0])
         }catch(erro){
             console.log(erro)
-            toast.warning('Houve um erro.', {toastId: 'error-getCharacter'})
+            toast.warning('API Error.', {toastId: 'error-getCharacter'})
         }finally{
             setLoading(false)
         }
@@ -64,7 +64,6 @@ export const EntityShow = ()=> {
     return(
 
         <form onSubmit={handleSubmit((data)=>{toast('Mock save'); console.log(data)})}>
-
         <Paper>
 
             <Stack padding={2} spacing={2}>
@@ -124,7 +123,6 @@ export const EntityShow = ()=> {
             </Stack>
 
         </Paper>
-
         </form>
 
     )

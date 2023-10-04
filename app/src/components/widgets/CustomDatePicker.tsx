@@ -20,13 +20,13 @@ export const CustomDatePicker = ({ control, label, name, width }: Props)=> {
                 <DatePicker
                     {...field}
                     sx={{width: width}}
+                    label={label}
                     slotProps={{
                         textField: {
                             error: error ? true : false,
                             helperText: error?.message
                         }
-                    }}
-                    label={label}/>
+                    }}/>
 
                 )}
             />

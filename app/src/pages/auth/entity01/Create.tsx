@@ -54,7 +54,6 @@ export const EntityCreate = ()=> {
     return(
 
         <form onSubmit={handleSubmit((data)=>create(data))}>
-
         <Paper>
 
             <Stack padding={2} spacing={2}>
@@ -114,7 +113,6 @@ export const EntityCreate = ()=> {
             </Stack>
 
         </Paper>
-
         </form>
 
     )

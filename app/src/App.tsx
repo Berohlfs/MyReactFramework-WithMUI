@@ -9,8 +9,7 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'dayjs/locale/pt-br'
 // MUI
-import { LinearProgress } from '@mui/material'
-import { CssBaseline, GlobalStyles } from '@mui/material'
+import { CssBaseline, GlobalStyles, CircularProgress, Stack } from '@mui/material'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 // MUI's Theme
@@ -43,11 +42,14 @@ export function App() {
     components: components()
   }, ptBR)
 
-  const progress_style = {
+  const progress_container_style = {
     position: 'fixed',
     width: '100%',
+    height: '100%',
     top: '0',
-    zIndex: '10'
+    zIndex: '10',
+    backgroundColor: 'black',
+    opacity: '0.4'
   }
 
   const toast_style = {
@@ -64,7 +66,13 @@ export function App() {
 
       <AppContext.Provider value={{setLoading, setDarkMode, dark_mode}}>
 
-        {loading && <LinearProgress sx={progress_style}/>}
+        {loading &&
+        <Stack
+          alignItems={'center'}
+          justifyContent={'center'}
+          sx={progress_container_style}>
+            <CircularProgress/>
+        </Stack>}
 
         <ToastContainer
           position={"top-right"}
@@ -107,7 +115,7 @@ export function App() {
 
       </LocalizationProvider>
 
-      </ThemeProvider>
+    </ThemeProvider>
 
   )
 }

@@ -12,10 +12,9 @@ import Cookies from 'js-cookie'
 // Components
 import { Modal } from '../../components/containers/Modal'
 
-const StyledHeader = styled(Paper)(({theme}) => ({
+const StyledHeader = styled(Paper)(({/*theme*/}) => ({
     position: 'fixed',
     top: 0,
-    left: 0,
     width: '100%',
     zIndex: 3,
     borderRadius: 0,
@@ -41,7 +40,8 @@ const Escape = styled(Box)(() => ({
     top: 0,
     width: '100%',
     height: '100%',
-    backgroundColor: '#0000004e',
+    backgroundColor: 'black',
+    opacity: '0.4',
     zIndex: 4
 }))
 
@@ -70,7 +70,7 @@ export const Static = ()=> {
     const logout = ()=> {
         Cookies.remove('access')
         navigate('/')
-        toast.success('Logout realizado com sucesso', {toastId: 'success-logout'})
+        toast.success('Logged out', {toastId: 'success-logout'})
     }
 
     // Avatar's menu anchor
@@ -94,46 +94,36 @@ export const Static = ()=> {
                 alignItems={'center'}
                 justifyContent={'space-between'}>
 
-                    <Tooltip title={'Avatar'}>
-                        <IconButton
-                            onClick={handleAvatarClick}
-                            size="small">
-                            <Avatar
-                                sx={{width: 32, height: 32}}>
-                                <PersonRounded/>
-                            </Avatar>
-                        </IconButton>
-                    </Tooltip>
+                <Tooltip title={'Avatar'}>
+                    <IconButton onClick={handleAvatarClick}>
+                        <Avatar sx={{width: 32, height: 32}}>
+                            <PersonRounded/>
+                        </Avatar>
+                    </IconButton>
+                </Tooltip>
 
-                    <Menu
-                        anchorEl={anchorEl}
-                        open={Boolean(anchorEl)}
-                        onClose={handleAvatarMenuClose}
-                        onClick={handleAvatarMenuClose}>
+                <Menu
+                    anchorEl={anchorEl}
+                    open={Boolean(anchorEl)}
+                    onClose={handleAvatarMenuClose}
+                    onClick={handleAvatarMenuClose}>
 
-                        <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
+                    <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
 
-                            <ListItemIcon>
-                                <Logout fontSize="small"/>
-                            </ListItemIcon>
+                        <ListItemIcon>
+                            <Logout fontSize={"small"}/>
+                        </ListItemIcon>
 
-                            Sair desta conta
+                        Log out
 
-                        </MenuItem>
-                    </Menu>
+                    </MenuItem>
+                </Menu>
 
-                <Stack
-                    direction={'row'}
-                    spacing={2}
-                    alignItems={'center'}>
-
-                    <Tooltip title="Menu">
-                        <IconButton onClick={()=>setMenuOpened(true)}>
-                            <MenuOutlined/>
-                        </IconButton>
-                    </Tooltip>
-
-                </Stack>
+                <Tooltip title="Menu">
+                    <IconButton onClick={()=>setMenuOpened(true)}>
+                        <MenuOutlined/>
+                    </IconButton>
+                </Tooltip>
 
             </Stack>
         </StyledHeader>
@@ -193,7 +183,7 @@ export const Static = ()=> {
             max_width={300}>
 
             <Typography variant={'caption'}>
-                You'll have to login again later.
+                You'll have to log in again later.
             </Typography>
 
             <Stack direction={'row'} spacing={1} mt={2}>

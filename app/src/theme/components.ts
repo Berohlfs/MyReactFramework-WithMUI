@@ -75,7 +75,6 @@ export const components = (): Components => ({
         styleOverrides:{
             label:{
                 fontSize: 11,
-                marginLeft: 5
             }
         }
     },

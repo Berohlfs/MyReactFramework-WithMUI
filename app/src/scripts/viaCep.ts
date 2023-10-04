@@ -17,7 +17,7 @@ export const viaCep = async(cep: string)=> {
         }
         return res.data
     }catch(erro){
-        toast.error('Erro durante a busca do CEP.', {toastId : 'viaCep-erro'})
+        toast.error('Erro durante a busca do CEP.', {toastId : 'viaCep-error'})
         console.log(erro)
         return false
     }

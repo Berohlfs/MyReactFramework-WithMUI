@@ -11,7 +11,7 @@ const StyledPaper = styled(Paper)((/*{theme}*/) => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '85%',
-    padding: 14
+    padding: '14px'
 }))
 
 type Props = {

@@ -1,7 +1,7 @@
 // Open
 import { Login } from './pages/open/Login'
 import { NotFound } from './pages/open/NotFound'
-// Protected
+// Auth
 import { EntityIndex } from './pages/auth/entity01/Index'
 import { EntityShow } from './pages/auth/entity01/Show'
 import { EntityCreate } from './pages/auth/entity01/Create'

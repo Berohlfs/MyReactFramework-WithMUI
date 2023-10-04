@@ -12,8 +12,7 @@ export const palette = (mode: PaletteMode): PaletteOptions => ({
 
         {
             primary: {
-                main: deepPurple[500],
-                light: deepPurple[50]
+                main: deepPurple[500]
             },
             secondary: {
                 main: amber[900],

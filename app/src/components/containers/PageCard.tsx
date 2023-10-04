@@ -10,11 +10,10 @@ const StyledPaper = styled(Paper)((/*{theme}*/) => ({
     position: 'relative',
     left: '50%',
     transform: 'translate(-50%, 100px)',
-    width: '85%',
-    overflow: 'hidden'
+    width: '85%'
 }))
 
-const OutsideLink = styled(Typography)(() => ({
+const StyledTypography = styled(Typography)(() => ({
     position: 'relative',
     top: '120px',
     display: 'block',
@@ -40,9 +39,9 @@ export const PageCard = ({children, title = 'Title', caption = 'Caption', max_wi
 
     return(<>
 
-        <StyledPaper sx={{maxWidth: max_width}}>
+        <StyledPaper sx={{maxWidth: max_width, padding: 3}}>
 
-            <Stack sx={{ paddingX: 3, paddingTop: 3}}>
+            <Stack sx={{paddingBottom: 3}}>
 
                 <Typography
                     variant={'subtitle1'}>
@@ -56,7 +55,7 @@ export const PageCard = ({children, title = 'Title', caption = 'Caption', max_wi
 
             </Stack>
 
-            <Box padding={3}>
+            <Box>
 
                 {children}
 
@@ -66,13 +65,13 @@ export const PageCard = ({children, title = 'Title', caption = 'Caption', max_wi
 
         {link &&
 
-        <OutsideLink variant={'caption'} color={'text.secondary'}>
+        <StyledTypography variant={'caption'} color={'text.secondary'}>
 
             {link.text}
             {' '}
             <Link to={link.path}><strong>{link.label}</strong></Link>
 
-        </OutsideLink> }
+        </StyledTypography> }
 
     </>)
 }

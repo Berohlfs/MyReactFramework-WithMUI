@@ -31,7 +31,7 @@ export const EntityIndex = ()=> {
             console.log(res.data)
         }catch(erro){
             console.log(erro)
-            toast.warning('Houve um erro.', {toastId: 'error-getCharacters'})
+            toast.warning('API Error.', {toastId: 'error-getCharacters'})
         }finally{
             setLoading(false)
         }
@@ -50,10 +50,9 @@ export const EntityIndex = ()=> {
     const [character, setCharacter] = useState<Character | null>()
 
     useEffect(()=>{
-        if(character){
+        if(character && character.id){
             toast(character!.id)
         }
-
     },[character])
 
     return(<>
@@ -62,6 +61,7 @@ export const EntityIndex = ()=> {
         <Stack padding={2} spacing={2}>
 
             <Typography>Search for character</Typography>
+
             <Divider/>
 
             <Autocomplete
@@ -80,12 +80,12 @@ export const EntityIndex = ()=> {
                 )}
                 renderInput={(textfield_props) => (
                     <TextField
-                    {...textfield_props}
-                    size={'medium'}
-                    label={"Name"}
-                    inputProps={{
-                        ...textfield_props.inputProps,
-                    }}/>
+                        {...textfield_props}
+                        size={'medium'}
+                        label={"Name"}
+                        inputProps={{
+                            ...textfield_props.inputProps,
+                        }}/>
                 )}/>
 
         </Stack>
