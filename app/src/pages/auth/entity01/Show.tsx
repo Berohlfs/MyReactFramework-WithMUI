@@ -105,7 +105,8 @@ export const EntityShow = ()=> {
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={2}>
+                    spacing={2}
+                    alignItems={'flex-start'}>
 
                     <CustomTextField
                         name={'name'}
@@ -116,7 +117,9 @@ export const EntityShow = ()=> {
 
                 </Stack>
 
-                <DeleteBar deleteFunc={()=>{toast('Mock delete'); navigate('/characters')}}/>
+                <DeleteBar
+                    deleteFunc={()=>{toast('Mock delete'); navigate('/characters')}}
+                    instance_name={'character'}/>
 
             </Stack>
 

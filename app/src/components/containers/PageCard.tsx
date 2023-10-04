@@ -66,7 +66,7 @@ export const PageCard = ({children, title = 'Title', caption = 'Caption', max_wi
 
         {link &&
 
-        <OutsideLink variant={'caption'}>
+        <OutsideLink variant={'caption'} color={'text.secondary'}>
 
             {link.text}
             {' '}

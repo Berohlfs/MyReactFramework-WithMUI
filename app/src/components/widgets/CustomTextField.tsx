@@ -22,6 +22,7 @@ export const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
     <IMaskInput
       {...other}
       inputRef={ref}
+      unmask={true}
       onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
       overwrite
     />

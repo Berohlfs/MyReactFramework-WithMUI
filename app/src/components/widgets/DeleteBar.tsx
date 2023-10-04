@@ -5,10 +5,11 @@ import { DeleteOutlined } from '@mui/icons-material'
 import { useState } from 'react'
 
 type Props = {
-    deleteFunc: ()=> void
+    deleteFunc: ()=> void,
+    instance_name: string
 }
 
-export const DeleteBar = ({deleteFunc}: Props)=> {
+export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
 
     const [confirm, setConfirm] = useState(false)
 
@@ -24,7 +25,11 @@ export const DeleteBar = ({deleteFunc}: Props)=> {
             severity={"error"}
             onClick={confirm ? ()=> null : checkDelete}>
 
-                {confirm ? "Are you sure?" : "Click to delete this instance."}
+                <Typography
+                    sx={{cursor: confirm ? 'default' : 'pointer'}}
+                    variant={'caption'}>
+                        {confirm ? "Are you sure?" : `Click to delete this ${instance_name}.`}
+                </Typography>
 
                 {confirm && <>
 

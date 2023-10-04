@@ -80,7 +80,8 @@ export const EntityCreate = ()=> {
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={2}>
+                    spacing={2}
+                    alignItems={'flex-start'}>
 
                     <CustomTextField
                         name={'name'}
