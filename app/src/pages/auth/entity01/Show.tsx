@@ -104,7 +104,7 @@ export const EntityShow = ()=> {
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={2}
+                    spacing={3}
                     alignItems={'flex-start'}>
 
                     <CustomTextField

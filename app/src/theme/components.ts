@@ -101,7 +101,8 @@ export const components = (): Components => ({
         },
         styleOverrides: {
             root: {
-                textTransform: 'none'
+                textTransform: 'none',
+                fontSize: 11
             }
         }
     },
@@ -137,6 +138,23 @@ export const components = (): Components => ({
             root: {
                 border: 'none',
             },
+        }
+    },
+    MuiFormLabel: {
+        styleOverrides: {
+            root: {
+                fontSize: 11
+            }
+        }
+    },
+    MuiRadio: {
+        defaultProps: {
+            size: 'small'
+        },
+        styleOverrides: {
+            root: {
+                marginLeft: 5
+            }
         }
     }
 })

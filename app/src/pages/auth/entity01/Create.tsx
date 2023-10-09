@@ -12,8 +12,9 @@ import { CustomSelect } from '../../../components/widgets/CustomSelect'
 import { CustomTextField } from '../../../components/widgets/CustomTextField'
 import { CustomDatePicker } from '../../../components/widgets/CustomDatePicker'
 import { CustomCheckbox } from '../../../components/widgets/CustomCheckbox'
+import { CustomRadioGroup } from '../../../components/widgets/CustomRadioGroup'
 // Scripts
-import { species } from '../../../scripts/options'
+import { species, genders } from '../../../scripts/options'
 import { date, default_required } from '../../../scripts/yupModules'
 
 export const EntityCreate = ()=> {
@@ -24,6 +25,7 @@ export const EntityCreate = ()=> {
     const validacao_login = object({
         name: default_required,
         date_of_birth: date,
+        gender: default_required
     })
 
     // Hook form
@@ -31,7 +33,8 @@ export const EntityCreate = ()=> {
         name: string,
         species?: string,
         wizard?: boolean,
-        date_of_birth: string
+        date_of_birth: string,
+        gender: string
     }
 
     const { handleSubmit, control, formState: {errors}} = useForm<Inputs>({
@@ -40,7 +43,8 @@ export const EntityCreate = ()=> {
           'name': '',
           'species': '',
           'wizard': true,
-          'date_of_birth': ''
+          'date_of_birth': '',
+          'gender': ''
         }
     })
 
@@ -75,11 +79,18 @@ export const EntityCreate = ()=> {
 
                 <Divider/>
 
+                <CustomRadioGroup
+                    label={'Gender'}
+                    control={control}
+                    options={genders}
+                    name={'gender'}
+                    form_control_error={errors.gender}/>
+
                 <Stack
                     direction={'row'}
                     flexWrap={'wrap'}
                     useFlexGap
-                    spacing={2}
+                    spacing={3}
                     alignItems={'flex-start'}>
 
                     <CustomTextField
