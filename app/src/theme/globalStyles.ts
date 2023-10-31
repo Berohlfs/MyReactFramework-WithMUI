@@ -16,7 +16,7 @@ export const global_styles = (theme: 'dark' | 'light')=> ({
     }
   },
   '*': {
-    fontFamily: "'Inter','sans-serif'",
+    fontFamily: "'Poppins','sans-serif'",
     /* Firefox scrollbar */
     scrollbarWidth: '5px',
     scrollbarColor: `${theme === 'dark' ? '#555' : '#aaa'} ${theme === 'dark' ? '#211f2d' : '#e9e9e9'}`

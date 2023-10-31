@@ -45,11 +45,11 @@ export const Login = ()=> {
     // onSubmit
     const login = async(data: Inputs)=> {
         console.log(data)
-        setLoading(true)
+        setLoading({render: true})
         setTimeout(()=>{
-            setLoading(false)
+            setLoading({render: false})
             Cookies.set('access', 'access')
-            navigate('/characters')
+            navigate('/entity')
         },1500)
     }
 

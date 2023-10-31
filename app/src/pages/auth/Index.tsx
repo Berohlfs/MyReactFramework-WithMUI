@@ -38,7 +38,7 @@ export const EntityIndex = () => {
 
     // Table mock action
     const action = (id: string) => {
-        toast(id)
+        toast.success(id)
     }
 
     // OnLoad
@@ -57,11 +57,11 @@ export const EntityIndex = () => {
     return (
 
         <CustomTable
-            title={'Characters'}
+            title={'Entity'}
             id={'id'}
-            add_link={'/new/characters'}
+            add_link={'/new/entity'}
             columns={[
-                { name: 'Nome', key: 'name', show_domain_path: '/characters' },
+                { name: 'Nome', key: 'name', show_domain_path: '/entity' },
                 { name: 'Espécie', key: 'species' },
                 { name: 'Gênero', key: 'gender', enum: { 'male': 'primary', 'female': 'secondary' } },
             ]}
