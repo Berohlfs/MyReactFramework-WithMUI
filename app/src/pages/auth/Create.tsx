@@ -8,14 +8,9 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
 import { object } from 'yup'
 // Components
-import { CustomSelect } from '../../components/widgets/CustomSelect'
 import { CustomTextField } from '../../components/widgets/CustomTextField'
-import { CustomDatePicker } from '../../components/widgets/CustomDatePicker'
-import { CustomCheckbox } from '../../components/widgets/CustomCheckbox'
-import { CustomRadioGroup } from '../../components/widgets/CustomRadioGroup'
 // Scripts
-import { species, genders } from '../../scripts/options'
-import { date, default_required } from '../../scripts/yupModules'
+import { string_required } from '../../scripts/yupModules'
 
 export const EntityCreate = () => {
 
@@ -23,108 +18,70 @@ export const EntityCreate = () => {
 
     // Schema de validação
     const validacao_login = object({
-        name: default_required,
-        date_of_birth: date,
-        gender: default_required
+        name: string_required,
     })
 
     // Hook form
     type Inputs = {
         name: string,
-        species?: string,
-        wizard?: boolean,
-        date_of_birth: string,
-        gender: string
     }
 
-    const { handleSubmit, control, formState: { errors } } = useForm<Inputs>({
+    const { handleSubmit, control } = useForm<Inputs>({
         resolver: yupResolver(validacao_login),
         defaultValues: {
-            'name': '',
-            'species': '',
-            'wizard': true,
-            'date_of_birth': '',
-            'gender': ''
+            'name': ''
         }
     })
 
-    const create = (data: Inputs) => {
-        toast('Mock create')
+    const create = (/*data: Inputs*/) => {
+        toast.success('Mock create')
         // Mock navigate to recent created instance
-        navigate('/characters/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8')
-        console.log(data)
+        navigate('/entity/9e3f7ce4-b9a7-4244-b709-dae5c1f1d4a8')
     }
 
     return (
 
-        <form onSubmit={handleSubmit((data) => create(data))}>
-            <Paper>
+        <Paper>
+        <Stack padding={2} spacing={2}>
 
-                <Stack padding={2} spacing={2}>
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                flexWrap={'wrap'}
+                spacing={2}
+                useFlexGap>
 
-                    <Stack
-                        direction={'row'}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}>
+                <Typography>New Character</Typography>
 
-                        <Typography>New Character</Typography>
+                <Button
+                    onClick={handleSubmit((/*data*/) => create())}
+                    endIcon={<Add />}>
+                    Create
+                </Button>
 
-                        <Button
-                            type={'submit'}
-                            endIcon={<Add />}>
-                            Create
-                        </Button>
+            </Stack>
 
-                    </Stack>
+            <Divider />
 
-                    <Divider />
+            <Stack
+                direction={'row'}
+                flexWrap={'wrap'}
+                useFlexGap
+                spacing={3}
+                alignItems={'flex-start'}>
 
-                    <CustomRadioGroup
-                        label={'Gender'}
-                        control={control}
-                        options={genders}
-                        name={'gender'}
-                        form_control_error={errors.gender} />
+                <CustomTextField
+                    name={'name'}
+                    control={control}
+                    label={'Name'}
+                    width={250}
+                    placeholder={"Type the character's name"} />
 
-                    <Stack
-                        direction={'row'}
-                        flexWrap={'wrap'}
-                        useFlexGap
-                        spacing={3}
-                        alignItems={'flex-start'}>
+            </Stack>
 
-                        <CustomTextField
-                            name={'name'}
-                            control={control}
-                            label={'Name'}
-                            width={250}
-                            placeholder={"Type the character's name"} />
-
-                        <CustomDatePicker
-                            control={control}
-                            name={'date_of_birth'}
-                            width={200}
-                            label={'Date of birth'} />
-
-                        <CustomSelect
-                            label={'Species'}
-                            control={control}
-                            options={species}
-                            name={'species'}
-                            width={150}
-                            form_control_error={errors.species} />
-
-                        <CustomCheckbox
-                            label={'Wizard?'}
-                            control={control}
-                            name={'wizard'} />
-
-                    </Stack>
-
-                </Stack>
-
-            </Paper>
-        </form>
+        </Stack>
+        </Paper>
 
     )
 }

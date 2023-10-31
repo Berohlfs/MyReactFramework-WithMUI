@@ -2,7 +2,7 @@
 import { useState, MouseEvent, useContext } from 'react'
 import { AppContext } from '../../App'
 // MUI
-import { Logout, PersonRounded, ModeNightOutlined, LightModeOutlined, HolidayVillageOutlined, PersonPinCircleOutlined, Groups2Outlined, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
+import { Logout, PersonRounded, ModeNightOutlined, LightModeOutlined, Groups2Outlined, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
 import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
 // Libs
@@ -14,7 +14,7 @@ import { Modal } from '../../components/containers/Modal'
 // Images
 import logo from '../../images/logo.webp'
 
-const StyledHeader = styled(Paper)(({/*theme*/}) => ({
+const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     position: 'fixed',
     top: 0,
     width: '100%',
@@ -62,11 +62,11 @@ export const Static = ()=> {
     // Menu mirror
     const navigation = [
         [
-            {title: 'Characters', icon: Groups2Outlined, path: '/characters'},
-            {title: 'Houses', icon: HolidayVillageOutlined, path: '/characters'},
+            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
+            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
         ],
         [
-            {title: 'Death Eaters', icon: PersonPinCircleOutlined, path: '/characters'},
+            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
         ]
     ]
 
@@ -74,7 +74,7 @@ export const Static = ()=> {
     const logout = ()=> {
         Cookies.remove('access')
         navigate('/')
-        toast('Logged out.')
+        toast.success('Logged out.')
     }
 
     // Avatar's menu anchor

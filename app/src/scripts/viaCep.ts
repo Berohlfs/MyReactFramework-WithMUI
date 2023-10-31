@@ -4,7 +4,7 @@ import { toast } from 'sonner'
 
 export const viaCep = async(cep: string)=> {
 
-    let clean_cep = cep.replace(/\D/g, '')
+    const clean_cep = cep.replace(/\D/g, '')
 
     if(clean_cep.length != 8){ return false }
 
@@ -12,7 +12,7 @@ export const viaCep = async(cep: string)=> {
         const res = await axios.get(`https://viacep.com.br/ws/${clean_cep}/json/`)
         // console.log(res)
         if(res.data.erro){
-            toast.error('CEP não encontrado.', {id : 'viaCep-warning'})
+            toast.warning('CEP não encontrado.', {id : 'viaCep-warning'})
             return false
         }
         return res.data

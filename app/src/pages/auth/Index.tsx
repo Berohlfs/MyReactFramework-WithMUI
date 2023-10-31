@@ -23,7 +23,7 @@ export const EntityIndex = () => {
     const [characters, setCharacters] = useState<Characters>([])
 
     const getCharacters = async () => {
-        setLoading({render: true, text: 'Carregando'})
+        setLoading({render: true})
         try {
             const res = await axios.get('https://hp-api.onrender.com/api/characters/house/gryffindor')
             setCharacters(res.data)
@@ -45,14 +45,6 @@ export const EntityIndex = () => {
     useEffect(() => {
         getCharacters()
     }, [])
-
-    const [character, setCharacter] = useState<Character | null>()
-
-    useEffect(() => {
-        if (character && character.id) {
-            toast(character!.id)
-        }
-    }, [character])
 
     return (
 

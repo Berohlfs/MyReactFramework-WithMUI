@@ -177,7 +177,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
     </Paper>
 
-  ), [data])
+  ), [data, title, add_link, id, columns, actions, hidden_actions, navigate])
 
   return (
 

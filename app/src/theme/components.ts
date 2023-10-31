@@ -19,19 +19,18 @@ export const components = (): Components => ({
     },
     MuiTableCell: {
         styleOverrides: {
-            head: ({theme}: any)=> ({
+            head: {
                 fontSize: '12px',
                 padding: '8px 12px',
-                color: theme.palette.text.secondary
-            }),
-            body: ({theme}: any)=> ({
+            },
+            body: {
                 padding: '5px 12px',
-                fontSize: '11px',
-                color: theme.palette.text.secondary
-            }),
+                fontSize: '10px',
+            },
             root: ({theme}: any)=> ({
                 whiteSpace: 'nowrap',
                 borderColor: theme.palette.divider,
+                color: theme.palette.text.secondary
             })
         }
     },
@@ -71,13 +70,6 @@ export const components = (): Components => ({
             }
         }
     },
-    MuiFormControlLabel: {
-        styleOverrides:{
-            label:{
-                fontSize: 11,
-            }
-        }
-    },
     MuiCheckbox: {
         defaultProps: {
             size: 'small'
@@ -88,9 +80,11 @@ export const components = (): Components => ({
             }
         }
     },
-    MuiSwitch: {
-        defaultProps: {
-            size: 'small'
+    MuiFormControlLabel: {
+        styleOverrides:{
+            label:{
+                fontSize: 11,
+            }
         }
     },
     MuiButton: {
@@ -130,7 +124,7 @@ export const components = (): Components => ({
     MuiMenuItem: {
         styleOverrides: {
             root: {
-                fontSize: 12,
+                fontSize: 11,
             }
         }
     },
@@ -156,6 +150,11 @@ export const components = (): Components => ({
             root: {
                 marginLeft: 5
             }
+        }
+    },
+    MuiSwitch: {
+        defaultProps: {
+            size: 'small'
         }
     }
 })

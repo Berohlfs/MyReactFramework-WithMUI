@@ -51,8 +51,8 @@ export function App() {
     width: '100%',
     height: '100%',
     top: '0',
-    zIndex: '10',
-    backgroundColor: '#00000090'
+    zIndex: '2000',
+    backgroundColor: '#0000009e'
   }
 
   return (
@@ -69,7 +69,7 @@ export function App() {
           justifyContent={'center'}
           sx={progress_container_style}>
             <CircularProgress/>
-            {loading.text && <Typography mt={2} fontSize={10}>{loading.text}</Typography> }
+            <Typography mt={2} fontSize={11}>{loading.text ? loading.text : 'Loading'}</Typography>
         </Stack> }
 
         <Toaster

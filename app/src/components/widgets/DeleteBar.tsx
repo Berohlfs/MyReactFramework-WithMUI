@@ -1,8 +1,10 @@
 // MUI
-import { Typography, Alert, Link } from '@mui/material'
+import { Typography, Alert, Stack, Button } from '@mui/material'
 import { DeleteOutlined } from '@mui/icons-material'
 // React
 import { useState } from 'react'
+// Components
+import { Modal } from '../containers/Modal'
 
 type Props = {
     deleteFunc: ()=> void,
@@ -13,45 +15,44 @@ export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
 
     const [confirm, setConfirm] = useState(false)
 
-    const checkDelete = ()=> {
-        if(!confirm){ return setConfirm(true) }
-        deleteFunc()
-    }
-
-    return (
+    return (<>
 
         <Alert
             icon={<DeleteOutlined/>}
+            sx={{cursor: 'pointer'}}
             severity={"error"}
-            onClick={confirm ? ()=> null : checkDelete}>
+            onClick={()=> setConfirm(true)}>
 
-                <Typography
-                    sx={{cursor: confirm ? 'default' : 'pointer'}}
-                    variant={'caption'}>
-                        {confirm ? "Are you sure?" : `Click to delete this ${instance_name}.`}
+                <Typography variant={'caption'}>
+                    {`Delete ${instance_name}`}
                 </Typography>
-
-                {confirm && <>
-
-                <Link
-                    sx={{cursor: 'pointer'}}
-                    fontSize={11}
-                    ml={2}
-                    color={'error'}
-                    onClick={()=> setConfirm(false)}>
-                        Keep
-                </Link>
-
-                <Link
-                    sx={{cursor: 'pointer'}}
-                    fontSize={11}
-                    ml={2}
-                    color={'error'}
-                    onClick={checkDelete}>
-                        Delete
-                </Link> </> }
 
         </Alert>
 
-    )
+        <Modal
+            open={confirm}
+            handleClose={()=> setConfirm(false)}
+            title={`Delete ${instance_name}`}
+            max_width={400}>
+
+            <Typography variant={'caption'}>
+                Are you sure?
+            </Typography>
+
+            <Stack direction={'row'} spacing={1} mt={2}>
+                <Button
+                    fullWidth
+                    onClick={()=> setConfirm(false)}>
+                        Cancelar
+                </Button>
+                <Button
+                    fullWidth
+                    onClick={deleteFunc}
+                    color={'error'}>
+                        Delete
+                </Button>
+            </Stack>
+        </Modal>
+
+    </>)
 }

@@ -40,7 +40,7 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
                     Cookies.remove('access')
                 }
 
-                toast.error(`${error.response?.data?.message} (${error.response.status})`, {id: 'server-error-feedback'})
+                toast.warning(`${error.response?.data?.message} (${error.response.status})`, {id: 'server-error-feedback'})
 
             }else{
 

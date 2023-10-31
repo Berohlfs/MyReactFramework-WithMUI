@@ -6,7 +6,6 @@ import { PageCard } from '../../components/containers/PageCard'
 // Libs
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
-import { toast } from 'sonner'
 import { object } from 'yup'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -14,7 +13,7 @@ import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { AppContext } from '../../App'
 // Scripts
-import { cpf, default_required } from '../../scripts/yupModules'
+import { cpf, string_required } from '../../scripts/yupModules'
 
 export const Login = ()=> {
 
@@ -25,7 +24,7 @@ export const Login = ()=> {
     // Schema de validação
     const validacao_login = object({
         cpf: cpf,
-        password: default_required
+        password: string_required
     })
 
     // Hook form
@@ -43,9 +42,8 @@ export const Login = ()=> {
       })
 
     // onSubmit
-    const login = async(data: Inputs)=> {
-        console.log(data)
-        setLoading({render: true})
+    const login = async(/*data: Inputs*/)=> {
+        setLoading({render: true, text: 'Logging in'})
         setTimeout(()=>{
             setLoading({render: false})
             Cookies.set('access', 'access')
@@ -61,29 +59,29 @@ export const Login = ()=> {
             caption={'Welcome!'}
             link={{text: "Don't have an account?", path: '/register', label: 'Register now!'}}>
 
-            <form onSubmit={handleSubmit((data)=>login(data))}>
+            <Stack spacing={2}>
 
-                <Stack spacing={2}>
+                <CustomTextField
+                    control={control}
+                    name={'cpf'}
+                    label={'CPF'}
+                    placeholder={'Type the CPF'}
+                    mask_props={{mask:'000.000.000-00'}}/>
 
-                    <CustomTextField
-                        control={control}
-                        name={'cpf'}
-                        label={'CPF'}
-                        placeholder={'Type the CPF'}
-                        mask_props={{mask:'000.000.000-00'}}/>
+                <CustomTextField
+                    control={control}
+                    name={'password'}
+                    label={'Password'}
+                    placeholder={'Type the password'}
+                    password={true}/>
 
-                    <CustomTextField
-                        control={control}
-                        name={'password'}
-                        label={'Password'}
-                        placeholder={'Type the password'}
-                        password={true}/>
+                <Button
+                    type={'submit'}
+                    onClick={handleSubmit((/*data*/)=>login())}>
+                        Login
+                </Button>
 
-                    <Button type={'submit'}>Login</Button>
-
-                </Stack>
-
-            </form>
+            </Stack>
 
         </PageCard>
 

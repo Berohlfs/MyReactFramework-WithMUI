@@ -1,6 +1,6 @@
 // MUI
 import { Stack, Typography, Button, Divider, Paper } from '@mui/material'
-import { Check, ReplayOutlined } from '@mui/icons-material'
+import { Check } from '@mui/icons-material'
 // Libs
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -15,7 +15,7 @@ import { AppContext } from '../../App'
 import { DeleteBar } from '../../components/widgets/DeleteBar'
 import { CustomTextField } from '../../components/widgets/CustomTextField'
 // Scripts
-import { default_required } from '../../scripts/yupModules'
+import { string_required } from '../../scripts/yupModules'
 
 export const EntityShow = () => {
 
@@ -27,7 +27,7 @@ export const EntityShow = () => {
 
     // Schema de validação
     const validacao_login = object({
-        name: default_required,
+        name: string_required,
     })
 
     // Hook form
@@ -63,67 +63,52 @@ export const EntityShow = () => {
 
     return (
 
-        <form onSubmit={handleSubmit((data) => { toast.success('Mock save'); console.log(data) })}>
-            <Paper>
+        <Paper>
+        <Stack padding={2} spacing={2}>
 
-                <Stack padding={2} spacing={2}>
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems={'center'}
+                flexWrap={'wrap'}
+                spacing={2}
+                useFlexGap>
 
-                    <Stack
-                        direction={'row'}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}>
+                <Typography>Character</Typography>
 
-                        <Typography>Character</Typography>
+                <Button
+                    type={'submit'}
+                    endIcon={<Check />}
+                    onClick={handleSubmit((/*data*/) => { toast.success('Mock save') })}>
+                    Save
+                </Button>
 
-                        <Stack
-                            direction={'row'}
-                            justifyContent={'space-between'}
-                            alignItems={'center'}
-                            spacing={1}>
+            </Stack>
 
-                            <Button
-                                color={'error'}
-                                onClick={() => reset()}
-                                endIcon={<ReplayOutlined />}>
-                                Restore
-                            </Button>
+            <Divider />
 
-                            <Button
-                                type={'submit'}
-                                endIcon={<Check />}>
-                                Save
-                            </Button>
+            <Stack
+                direction={'row'}
+                flexWrap={'wrap'}
+                useFlexGap
+                spacing={3}
+                alignItems={'flex-start'}>
 
-                        </Stack>
+                <CustomTextField
+                    name={'name'}
+                    control={control}
+                    label={'Name'}
+                    width={250}
+                    placeholder={"Type character's name"} />
 
-                    </Stack>
+            </Stack>
 
-                    <Divider />
+            <DeleteBar
+                deleteFunc={() => { toast.success('Mock delete'); navigate('/entity') }}
+                instance_name={'character'} />
 
-                    <Stack
-                        direction={'row'}
-                        flexWrap={'wrap'}
-                        useFlexGap
-                        spacing={3}
-                        alignItems={'flex-start'}>
-
-                        <CustomTextField
-                            name={'name'}
-                            control={control}
-                            label={'Name'}
-                            width={250}
-                            placeholder={"Type character's name"} />
-
-                    </Stack>
-
-                    <DeleteBar
-                        deleteFunc={() => { toast('Mock delete'); navigate('/characters') }}
-                        instance_name={'character'} />
-
-                </Stack>
-
-            </Paper>
-        </form>
+        </Stack>
+        </Paper>
 
     )
 }

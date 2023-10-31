@@ -48,13 +48,13 @@ export const ImovelPicker = ({
     const getInstancias = debounce(async (search: string) => {
         if (!search) { return setInstancias([]) }
         try {
-            setLoading(true)
+            setLoading({render: true})
             const res = await APIInstance(navigate, false).get(`/${entity}?search=${search}`)
             setInstancias(res.data.data)
-        } catch (erro) {
-
+        } catch (error) {
+            console.error(error)
         } finally {
-            setLoading(false)
+            setLoading({render: false})
         }
     }, 700)
 
@@ -68,9 +68,9 @@ export const ImovelPicker = ({
                 setPickerPaperLoading(true)
                 const res = await APIInstance(navigate, false).get(`/${entity}/${token}`)
                 state_case === 'table' ? setInstancia(res.data) : setInstanciaAutocomplete(res.data)
-                state_case === 'table' && tokenSetter(res.data.token) 
-            } catch (erro) {
-
+                state_case === 'table' && tokenSetter(res.data.token)
+            } catch (error) {
+                console.error(error)
             }finally{
                 setPickerPaperLoading(false)
             }
