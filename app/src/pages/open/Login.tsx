@@ -6,13 +6,15 @@ import { PageCard } from '../../components/containers/PageCard'
 // Libs
 import { useForm } from 'react-hook-form'
 import { yupResolver } from "@hookform/resolvers/yup"
-import { cpf, default_required } from '../../scripts/yupModules'
+import { toast } from 'sonner'
 import { object } from 'yup'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 // React
 import { useContext } from 'react'
 import { AppContext } from '../../App'
+// Scripts
+import { cpf, default_required } from '../../scripts/yupModules'
 
 export const Login = ()=> {
 

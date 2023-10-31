@@ -114,6 +114,7 @@ export const components = (): Components => ({
         styleOverrides: {
             root: {
                 fontSize: '10px',
+                fontWeight: 'bold'
             }
         }
     },

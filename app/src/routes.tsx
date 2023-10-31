@@ -2,17 +2,17 @@
 import { Login } from './pages/open/Login'
 import { NotFound } from './pages/open/NotFound'
 // Auth
-import { EntityIndex } from './pages/auth/entity01/Index'
-import { EntityShow } from './pages/auth/entity01/Show'
-import { EntityCreate } from './pages/auth/entity01/Create'
+import { EntityIndex } from './pages/auth/Index'
+import { EntityShow } from './pages/auth/Show'
+import { EntityCreate } from './pages/auth/Create'
 
 export const open_routes = [
-    {path: '/', component: <Login/>},
-    {path: '*', component: <NotFound/>},
+    { path: '/', component: <Login /> },
+    { path: '*', component: <NotFound /> },
 ]
 
 export const auth_routes = [
-    {path: '/characters', component: <EntityIndex/>},
-    {path: '/characters/:id', component: <EntityShow/>},
-    {path: '/new/characters', component: <EntityCreate/>},
+    { path: '/entity', component: <EntityIndex /> },
+    { path: '/entity/:id', component: <EntityShow /> },
+    { path: '/new/entity', component: <EntityCreate /> },
 ]

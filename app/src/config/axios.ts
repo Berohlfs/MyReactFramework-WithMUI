@@ -2,7 +2,7 @@
 
 // Libs
 import axios from 'axios'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 import Cookies from 'js-cookie'
 
 // Essa é uma instância de axios personalizada para meu uso pessoal.
@@ -22,7 +22,7 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
     instance.interceptors.response.use(
         response=> {
 
-            success_toast && toast.success(`${response?.data?.message} (${response?.status})`, {toastId: 'server-success-feedback'})
+            success_toast && toast.success(`${response?.data?.message} (${response?.status})`, {id: 'server-success-feedback'})
 
             return response
 
@@ -31,7 +31,7 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
 
             if(error?.code === 'ECONNABORTED' && error?.message.includes('timeout')) {
 
-                toast.error('Servidor indisponível.', {toastId: 'timeout'})
+                toast.error('Servidor indisponível.', {id: 'timeout'})
 
             }else if(error?.response?.status){
 
@@ -40,11 +40,11 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
                     Cookies.remove('access')
                 }
 
-                toast.warning(`${error.response?.data?.message} (${error.response.status})`, {toastId: 'server-error-feedback'})
+                toast.error(`${error.response?.data?.message} (${error.response.status})`, {id: 'server-error-feedback'})
 
             }else{
 
-                toast.error('Houve um erro.', {toastId: 'unknown-error'})
+                toast.error('Houve um erro.', {id: 'unknown-error'})
 
             }
 

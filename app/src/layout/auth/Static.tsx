@@ -2,15 +2,17 @@
 import { useState, MouseEvent, useContext } from 'react'
 import { AppContext } from '../../App'
 // MUI
-import { Logout, HomeOutlined, MenuOutlined, PersonRounded, ModeNightOutlined, LightModeOutlined } from '@mui/icons-material'
+import { Logout, PersonRounded, ModeNightOutlined, LightModeOutlined, HolidayVillageOutlined, PersonPinCircleOutlined, Groups2Outlined, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
 import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
 // Libs
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import Cookies from 'js-cookie'
+import { toast } from 'sonner'
 // Components
 import { Modal } from '../../components/containers/Modal'
+// Images
+import logo from '../../images/logo.webp'
 
 const StyledHeader = styled(Paper)(({/*theme*/}) => ({
     position: 'fixed',
@@ -27,11 +29,13 @@ const StyledMenu = styled(Paper)(() => ({
     zIndex: 5,
     top: 0,
     right: 0,
-    height: 'calc(100% - 20px)',
-    margin: 10,
+    height: '100%',
     transition: '0.2s',
+    width: 250,
+    borderTopRightRadius: 0,
+    borderBottomRightRadius: 0,
     '&.closed': {
-        right: '-300px'
+        width: '55px'
     }
 }))
 
@@ -58,11 +62,11 @@ export const Static = ()=> {
     // Menu mirror
     const navigation = [
         [
-            {title: 'Page 01', icon: HomeOutlined, path: '/characters'},
+            {title: 'Characters', icon: Groups2Outlined, path: '/characters'},
+            {title: 'Houses', icon: HolidayVillageOutlined, path: '/characters'},
         ],
         [
-            {title: 'Page 02', icon: HomeOutlined, path: '/characters'},
-            {title: 'Page 03', icon: HomeOutlined, path: '/characters'}
+            {title: 'Death Eaters', icon: PersonPinCircleOutlined, path: '/characters'},
         ]
     ]
 
@@ -70,7 +74,7 @@ export const Static = ()=> {
     const logout = ()=> {
         Cookies.remove('access')
         navigate('/')
-        toast.success('Logged out', {toastId: 'success-logout'})
+        toast('Logged out.')
     }
 
     // Avatar's menu anchor
@@ -90,12 +94,11 @@ export const Static = ()=> {
             <Stack
                 height={55}
                 direction={'row'}
-                paddingX={2}
-                alignItems={'center'}
-                justifyContent={'space-between'}>
+                paddingX={1}
+                alignItems={'center'}>
 
                 <Tooltip title={'Avatar'}>
-                    <IconButton onClick={handleAvatarClick}>
+                    <IconButton onClick={handleAvatarClick} size={'small'}>
                         <Avatar sx={{width: 32, height: 32}}>
                             <PersonRounded/>
                         </Avatar>
@@ -105,31 +108,50 @@ export const Static = ()=> {
                 <Menu
                     anchorEl={anchorEl}
                     open={Boolean(anchorEl)}
-                    onClose={handleAvatarMenuClose}
-                    onClick={handleAvatarMenuClose}>
+                    onClose={handleAvatarMenuClose}>
+
+                    <MenuItem onClick={()=>setDarkMode((state)=>!state)}>
+                        <ListItemIcon>
+                            {dark_mode ?
+                            <LightModeOutlined fontSize={'small'}/> :
+                            <ModeNightOutlined fontSize={'small'}/>}
+                        </ListItemIcon>
+                        Switch theme
+                    </MenuItem>
+
+                    <Divider/>
 
                     <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
-
                         <ListItemIcon>
                             <Logout fontSize={"small"}/>
                         </ListItemIcon>
-
                         Log out
-
                     </MenuItem>
-                </Menu>
 
-                <Tooltip title="Menu">
-                    <IconButton onClick={()=>setMenuOpened(true)}>
-                        <MenuOutlined/>
-                    </IconButton>
-                </Tooltip>
+                </Menu>
 
             </Stack>
         </StyledHeader>
 
         <StyledMenu className={menu_opened ? '' : 'closed'}>
-            <Stack sx={{ width: 250 }}>
+
+            <Stack p={'6px'} alignItems={'flex-start'}>
+                <Tooltip title={'Menu'}>
+                    <IconButton
+                        onClick={()=>setMenuOpened(!menu_opened)}>
+                        { menu_opened ?
+                            <ArrowForwardIos fontSize={'small'}/> :
+                            <ArrowBackIosNew fontSize={'small'}/> }
+                    </IconButton>
+                </Tooltip>
+            </Stack>
+
+            <Stack>
+
+                <img
+                    src={logo}
+                    alt={'logo'}
+                    style={{width: 25, display: 'block', margin: '15px auto'}}/>
 
                 {navigation.map((group, group_index)=>(
 
@@ -141,13 +163,18 @@ export const Static = ()=> {
 
                         <ListItem disablePadding key={item_index}>
 
-                            <ListItemButton onClick={()=>navigate(item.path)}>
+                            <ListItemButton onClick={()=> navigate(item.path)}>
 
                                 <ListItemIcon>
-                                    <item.icon sx={{width: 20, pr: 0}}/>
+                                    <item.icon sx={{ width: 20 }}/>
                                 </ListItemIcon>
 
-                                <ListItemText secondary={item.title}/>
+                                <ListItemText
+                                    secondary={item.title}
+                                    secondaryTypographyProps={{
+                                        variant: 'caption',
+                                        style: {whiteSpace: 'nowrap'}
+                                    }}/>
 
                             </ListItemButton>
 
@@ -163,14 +190,6 @@ export const Static = ()=> {
 
                 ))}
 
-                <Button
-                    variant={'outlined'}
-                    sx={{m: 2}}
-                    onClick={()=>setDarkMode((state)=>!state)}
-                    endIcon={dark_mode ? <LightModeOutlined/> : <ModeNightOutlined/>}>
-                        Switch theme
-                </Button>
-
             </Stack>
         </StyledMenu>
 
@@ -183,20 +202,20 @@ export const Static = ()=> {
             max_width={300}>
 
             <Typography variant={'caption'}>
-                You'll have to log in again later.
+                Você terá que realizar o login novamente.
             </Typography>
 
             <Stack direction={'row'} spacing={1} mt={2}>
                 <Button
                     fullWidth
                     onClick={()=>setLogoutModalOpen(false)}>
-                        Cancel
+                        Cancelar
                 </Button>
                 <Button
                     fullWidth
                     onClick={logout}
                     color={'error'}>
-                        Logout
+                        Log out
                 </Button>
             </Stack>
 

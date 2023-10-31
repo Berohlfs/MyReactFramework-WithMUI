@@ -1,6 +1,5 @@
 // Layout components
 import { Static } from './Static'
-import { Footer } from '../both/Footer'
 // MUI
 import { Box } from '@mui/material'
 // Libs
@@ -13,18 +12,23 @@ type Props = {
     children: ReactNode
 }
 
-export const AuthLayout = ({children}: Props)=> {
+export const AuthLayout = ({ children }: Props) => {
 
-    return (<>
+    return (
 
-        {Cookies.get('access')
+        Cookies.get('access')
 
-        ?
+            ?
             <>
 
-            <Static/>
+            <Static />
 
-            <Box position={'relative'} top={'55px'} padding={3}>
+            <Box
+                position={'relative'}
+                top={'55px'}
+                paddingY={3}
+                paddingLeft={2}
+                paddingRight={9}>
 
                 {children}
 
@@ -32,11 +36,9 @@ export const AuthLayout = ({children}: Props)=> {
 
             </>
 
-        :
+            :
 
-        <Navigate to={'/'}/> }
+            <Navigate to={'/'} />
 
-        <Footer/>
-
-    </>)
+    )
 }

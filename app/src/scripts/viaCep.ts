@@ -1,6 +1,6 @@
 // Libs
 import axios from 'axios'
-import { toast } from 'react-toastify'
+import { toast } from 'sonner'
 
 export const viaCep = async(cep: string)=> {
 
@@ -12,12 +12,12 @@ export const viaCep = async(cep: string)=> {
         const res = await axios.get(`https://viacep.com.br/ws/${clean_cep}/json/`)
         // console.log(res)
         if(res.data.erro){
-            toast.warning('CEP não encontrado.', {toastId : 'viaCep-warning'})
+            toast.error('CEP não encontrado.', {id : 'viaCep-warning'})
             return false
         }
         return res.data
     }catch(erro){
-        toast.error('Erro durante a busca do CEP.', {toastId : 'viaCep-error'})
+        toast.error('Erro durante a busca do CEP.', {id : 'viaCep-error'})
         console.log(erro)
         return false
     }

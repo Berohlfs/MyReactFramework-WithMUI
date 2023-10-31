@@ -24,7 +24,7 @@ export const CustomRadioGroup = ({ control, form_control_error, label, name, opt
         <FormControl>
 
             <FormLabel error={form_control_error && true}>
-                {label}{form_control_error && ` - ${form_control_error?.message}`}
+                {label}{form_control_error && '*'}
             </FormLabel>
 
             <Controller name={name} control={control}

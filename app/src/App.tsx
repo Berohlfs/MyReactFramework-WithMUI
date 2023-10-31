@@ -5,25 +5,29 @@ import { AuthLayout } from './layout/auth/AuthLayout'
 import { OpenLayout } from './layout/open/OpenLayout'
 // Libs
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import { Toaster } from 'sonner'
 import 'dayjs/locale/pt-br'
 // MUI
-import { CssBaseline, GlobalStyles, CircularProgress, Stack } from '@mui/material'
+import { CssBaseline, GlobalStyles, CircularProgress, Stack, Typography } from '@mui/material'
+import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-// MUI's Theme
-import { createTheme, ThemeProvider, responsiveFontSizes } from '@mui/material/styles'
+import { ptBR } from '@mui/material/locale'
+// Theme
 import { components } from './theme/components'
 import { palette } from './theme/palette'
 import { typography } from './theme/typography'
 import { global_styles } from './theme/globalStyles'
-import { ptBR } from '@mui/material/locale'
 // React
 import { useState, createContext, Dispatch, SetStateAction } from 'react'
 
+type Loading = {
+  render: boolean,
+  text?: string
+}
+
 type AppValues = {
-  setLoading: Dispatch<SetStateAction<boolean>>,
+  setLoading: Dispatch<SetStateAction<Loading>>,
   setDarkMode: Dispatch<SetStateAction<boolean>>,
   dark_mode: boolean
 }
@@ -32,7 +36,7 @@ export const AppContext = createContext<AppValues | null>(null)
 
 export function App() {
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState<Loading>({render: false})
 
   const [dark_mode, setDarkMode] = useState(true)
 
@@ -48,14 +52,7 @@ export function App() {
     height: '100%',
     top: '0',
     zIndex: '10',
-    backgroundColor: 'black',
-    opacity: '0.4'
-  }
-
-  const toast_style = {
-    boxShadow: 'none',
-    backgroundColor: dark_mode ? '#13111c' : '#fff',
-    border: `1px solid ${dark_mode ? '#211f2d' : '#f2f1f3'}`
+    backgroundColor: '#00000090'
   }
 
   return (
@@ -66,20 +63,19 @@ export function App() {
 
       <AppContext.Provider value={{setLoading, setDarkMode, dark_mode}}>
 
-        {loading &&
+        {loading.render &&
         <Stack
           alignItems={'center'}
           justifyContent={'center'}
           sx={progress_container_style}>
             <CircularProgress/>
-        </Stack>}
+            {loading.text && <Typography mt={2} fontSize={10}>{loading.text}</Typography> }
+        </Stack> }
 
-        <ToastContainer
-          position={"top-right"}
-          draggable={false}
-          autoClose={2500}
+        <Toaster
           theme={dark_mode ? 'dark' : 'light'}
-          toastStyle={toast_style}/>
+          closeButton={true}
+          richColors={true}/>
 
         <CssBaseline/>
 
