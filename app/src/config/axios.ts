@@ -15,8 +15,8 @@ import Cookies from 'js-cookie'
 export const APIInstance = (navigate?: (path: string)=> void, success_toast = true)=> {
 
     const instance = axios.create({
-        baseURL: 'https://hp-api.onrender.com',
-        timeout: 10000,
+        baseURL: 'backend_url',
+        timeout: 20000,
     })
 
     instance.interceptors.response.use(

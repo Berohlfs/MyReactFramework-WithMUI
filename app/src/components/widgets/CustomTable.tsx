@@ -66,7 +66,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
           variant={'outlined'}
           endIcon={<Add/>}
           onClick={()=>navigate(add_link)}>
-            Add new
+            Adicionar
         </Button> }
 
       </Stack>
@@ -177,7 +177,7 @@ export const CustomTable = ({title, add_link, id, data, columns, actions, hidden
 
     </Paper>
 
-  ), [data, title, add_link, id, columns, actions, hidden_actions, navigate])
+  ), [data])
 
   return (
 

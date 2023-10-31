@@ -35,11 +35,11 @@ export const CustomRadioGroup = ({ control, form_control_error, label, name, opt
 
                     {options.map((option) => (
 
-                    <FormControlLabel
-                        key={option.value}
-                        value={option.value}
-                        control={<Radio/>}
-                        label={option.label}/>
+                        <FormControlLabel
+                            key={option.value}
+                            value={option.value}
+                            control={<Radio/>}
+                            label={option.label}/>
 
                     ))}
 

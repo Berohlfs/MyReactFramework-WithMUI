@@ -21,7 +21,7 @@ const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     zIndex: 3,
     borderRadius: 0,
     borderLeft: '0px',
-    borderRight: '0px',
+    borderRight: '0px'
 }))
 
 const StyledMenu = styled(Paper)(() => ({
@@ -62,11 +62,11 @@ export const Static = ()=> {
     // Menu mirror
     const navigation = [
         [
-            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
-            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
+            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
+            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
         ],
         [
-            {title: 'Entity List', icon: Groups2Outlined, path: '/entity'},
+            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
         ]
     ]
 
@@ -74,7 +74,7 @@ export const Static = ()=> {
     const logout = ()=> {
         Cookies.remove('access')
         navigate('/')
-        toast.success('Logged out.')
+        toast.success('Logout realizado com sucesso.', {id: 'logout'})
     }
 
     // Avatar's menu anchor
@@ -90,58 +90,58 @@ export const Static = ()=> {
 
     return (<>
 
-        <StyledHeader square>
-            <Stack
-                height={55}
-                direction={'row'}
-                paddingX={1}
-                alignItems={'center'}>
+        <StyledHeader>
+        <Stack
+            height={55}
+            direction={'row'}
+            paddingX={1}
+            alignItems={'center'}>
 
-                <Tooltip title={'Avatar'}>
-                    <IconButton onClick={handleAvatarClick} size={'small'}>
-                        <Avatar sx={{width: 32, height: 32}}>
-                            <PersonRounded/>
-                        </Avatar>
-                    </IconButton>
-                </Tooltip>
+            <Tooltip title={'Avatar'}>
+                <IconButton onClick={handleAvatarClick} size={'small'}>
+                    <Avatar sx={{width: 32, height: 32}}>
+                        <PersonRounded/>
+                    </Avatar>
+                </IconButton>
+            </Tooltip>
 
-                <Menu
-                    anchorEl={anchorEl}
-                    open={Boolean(anchorEl)}
-                    onClose={handleAvatarMenuClose}>
+            <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleAvatarMenuClose}>
 
-                    <MenuItem onClick={()=>setDarkMode((state)=>!state)}>
-                        <ListItemIcon>
-                            {dark_mode ?
-                            <LightModeOutlined fontSize={'small'}/> :
-                            <ModeNightOutlined fontSize={'small'}/>}
-                        </ListItemIcon>
-                        Switch theme
-                    </MenuItem>
+                <MenuItem onClick={()=>setDarkMode((state)=>!state)}>
+                    <ListItemIcon>
+                        { dark_mode ?
+                        <LightModeOutlined fontSize={'small'}/> :
+                        <ModeNightOutlined fontSize={'small'}/> }
+                    </ListItemIcon>
+                    Trocar tema
+                </MenuItem>
 
-                    <Divider/>
+                <Divider/>
 
-                    <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
-                        <ListItemIcon>
-                            <Logout fontSize={"small"}/>
-                        </ListItemIcon>
-                        Log out
-                    </MenuItem>
+                <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
+                    <ListItemIcon>
+                        <Logout fontSize={"small"}/>
+                    </ListItemIcon>
+                    Log out
+                </MenuItem>
 
-                </Menu>
+            </Menu>
 
-            </Stack>
+        </Stack>
         </StyledHeader>
 
         <StyledMenu className={menu_opened ? '' : 'closed'}>
 
-            <Stack p={'6px'} alignItems={'flex-start'}>
+            <Stack padding={1} alignItems={'flex-start'}>
                 <Tooltip title={'Menu'}>
                     <IconButton
                         onClick={()=>setMenuOpened(!menu_opened)}>
                         { menu_opened ?
-                            <ArrowForwardIos fontSize={'small'}/> :
-                            <ArrowBackIosNew fontSize={'small'}/> }
+                        <ArrowForwardIos fontSize={'small'}/> :
+                        <ArrowBackIosNew fontSize={'small'}/> }
                     </IconButton>
                 </Tooltip>
             </Stack>
@@ -198,7 +198,7 @@ export const Static = ()=> {
         <Modal
             open={logout_modal_open}
             handleClose={()=>setLogoutModalOpen(false)}
-            title={'Logout?'}
+            title={'Deseja sair?'}
             max_width={300}>
 
             <Typography variant={'caption'}>
@@ -215,7 +215,7 @@ export const Static = ()=> {
                     fullWidth
                     onClick={logout}
                     color={'error'}>
-                        Log out
+                        Sair
                 </Button>
             </Stack>
 

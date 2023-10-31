@@ -24,7 +24,7 @@ export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
             onClick={()=> setConfirm(true)}>
 
                 <Typography variant={'caption'}>
-                    {`Delete ${instance_name}`}
+                    {`Excluir ${instance_name}`}
                 </Typography>
 
         </Alert>
@@ -32,11 +32,11 @@ export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
         <Modal
             open={confirm}
             handleClose={()=> setConfirm(false)}
-            title={`Delete ${instance_name}`}
+            title={`Excluir ${instance_name}`}
             max_width={400}>
 
             <Typography variant={'caption'}>
-                Are you sure?
+                Tem certeza?
             </Typography>
 
             <Stack direction={'row'} spacing={1} mt={2}>
@@ -49,7 +49,7 @@ export const DeleteBar = ({deleteFunc, instance_name}: Props)=> {
                     fullWidth
                     onClick={deleteFunc}
                     color={'error'}>
-                        Delete
+                        Excluir
                 </Button>
             </Stack>
         </Modal>

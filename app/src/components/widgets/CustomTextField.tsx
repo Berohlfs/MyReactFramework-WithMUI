@@ -23,7 +23,7 @@ export const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       {...other}
       inputRef={ref}
       unmask={true}
-      onAccept={(value: any) => onChange({ target: { name: props.name, value } })}
+      onAccept={(value) => onChange({ target: { name: props.name, value } })}
       overwrite
     />
 
@@ -43,8 +43,8 @@ type MaskProps = {
 type Props = {
   control: Control<any, any>,
   name: string,
-  label: string,
-  placeholder: string
+  label?: string,
+  placeholder?: string
   mask_props?: MaskProps
   password?: true
   full_width?: true

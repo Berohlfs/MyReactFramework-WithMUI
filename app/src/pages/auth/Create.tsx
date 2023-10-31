@@ -17,7 +17,7 @@ export const EntityCreate = () => {
     const navigate = useNavigate()
 
     // Schema de validação
-    const validacao_login = object({
+    const validacao = object({
         name: string_required,
     })
 
@@ -27,7 +27,7 @@ export const EntityCreate = () => {
     }
 
     const { handleSubmit, control } = useForm<Inputs>({
-        resolver: yupResolver(validacao_login),
+        resolver: yupResolver(validacao),
         defaultValues: {
             'name': ''
         }
@@ -52,12 +52,12 @@ export const EntityCreate = () => {
                 spacing={2}
                 useFlexGap>
 
-                <Typography>New Character</Typography>
+                <Typography>Novo personagem</Typography>
 
                 <Button
                     onClick={handleSubmit((/*data*/) => create())}
                     endIcon={<Add />}>
-                    Create
+                    Criar
                 </Button>
 
             </Stack>
@@ -67,16 +67,17 @@ export const EntityCreate = () => {
             <Stack
                 direction={'row'}
                 flexWrap={'wrap'}
+                alignItems={'flex-start'}
                 useFlexGap
                 spacing={3}
-                alignItems={'flex-start'}>
+                padding={1}>
 
                 <CustomTextField
                     name={'name'}
                     control={control}
-                    label={'Name'}
+                    label={'Nome'}
                     width={250}
-                    placeholder={"Type the character's name"} />
+                    placeholder={"Digite o nome do personagem"} />
 
             </Stack>
 

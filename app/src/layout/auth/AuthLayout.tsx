@@ -16,12 +16,10 @@ export const AuthLayout = ({ children }: Props) => {
 
     return (
 
-        Cookies.get('access')
+        Cookies.get('access') ?
 
-            ?
             <>
-
-            <Static />
+            <Static/>
 
             <Box
                 position={'relative'}
@@ -33,7 +31,6 @@ export const AuthLayout = ({ children }: Props) => {
                 {children}
 
             </Box>
-
             </>
 
             :

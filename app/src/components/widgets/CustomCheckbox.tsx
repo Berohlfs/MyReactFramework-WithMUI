@@ -17,7 +17,7 @@ export const CustomCheckbox = ({ control, label, name }: Props)=> {
             render={({field: {value, ...other}}) => (
 
             <FormControlLabel
-                control={<Checkbox {...other} checked={Boolean(value)}/>}
+                control={<Checkbox {...other} value={Boolean(value)} checked={Boolean(value)}/>}
                 label={label}
             />)}
         />

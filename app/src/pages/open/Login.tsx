@@ -22,7 +22,7 @@ export const Login = ()=> {
     const navigate = useNavigate()
 
     // Schema de validação
-    const validacao_login = object({
+    const validacao = object({
         cpf: cpf,
         password: string_required
     })
@@ -34,7 +34,7 @@ export const Login = ()=> {
     }
 
     const { handleSubmit, control } = useForm<Inputs>({
-        resolver: yupResolver(validacao_login),
+        resolver: yupResolver(validacao),
         defaultValues: {
           'cpf': '',
           'password': ''
@@ -43,7 +43,7 @@ export const Login = ()=> {
 
     // onSubmit
     const login = async(/*data: Inputs*/)=> {
-        setLoading({render: true, text: 'Logging in'})
+        setLoading({render: true, text: 'Entrando'})
         setTimeout(()=>{
             setLoading({render: false})
             Cookies.set('access', 'access')
@@ -56,8 +56,8 @@ export const Login = ()=> {
         <PageCard
             max_width={280}
             title={'Login'}
-            caption={'Welcome!'}
-            link={{text: "Don't have an account?", path: '/register', label: 'Register now!'}}>
+            caption={'Seja bem vindo!'}
+            link={{text: "Ainda não é cadastrado?", path: '/register', label: 'Cadastre-se!'}}>
 
             <Stack spacing={2}>
 
@@ -65,19 +65,17 @@ export const Login = ()=> {
                     control={control}
                     name={'cpf'}
                     label={'CPF'}
-                    placeholder={'Type the CPF'}
+                    placeholder={'Digite o CPF'}
                     mask_props={{mask:'000.000.000-00'}}/>
 
                 <CustomTextField
                     control={control}
                     name={'password'}
-                    label={'Password'}
-                    placeholder={'Type the password'}
+                    label={'Senha'}
+                    placeholder={'Digite a senha'}
                     password={true}/>
 
-                <Button
-                    type={'submit'}
-                    onClick={handleSubmit((/*data*/)=>login())}>
+                <Button onClick={handleSubmit((/*data*/)=>login())}>
                         Login
                 </Button>
 

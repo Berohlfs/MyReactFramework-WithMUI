@@ -59,57 +59,57 @@ export function App() {
 
     <ThemeProvider theme={responsiveFontSizes(theme)}>
 
-      <LocalizationProvider adapterLocale={'pt-br'} dateAdapter={AdapterDayjs}>
+    <LocalizationProvider adapterLocale={'pt-br'} dateAdapter={AdapterDayjs}>
 
-      <AppContext.Provider value={{setLoading, setDarkMode, dark_mode}}>
+    <AppContext.Provider value={{setLoading, setDarkMode, dark_mode}}>
 
-        {loading.render &&
-        <Stack
-          alignItems={'center'}
-          justifyContent={'center'}
-          sx={progress_container_style}>
-            <CircularProgress/>
-            <Typography mt={2} fontSize={11}>{loading.text ? loading.text : 'Loading'}</Typography>
-        </Stack> }
+      {loading.render &&
+      <Stack
+        alignItems={'center'}
+        justifyContent={'center'}
+        sx={progress_container_style}>
+          <CircularProgress/>
+          <Typography mt={2} fontSize={11}>{loading.text ? loading.text : 'Carregando'}</Typography>
+      </Stack> }
 
-        <Toaster
-          theme={dark_mode ? 'dark' : 'light'}
-          closeButton={true}
-          richColors={true}/>
+      <Toaster
+        theme={dark_mode ? 'dark' : 'light'}
+        closeButton={true}
+        richColors={true}/>
 
-        <CssBaseline/>
+      <CssBaseline/>
 
-        <GlobalStyles styles={global_styles(dark_mode ? 'dark' : 'light')}/>
+      <GlobalStyles styles={global_styles(dark_mode ? 'dark' : 'light')}/>
 
-        <BrowserRouter>
+      <BrowserRouter>
 
-            <Routes>
+          <Routes>
 
-              {auth_routes.map((route, index)=>
+            {auth_routes.map((route, index)=>
 
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={<AuthLayout>{route.component}</AuthLayout>}/>
+              <Route
+                key={index}
+                path={route.path}
+                element={<AuthLayout>{route.component}</AuthLayout>}/>
 
-              )}
+            )}
 
-              {open_routes.map((route, index)=>
+            {open_routes.map((route, index)=>
 
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={<OpenLayout>{route.component}</OpenLayout>}/>
+              <Route
+                key={index}
+                path={route.path}
+                element={<OpenLayout>{route.component}</OpenLayout>}/>
 
-              )}
+            )}
 
-            </Routes>
+          </Routes>
 
-        </BrowserRouter>
+      </BrowserRouter>
 
-      </AppContext.Provider>
+    </AppContext.Provider>
 
-      </LocalizationProvider>
+    </LocalizationProvider>
 
     </ThemeProvider>
 

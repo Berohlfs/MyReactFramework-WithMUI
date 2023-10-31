@@ -26,7 +26,7 @@ export const EntityShow = () => {
     const { setLoading } = useContext(AppContext)!
 
     // Schema de validação
-    const validacao_login = object({
+    const validacao = object({
         name: string_required,
     })
 
@@ -36,7 +36,7 @@ export const EntityShow = () => {
     }
 
     const { handleSubmit, control, reset } = useForm<Inputs>({
-        resolver: yupResolver(validacao_login),
+        resolver: yupResolver(validacao),
         defaultValues: {
             'name': ''
         }
@@ -50,7 +50,7 @@ export const EntityShow = () => {
             reset(res.data[0])
         } catch (erro) {
             console.log(erro)
-            toast('API Error.')
+            toast.error('Erro de API (500)')
         } finally {
             setLoading({render: false})
         }
@@ -74,13 +74,12 @@ export const EntityShow = () => {
                 spacing={2}
                 useFlexGap>
 
-                <Typography>Character</Typography>
+                <Typography>Personagem</Typography>
 
                 <Button
-                    type={'submit'}
                     endIcon={<Check />}
                     onClick={handleSubmit((/*data*/) => { toast.success('Mock save') })}>
-                    Save
+                    Salvar
                 </Button>
 
             </Stack>
@@ -90,22 +89,23 @@ export const EntityShow = () => {
             <Stack
                 direction={'row'}
                 flexWrap={'wrap'}
+                alignItems={'flex-start'}
                 useFlexGap
                 spacing={3}
-                alignItems={'flex-start'}>
+                padding={1}>
 
                 <CustomTextField
                     name={'name'}
                     control={control}
-                    label={'Name'}
+                    label={'Nome'}
                     width={250}
-                    placeholder={"Type character's name"} />
+                    placeholder={"Digite o nome do personagem"}/>
 
             </Stack>
 
             <DeleteBar
                 deleteFunc={() => { toast.success('Mock delete'); navigate('/entity') }}
-                instance_name={'character'} />
+                instance_name={'personagem'} />
 
         </Stack>
         </Paper>

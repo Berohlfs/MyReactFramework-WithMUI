@@ -49,7 +49,7 @@ export const EntityIndex = () => {
     return (
 
         <CustomTable
-            title={'Entity'}
+            title={'Personagens'}
             id={'id'}
             add_link={'/new/entity'}
             columns={[
@@ -58,8 +58,8 @@ export const EntityIndex = () => {
                 { name: 'Gênero', key: 'gender', enum: { 'male': 'primary', 'female': 'secondary' } },
             ]}
             data={characters}
-            hidden_actions={[{ name: 'Get ID', function: action }]}
-            actions={[{ name: 'Get ID', function: action, icon: TaskAltOutlined }]} />
+            hidden_actions={[{ name: 'Retornar ID', function: action }]}
+            actions={[{ name: 'Retornar ID', function: action, icon: TaskAltOutlined }]} />
 
     )
 }

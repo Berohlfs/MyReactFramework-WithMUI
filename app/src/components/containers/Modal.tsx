@@ -36,7 +36,7 @@ export const Modal = ({children, open, handleClose, title = 'Modal', max_width =
             <StyledPaper sx={{maxWidth: max_width}}>
 
                 <Tooltip
-                    title={"Close"}
+                    title={"Fechar"}
                     sx={{position: 'absolute', top: 3, right: 3}}>
 
                     <IconButton onClick={handleClose}>
