@@ -56,10 +56,10 @@ export const components = (): Components => ({
     MuiInputLabel: {
         styleOverrides:{
             root:{
-                fontSize: 11, // 12 for 'inter'
+                fontSize: 11,
             },
             shrink: {
-                fontSize: 15 // 16 for 'poppins'
+                fontSize: 16
             }
         }
     },
