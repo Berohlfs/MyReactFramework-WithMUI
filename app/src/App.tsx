@@ -38,7 +38,7 @@ export function App() {
 
   const [loading, setLoading] = useState<Loading>({render: false})
 
-  const [dark_mode, setDarkMode] = useState(true)
+  const [dark_mode, setDarkMode] = useState(false)
 
   const theme = createTheme({
     typography: typography(),
@@ -69,7 +69,9 @@ export function App() {
         justifyContent={'center'}
         sx={progress_container_style}>
           <CircularProgress/>
-          <Typography mt={2} fontSize={11}>{loading.text ? loading.text : 'Carregando'}</Typography>
+          <Typography color={'#fff'} mt={2} fontSize={11}>
+              {loading.text ? loading.text : 'Carregando'}
+          </Typography>
       </Stack> }
 
       <Toaster

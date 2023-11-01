@@ -1,11 +1,11 @@
 // React hooks
-import { useContext, useState, useEffect, Dispatch, SetStateAction } from 'react'
+import { useContext, useState, useEffect, Dispatch, SetStateAction, FC } from 'react'
 import { AppContext } from '../../App'
 // Libs
 import { useNavigate } from 'react-router-dom'
 // MUI
 import { Divider, Stack, Typography, Paper, Button, Box, Autocomplete, TextField, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, IconButton, Tooltip, LinearProgress } from '@mui/material'
-import { CheckOutlined, HouseOutlined, Edit, EditNoteOutlined } from '@mui/icons-material'
+import { CheckOutlined, Search, Edit, EditNoteOutlined } from '@mui/icons-material'
 import { debounce } from '@mui/material/utils'
 // Config
 import { APIInstance } from '../../config/axios'
@@ -15,28 +15,26 @@ import { Modal } from '../containers/Modal'
 type Props = {
     instance_attributes: {name: string, field_name: string}[]
     token: string,
-    tokenSetter: Dispatch<SetStateAction<string>>,
-    entity: 'imoveis' | 'inquilinos' | 'proprietarios',
-    entity_name: string
+    setToken: Dispatch<SetStateAction<string>>,
+    url_domain: string,
+    entity_name: string,
+    title: string,
+
+    CreateComponent: FC
 }
 
-export const ImovelPicker = ({
-    entity,
-    entity_name,
-    token,
-    tokenSetter,
-    instance_attributes}: Props) => {
+export const Picker = ({ url_domain, entity_name, token, setToken, instance_attributes, title,  CreateComponent}: Props) => {
 
     const { setLoading } = useContext(AppContext)!
 
-    const [picker_paper_loading, setPickerPaperLoading] = useState(false)
+    const [picker_loading, setPickerLoading] = useState(false)
 
     const navigate = useNavigate()
 
     // Modals
     const [create_modal, setCreateModal] = useState(false)
     const [edit_modal, setEditModal] = useState(false)
-    const [select_entidade_modal, setSelectEntidadeModal] = useState(false)
+    const [select_entity_modal, setSelectEntityModal] = useState(false)
 
     type Instancia = {
         [key: string]: string
@@ -48,8 +46,8 @@ export const ImovelPicker = ({
     const getInstancias = debounce(async (search: string) => {
         if (!search) { return setInstancias([]) }
         try {
-            setLoading({render: true})
-            const res = await APIInstance(navigate, false).get(`/${entity}?search=${search}`)
+            setLoading({render: true, text: 'Buscando'})
+            const res = await APIInstance(navigate, false).get(`/${url_domain}?search=${search}`)
             setInstancias(res.data.data)
         } catch (error) {
             console.error(error)
@@ -65,21 +63,21 @@ export const ImovelPicker = ({
     const getEntidadeInstance = async (token: string | undefined, state_case: 'table' | 'autocomplete') => {
         if (token) {
             try {
-                setPickerPaperLoading(true)
-                const res = await APIInstance(navigate, false).get(`/${entity}/${token}`)
+                setPickerLoading(true)
+                const res = await APIInstance(navigate, false).get(`/${url_domain}/${token}`)
                 state_case === 'table' ? setInstancia(res.data) : setInstanciaAutocomplete(res.data)
-                state_case === 'table' && tokenSetter(res.data.token)
+                state_case === 'table' && setToken(res.data.token)
             } catch (error) {
                 console.error(error)
             }finally{
-                setPickerPaperLoading(false)
+                setPickerLoading(false)
             }
         }
     }
 
     useEffect(()=>{
         setInstanciaAutocomplete(instancia)
-    }, [instancia, select_entidade_modal])
+    }, [instancia, select_entity_modal])
 
     useEffect(()=>{
         if(token){ getEntidadeInstance(token, 'table') }
@@ -89,7 +87,7 @@ export const ImovelPicker = ({
 
         <Paper sx={{ mb: 2, overflow: 'hidden'}}>
 
-            { picker_paper_loading &&
+            { picker_loading &&
             <LinearProgress
                 hidden={false}/> }
 
@@ -104,14 +102,13 @@ export const ImovelPicker = ({
                     useFlexGap>
 
                     <Typography variant={'caption'}>
-                        Imóvel segurado
+                        {title}
                     </Typography>
 
                     <Button
                         variant={'outlined'}
-                        type={'button'}
-                        endIcon={<HouseOutlined />}
-                        onClick={() => setSelectEntidadeModal(true)}>
+                        endIcon={<Search />}
+                        onClick={() => setSelectEntityModal(true)}>
                         Selecionar
                     </Button>
 
@@ -179,8 +176,8 @@ export const ImovelPicker = ({
         </Paper>
 
         <Modal
-            open={select_entidade_modal}
-            handleClose={() => setSelectEntidadeModal(false)}
+            open={select_entity_modal}
+            handleClose={() => setSelectEntityModal(false)}
             max_width={600}
             title={`Selecionar ${entity_name}`}>
 
@@ -188,7 +185,7 @@ export const ImovelPicker = ({
                 options={instancias}
                 sx={{mb: 2}}
                 value={instancia_autocomplete}
-                onChange={(event, new_value: Instancia) => { setInstanciaAutocomplete(new_value) }}
+                onChange={(e, new_value: Instancia) => { setInstanciaAutocomplete(new_value) }}
                 getOptionLabel={(option) => (
                     instance_attributes.map(attribute => (
                         option ? option[attribute.field_name] : ''
@@ -226,7 +223,7 @@ export const ImovelPicker = ({
             <Button
                 sx={{mr: 1}}
                 endIcon={<CheckOutlined />}
-                onClick={() => {getEntidadeInstance(instancia_autocomplete.token, 'table'); setSelectEntidadeModal(false)}}>
+                onClick={() => {getEntidadeInstance(instancia_autocomplete.token, 'table'); setSelectEntityModal(false)}}>
                 Selecionar
             </Button>
 
@@ -258,7 +255,7 @@ export const ImovelPicker = ({
             max_width={800}
             title={`Criar ${entity_name}`}>
 
-            {/* <CreateImovel closeModal={setCreateModal} pickerGetImovel={getEntidadeInstance}/> */}
+            <CreateComponent/>
 
         </Modal>
 
@@ -268,7 +265,7 @@ export const ImovelPicker = ({
             max_width={800}
             title={`Editar ${entity_name}`}>
 
-            {/* <ShowImovel prop_token={instancia_autocomplete?.token} render_delete={false}/> */}
+            {/* {edit_component({})} */}
 
         </Modal>
 

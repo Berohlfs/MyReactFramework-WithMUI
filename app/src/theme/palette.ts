@@ -24,7 +24,7 @@ export const palette = (mode: PaletteMode): PaletteOptions => ({
             error: {
                 main: red[700],
             },
-            divider: '#f2f1f3'
+            divider: '#ededed'
         } :
 
         {
