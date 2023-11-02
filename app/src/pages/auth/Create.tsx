@@ -13,6 +13,7 @@ import { CustomTextField } from '../../components/widgets/CustomTextField'
 import { CustomDatePicker } from '../../components/widgets/CustomDatePicker'
 import { CustomCheckbox } from '../../components/widgets/CustomCheckbox'
 import { CustomRadioGroup } from '../../components/widgets/CustomRadioGroup'
+import { Picker } from '../../components/widgets/Picker'
 // Scripts
 import { species, genders } from '../../scripts/options'
 import { date, default_required } from '../../scripts/yupModules'
@@ -57,74 +58,70 @@ export const EntityCreate = () => {
 
     return (
 
-        <form onSubmit={handleSubmit((data) => create(data))}>
-            <Paper>
+        <Paper>
+        <Stack padding={2} spacing={2}>
 
-                <Stack padding={2} spacing={2}>
+            <Stack
+                direction={'row'}
+                justifyContent={'space-between'}
+                alignItems={'center'}>
 
-                    <Stack
-                        direction={'row'}
-                        justifyContent={'space-between'}
-                        alignItems={'center'}>
+                <Typography>New Character</Typography>
 
-                        <Typography>New Character</Typography>
+                <Button
+                    onClick={handleSubmit((data) => create(data))}
+                    endIcon={<Add />}>
+                    Create
+                </Button>
 
-                        <Button
-                            type={'submit'}
-                            endIcon={<Add />}>
-                            Create
-                        </Button>
+            </Stack>
 
-                    </Stack>
+            <Divider />
 
-                    <Divider />
+            <CustomRadioGroup
+                label={'Gender'}
+                control={control}
+                options={genders}
+                name={'gender'}
+                form_control_error={errors.gender} />
 
-                    <CustomRadioGroup
-                        label={'Gender'}
-                        control={control}
-                        options={genders}
-                        name={'gender'}
-                        form_control_error={errors.gender} />
+            <Stack
+                direction={'row'}
+                flexWrap={'wrap'}
+                useFlexGap
+                spacing={3}
+                alignItems={'flex-start'}>
 
-                    <Stack
-                        direction={'row'}
-                        flexWrap={'wrap'}
-                        useFlexGap
-                        spacing={3}
-                        alignItems={'flex-start'}>
+                <CustomTextField
+                    name={'name'}
+                    control={control}
+                    label={'Name'}
+                    width={250}
+                    placeholder={"Type the character's name"} />
 
-                        <CustomTextField
-                            name={'name'}
-                            control={control}
-                            label={'Name'}
-                            width={250}
-                            placeholder={"Type the character's name"} />
+                <CustomDatePicker
+                    control={control}
+                    name={'date_of_birth'}
+                    width={200}
+                    label={'Date of birth'} />
 
-                        <CustomDatePicker
-                            control={control}
-                            name={'date_of_birth'}
-                            width={200}
-                            label={'Date of birth'} />
+                <CustomSelect
+                    label={'Species'}
+                    control={control}
+                    options={species}
+                    name={'species'}
+                    width={150}
+                    form_control_error={errors.species} />
 
-                        <CustomSelect
-                            label={'Species'}
-                            control={control}
-                            options={species}
-                            name={'species'}
-                            width={150}
-                            form_control_error={errors.species} />
+                <CustomCheckbox
+                    label={'Wizard?'}
+                    control={control}
+                    name={'wizard'} />
 
-                        <CustomCheckbox
-                            label={'Wizard?'}
-                            control={control}
-                            name={'wizard'} />
+            </Stack>
 
-                    </Stack>
-
-                </Stack>
-
-            </Paper>
-        </form>
+        </Stack>
+        </Paper>
 
     )
 }
