@@ -17,6 +17,7 @@ export const APIInstance = (navigate?: (path: string)=> void, success_toast = tr
     const instance = axios.create({
         baseURL: 'backend_url',
         timeout: 20000,
+        headers: {Authorization: `Bearer ${Cookies.get('access')}`}
     })
 
     instance.interceptors.response.use(

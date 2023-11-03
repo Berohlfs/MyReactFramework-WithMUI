@@ -38,7 +38,7 @@ export function App() {
 
   const [loading, setLoading] = useState<Loading>({render: false})
 
-  const [dark_mode, setDarkMode] = useState(false)
+  const [dark_mode, setDarkMode] = useState(true)
 
   const theme = createTheme({
     typography: typography(),

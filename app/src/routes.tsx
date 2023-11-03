@@ -7,12 +7,12 @@ import { EntityShow } from './pages/auth/Show'
 import { EntityCreate } from './pages/auth/Create'
 
 export const open_routes = [
-    { path: '/', component: <Login /> },
-    { path: '*', component: <NotFound /> },
+    { path: '/', component: <Login/> },
+    { path: '*', component: <NotFound/> },
 ]
 
 export const auth_routes = [
-    { path: '/entity', component: <EntityIndex /> },
-    { path: '/entity/:id', component: <EntityShow /> },
-    { path: '/new/entity', component: <EntityCreate /> },
+    { path: '/entity', component: <EntityIndex/> },
+    { path: '/entity/:id', component: <EntityShow/> },
+    { path: '/new/entity', component: <EntityCreate/> },
 ]

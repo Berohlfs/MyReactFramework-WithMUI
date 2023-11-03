@@ -1,5 +1,5 @@
 // React
-import { useState, MouseEvent, useContext } from 'react'
+import { useState, MouseEvent, useContext, FC } from 'react'
 import { AppContext } from '../../App'
 // MUI
 import { Logout, PersonRounded, ModeNightOutlined, LightModeOutlined, Groups2Outlined, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
@@ -53,20 +53,28 @@ export const Static = ()=> {
 
     const navigate = useNavigate()
 
-    const [menu_opened, setMenuOpened] = useState(false)
+    const [navigation_opened, setNavigationOpened] = useState(false)
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
 
     const {setDarkMode, dark_mode} = useContext(AppContext)!
 
-    // Menu mirror
-    const navigation = [
+    const navigation: {title: string, icon: FC<{sx: {width: number}}>, path: string}[][] = [
         [
             {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
             {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
         ],
         [
             {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
+        ]
+    ]
+
+    const menu: {title: string, icon: FC<{fontSize: 'small'}>, function: ()=> void}[][] = [
+        [
+            {title: 'Trocar tema', icon: dark_mode ? LightModeOutlined : ModeNightOutlined, function: ()=> setDarkMode((state)=>!state) },
+        ],
+        [
+            {title: 'Log out', icon: Logout, function: ()=> setLogoutModalOpen(true) },
         ]
     ]
 
@@ -110,36 +118,40 @@ export const Static = ()=> {
                 open={Boolean(anchorEl)}
                 onClose={handleAvatarMenuClose}>
 
-                <MenuItem onClick={()=>setDarkMode((state)=>!state)}>
-                    <ListItemIcon>
-                        { dark_mode ?
-                        <LightModeOutlined fontSize={'small'}/> :
-                        <ModeNightOutlined fontSize={'small'}/> }
-                    </ListItemIcon>
-                    Trocar tema
-                </MenuItem>
+                {menu.map((group, group_index)=>(
 
-                <Divider/>
+                <Box key={group_index}>
 
-                <MenuItem onClick={()=>{setLogoutModalOpen(true)}}>
-                    <ListItemIcon>
-                        <Logout fontSize={"small"}/>
-                    </ListItemIcon>
-                    Log out
-                </MenuItem>
+                    {group.map((item, item_index)=>(
+
+                    <MenuItem key={item_index} onClick={item.function}>
+
+                        <ListItemIcon>
+                            <item.icon fontSize={'small'}/>
+                        </ListItemIcon>
+                        {item.title}
+                    </MenuItem>
+
+                    ))}
+
+                   {group.length === group_index + 1 && <Divider/>}
+
+                </Box>
+
+                ))}
 
             </Menu>
 
         </Stack>
         </StyledHeader>
 
-        <StyledMenu className={menu_opened ? '' : 'closed'}>
+        <StyledMenu className={navigation_opened ? '' : 'closed'}>
 
             <Stack padding={1} alignItems={'flex-start'}>
                 <Tooltip title={'Menu'}>
                     <IconButton
-                        onClick={()=>setMenuOpened(!menu_opened)}>
-                        { menu_opened ?
+                        onClick={()=>setNavigationOpened(!navigation_opened)}>
+                        { navigation_opened ?
                         <ArrowForwardIos fontSize={'small'}/> :
                         <ArrowBackIosNew fontSize={'small'}/> }
                     </IconButton>
@@ -193,7 +205,7 @@ export const Static = ()=> {
             </Stack>
         </StyledMenu>
 
-        { menu_opened && <Escape onClick={()=>setMenuOpened(false)}/> }
+        { navigation_opened && <Escape onClick={()=>setNavigationOpened(false)}/> }
 
         <Modal
             open={logout_modal_open}

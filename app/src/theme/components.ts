@@ -42,7 +42,7 @@ export const components = (): Components => ({
     MuiSelect: {
         styleOverrides: {
             outlined: {
-                padding: '5px 15px', // 6 for 'inter'
+                padding: '5px 15px',
             }
         }
     },
