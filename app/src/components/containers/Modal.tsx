@@ -20,44 +20,29 @@ const StyledPaper = styled(Paper)((/*{theme}*/) => ({
 }))
 
 type Props = {
-    children: ReactNode,
-    open: boolean,
-    max_width: number,
-    title: string,
-    handleClose: ()=> void
+    children: ReactNode
+    open: boolean
+    max_width: number
+    title: string
+    handleClose: () => void
 }
 
-export const Modal = ({children, open, handleClose, title = 'Modal', max_width = 400}: Props)=> {
-
+export const Modal = ({ children, open, handleClose, title = 'Modal', max_width = 400 }: Props) => {
     return (
-
         <MuiModal open={open} onClose={handleClose}>
-
-            <StyledPaper sx={{maxWidth: max_width}}>
-
-                <Tooltip
-                    title={"Fechar"}
-                    sx={{position: 'absolute', top: 3, right: 3}}>
-
+            <StyledPaper sx={{ maxWidth: max_width }}>
+                <Tooltip title={'Fechar'} sx={{ position: 'absolute', top: 3, right: 3 }}>
                     <IconButton onClick={handleClose}>
-                        <Close/>
+                        <Close />
                     </IconButton>
-
                 </Tooltip>
 
-                <Typography variant={"subtitle1"}> {title} </Typography>
+                <Typography variant={'subtitle1'}> {title} </Typography>
 
-                <Divider sx={{my: 2}}/>
+                <Divider sx={{ my: 2 }} />
 
-                <Box>
-
-                    {children}
-
-                </Box>
-
+                <Box>{children}</Box>
             </StyledPaper>
-
         </MuiModal>
-
     )
 }

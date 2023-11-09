@@ -14,17 +14,12 @@ const StyledFooter = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.main
 }))
 
-export const Footer = ()=> {
-
+export const Footer = () => {
     const year = new Date().getFullYear()
 
     return (
-
         <StyledFooter>
-
             <Typography fontSize={'9px'}>&copy;{year} - MyReactFramework</Typography>
-
         </StyledFooter>
-
     )
 }

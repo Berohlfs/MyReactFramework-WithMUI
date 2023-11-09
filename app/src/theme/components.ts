@@ -1,16 +1,15 @@
 // https://mui.com/material-ui/customization/theme-components/
 
 // MUI
-import { Components } from "@mui/material"
+import { Components } from '@mui/material'
 
 export const components = (): Components => ({
-
     MuiPaper: {
         defaultProps: {
             elevation: 0
         },
-        styleOverrides:{
-            root: ({theme}: any)=> ({
+        styleOverrides: {
+            root: ({ theme }: any) => ({
                 borderRadius: 8,
                 border: '1px solid',
                 borderColor: theme.palette.divider
@@ -21,13 +20,13 @@ export const components = (): Components => ({
         styleOverrides: {
             head: {
                 fontSize: '12px',
-                padding: '8px 12px',
+                padding: '8px 12px'
             },
             body: {
                 padding: '5px 12px',
-                fontSize: '10px',
+                fontSize: '10px'
             },
-            root: ({theme}: any)=> ({
+            root: ({ theme }: any) => ({
                 whiteSpace: 'nowrap',
                 borderColor: theme.palette.divider,
                 color: theme.palette.text.secondary
@@ -42,21 +41,21 @@ export const components = (): Components => ({
     MuiSelect: {
         styleOverrides: {
             outlined: {
-                padding: '5px 15px',
+                padding: '5px 15px'
             }
         }
     },
     MuiOutlinedInput: {
         styleOverrides: {
             input: {
-                fontSize: 11,
-            },
+                fontSize: 11
+            }
         }
     },
     MuiInputLabel: {
-        styleOverrides:{
-            root:{
-                fontSize: 11,
+        styleOverrides: {
+            root: {
+                fontSize: 11
             },
             shrink: {
                 fontSize: 16
@@ -81,9 +80,9 @@ export const components = (): Components => ({
         }
     },
     MuiFormControlLabel: {
-        styleOverrides:{
-            label:{
-                fontSize: 11,
+        styleOverrides: {
+            label: {
+                fontSize: 11
             }
         }
     },
@@ -124,15 +123,15 @@ export const components = (): Components => ({
     MuiMenuItem: {
         styleOverrides: {
             root: {
-                fontSize: 11,
+                fontSize: 11
             }
         }
     },
     MuiAlert: {
         styleOverrides: {
             root: {
-                border: 'none',
-            },
+                border: 'none'
+            }
         }
     },
     MuiFormLabel: {

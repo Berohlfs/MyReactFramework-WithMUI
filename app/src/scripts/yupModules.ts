@@ -43,4 +43,8 @@ export const cidade = string_required
 export const estado = yup.string().required(messages.required).length(2, messages.invalid)
 
 // 'Outros'
-export const date = yup.string().required(messages.required).notOneOf(['Invalid Date'], messages.invalid).transform((value)=>dayjs(value).format('YYYY-MM-DD'))
+export const date = yup
+    .string()
+    .required(messages.required)
+    .notOneOf(['Invalid Date'], messages.invalid)
+    .transform((value) => dayjs(value).format('YYYY-MM-DD'))

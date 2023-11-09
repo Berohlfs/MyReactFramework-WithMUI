@@ -2,9 +2,34 @@
 import { useState, MouseEvent, useContext, FC } from 'react'
 import { AppContext } from '../../App'
 // MUI
-import { Logout, PersonRounded, ModeNightOutlined, LightModeOutlined, Groups2Outlined, ArrowBackIosNew, ArrowForwardIos } from '@mui/icons-material'
-import { Box, Stack, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Button, Typography, Paper, Tooltip, IconButton, Avatar, Menu, MenuItem } from '@mui/material'
 import { styled } from '@mui/material/styles'
+import {
+    Logout,
+    PersonRounded,
+    ModeNightOutlined,
+    LightModeOutlined,
+    Groups2Outlined,
+    ArrowBackIosNew,
+    ArrowForwardIos
+} from '@mui/icons-material'
+import {
+    Box,
+    Stack,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Divider,
+    Button,
+    Typography,
+    Paper,
+    Tooltip,
+    IconButton,
+    Avatar,
+    Menu,
+    MenuItem
+} from '@mui/material'
 // Libs
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
@@ -24,7 +49,7 @@ const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     borderRight: '0px'
 }))
 
-const StyledMenu = styled(Paper)(() => ({
+const StyledNavigation = styled(Paper)(() => ({
     position: 'fixed',
     zIndex: 5,
     top: 0,
@@ -49,40 +74,39 @@ const Escape = styled(Box)(() => ({
     zIndex: 4
 }))
 
-export const Static = ()=> {
-
+export const Static = () => {
     const navigate = useNavigate()
 
     const [navigation_opened, setNavigationOpened] = useState(false)
 
     const [logout_modal_open, setLogoutModalOpen] = useState(false)
 
-    const {setDarkMode, dark_mode} = useContext(AppContext)!
+    const { setDarkMode, dark_mode } = useContext(AppContext)!
 
-    const navigation: {title: string, icon: FC<{sx: {width: number}}>, path: string}[][] = [
+    const navigation: { title: string; icon: FC<{ sx: { width: number } }>; path: string }[][] = [
         [
-            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
-            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
+            { title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' },
+            { title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' }
         ],
-        [
-            {title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity'},
-        ]
+        [{ title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' }]
     ]
 
-    const menu: {title: string, icon: FC<{fontSize: 'small'}>, function: ()=> void}[][] = [
+    const menu: { title: string; icon: FC<{ fontSize: 'small' }>; function: () => void }[][] = [
         [
-            {title: 'Trocar tema', icon: dark_mode ? LightModeOutlined : ModeNightOutlined, function: ()=> setDarkMode((state)=>!state) },
+            {
+                title: 'Trocar tema',
+                icon: dark_mode ? LightModeOutlined : ModeNightOutlined,
+                function: () => setDarkMode((state) => !state)
+            }
         ],
-        [
-            {title: 'Log out', icon: Logout, function: ()=> setLogoutModalOpen(true) },
-        ]
+        [{ title: 'Log out', icon: Logout, function: () => setLogoutModalOpen(true) }]
     ]
 
     // Handle logout
-    const logout = ()=> {
+    const logout = () => {
         Cookies.remove('access')
         navigate('/')
-        toast.success('Logout realizado com sucesso.', {id: 'logout'})
+        toast.success('Logout realizado com sucesso.', { id: 'logout' })
     }
 
     // Avatar's menu anchor
@@ -96,142 +120,99 @@ export const Static = ()=> {
         setAnchorEl(null)
     }
 
-    return (<>
+    return (
+        <>
+            <StyledHeader>
+                <Stack height={55} direction={'row'} paddingX={1} alignItems={'center'}>
+                    <Tooltip title={'Avatar'}>
+                        <IconButton onClick={handleAvatarClick} size={'small'}>
+                            <Avatar sx={{ width: 32, height: 32 }}>
+                                <PersonRounded />
+                            </Avatar>
+                        </IconButton>
+                    </Tooltip>
 
-        <StyledHeader>
-        <Stack
-            height={55}
-            direction={'row'}
-            paddingX={1}
-            alignItems={'center'}>
+                    <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleAvatarMenuClose}>
+                        {menu.map((group, group_index) => (
+                            <Box key={group_index}>
+                                {group.map((item, item_index) => (
+                                    <MenuItem key={item_index} onClick={item.function}>
+                                        <ListItemIcon>
+                                            <item.icon fontSize={'small'} />
+                                        </ListItemIcon>
+                                        {item.title}
+                                    </MenuItem>
+                                ))}
 
-            <Tooltip title={'Avatar'}>
-                <IconButton onClick={handleAvatarClick} size={'small'}>
-                    <Avatar sx={{width: 32, height: 32}}>
-                        <PersonRounded/>
-                    </Avatar>
-                </IconButton>
-            </Tooltip>
-
-            <Menu
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleAvatarMenuClose}>
-
-                {menu.map((group, group_index)=>(
-
-                <Box key={group_index}>
-
-                    {group.map((item, item_index)=>(
-
-                    <MenuItem key={item_index} onClick={item.function}>
-
-                        <ListItemIcon>
-                            <item.icon fontSize={'small'}/>
-                        </ListItemIcon>
-                        {item.title}
-                    </MenuItem>
-
-                    ))}
-
-                   {group.length === group_index + 1 && <Divider/>}
-
-                </Box>
-
-                ))}
-
-            </Menu>
-
-        </Stack>
-        </StyledHeader>
-
-        <StyledMenu className={navigation_opened ? '' : 'closed'}>
-
-            <Stack padding={1} alignItems={'flex-start'}>
-                <Tooltip title={'Menu'}>
-                    <IconButton
-                        onClick={()=>setNavigationOpened(!navigation_opened)}>
-                        { navigation_opened ?
-                        <ArrowForwardIos fontSize={'small'}/> :
-                        <ArrowBackIosNew fontSize={'small'}/> }
-                    </IconButton>
-                </Tooltip>
-            </Stack>
-
-            <Stack>
-
-                <img
-                    src={logo}
-                    alt={'logo'}
-                    style={{width: 25, display: 'block', margin: '15px auto'}}/>
-
-                {navigation.map((group, group_index)=>(
-
-                <Box key={group_index}>
-
-                    <List>
-
-                        {group.map((item, item_index)=>(
-
-                        <ListItem disablePadding key={item_index}>
-
-                            <ListItemButton onClick={()=> navigate(item.path)}>
-
-                                <ListItemIcon>
-                                    <item.icon sx={{ width: 20 }}/>
-                                </ListItemIcon>
-
-                                <ListItemText
-                                    secondary={item.title}
-                                    secondaryTypographyProps={{
-                                        variant: 'caption',
-                                        style: {whiteSpace: 'nowrap'}
-                                    }}/>
-
-                            </ListItemButton>
-
-                        </ListItem>
-
+                                {group.length === group_index + 1 && <Divider />}
+                            </Box>
                         ))}
+                    </Menu>
+                </Stack>
+            </StyledHeader>
 
-                    </List>
+            <StyledNavigation className={navigation_opened ? '' : 'closed'}>
+                <Stack padding={1} alignItems={'flex-start'}>
+                    <Tooltip title={'Menu'}>
+                        <IconButton onClick={() => setNavigationOpened(!navigation_opened)}>
+                            {navigation_opened ? (
+                                <ArrowForwardIos fontSize={'small'} />
+                            ) : (
+                                <ArrowBackIosNew fontSize={'small'} />
+                            )}
+                        </IconButton>
+                    </Tooltip>
+                </Stack>
 
-                    <Divider sx={{mx:2}}/>
+                <Stack>
+                    <img src={logo} alt={'logo'} style={{ width: 25, display: 'block', margin: '15px auto' }} />
 
-                </Box>
+                    {navigation.map((group, group_index) => (
+                        <Box key={group_index}>
+                            <List>
+                                {group.map((item, item_index) => (
+                                    <ListItem disablePadding key={item_index}>
+                                        <ListItemButton onClick={() => navigate(item.path)}>
+                                            <ListItemIcon>
+                                                <item.icon sx={{ width: 20 }} />
+                                            </ListItemIcon>
 
-                ))}
+                                            <ListItemText
+                                                secondary={item.title}
+                                                secondaryTypographyProps={{
+                                                    variant: 'caption',
+                                                    style: { whiteSpace: 'nowrap' }
+                                                }}
+                                            />
+                                        </ListItemButton>
+                                    </ListItem>
+                                ))}
+                            </List>
 
-            </Stack>
-        </StyledMenu>
+                            <Divider sx={{ mx: 2 }} />
+                        </Box>
+                    ))}
+                </Stack>
+            </StyledNavigation>
 
-        { navigation_opened && <Escape onClick={()=>setNavigationOpened(false)}/> }
+            {navigation_opened && <Escape onClick={() => setNavigationOpened(false)} />}
 
-        <Modal
-            open={logout_modal_open}
-            handleClose={()=>setLogoutModalOpen(false)}
-            title={'Deseja sair?'}
-            max_width={300}>
+            <Modal
+                open={logout_modal_open}
+                handleClose={() => setLogoutModalOpen(false)}
+                title={'Deseja sair?'}
+                max_width={300}>
+                <Typography variant={'caption'}>Você terá que realizar o login novamente.</Typography>
 
-            <Typography variant={'caption'}>
-                Você terá que realizar o login novamente.
-            </Typography>
-
-            <Stack direction={'row'} spacing={1} mt={2}>
-                <Button
-                    fullWidth
-                    onClick={()=>setLogoutModalOpen(false)}>
+                <Stack direction={'row'} spacing={1} mt={2}>
+                    <Button fullWidth onClick={() => setLogoutModalOpen(false)}>
                         Cancelar
-                </Button>
-                <Button
-                    fullWidth
-                    onClick={logout}
-                    color={'error'}>
+                    </Button>
+                    <Button fullWidth onClick={logout} color={'error'}>
                         Sair
-                </Button>
-            </Stack>
-
-        </Modal>
-
-    </>)
+                    </Button>
+                </Stack>
+            </Modal>
+        </>
+    )
 }

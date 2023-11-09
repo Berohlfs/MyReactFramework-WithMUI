@@ -8,12 +8,11 @@ type Props = {
 }
 
 export const OpenLayout = ({ children }: Props) => {
+    return (
+        <>
+            {children}
 
-    return (<>
-
-        {children}
-
-        <Footer />
-
-    </>)
+            <Footer />
+        </>
+    )
 }

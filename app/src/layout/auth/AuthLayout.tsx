@@ -13,31 +13,15 @@ type Props = {
 }
 
 export const AuthLayout = ({ children }: Props) => {
+    return Cookies.get('access') ? (
+        <>
+            <Static />
 
-    return (
-
-        Cookies.get('access') ?
-
-            <>
-            
-                <Static/>
-
-                <Box
-                    position={'relative'}
-                    top={'55px'}
-                    paddingY={3}
-                    paddingLeft={2}
-                    paddingRight={9}>
-
-                    {children}
-
-                </Box>
-
-            </>
-
-            :
-
-            <Navigate to={'/'} />
-
+            <Box position={'relative'} top={'55px'} paddingY={3} paddingLeft={2} paddingRight={9}>
+                {children}
+            </Box>
+        </>
+    ) : (
+        <Navigate to={'/'} />
     )
 }

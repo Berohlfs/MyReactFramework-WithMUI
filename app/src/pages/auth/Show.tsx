@@ -5,7 +5,7 @@ import { Check } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from "@hookform/resolvers/yup"
+import { yupResolver } from '@hookform/resolvers/yup'
 import { object } from 'yup'
 import axios from 'axios'
 // React
@@ -18,7 +18,6 @@ import { CustomTextField } from '../../components/widgets/CustomTextField'
 import { string_required } from '../../scripts/yupModules'
 
 export const EntityShow = () => {
-
     const { id } = useParams()
 
     const navigate = useNavigate()
@@ -27,7 +26,7 @@ export const EntityShow = () => {
 
     // Schema de validação
     const validacao = object({
-        name: string_required,
+        name: string_required
     })
 
     // Hook form
@@ -38,13 +37,13 @@ export const EntityShow = () => {
     const { handleSubmit, control, reset } = useForm<Inputs>({
         resolver: yupResolver(validacao),
         defaultValues: {
-            'name': ''
+            name: ''
         }
     })
 
     // GET - Character
     const getCharacter = async () => {
-        setLoading({render: true})
+        setLoading({ render: true })
         try {
             const res = await axios.get(`https://hp-api.onrender.com/api/character/${id}`)
             reset(res.data[0])
@@ -52,7 +51,7 @@ export const EntityShow = () => {
             console.log(erro)
             toast.error('Erro de API (500)')
         } finally {
-            setLoading({render: false})
+            setLoading({ render: false })
         }
     }
 
@@ -62,53 +61,46 @@ export const EntityShow = () => {
     }, [])
 
     return (
-
         <Paper>
-        <Stack padding={2} spacing={2}>
+            <Stack padding={2} spacing={2}>
+                <Stack
+                    direction={'row'}
+                    justifyContent={'space-between'}
+                    alignItems={'center'}
+                    flexWrap={'wrap'}
+                    spacing={2}
+                    useFlexGap>
+                    <Typography>Personagem</Typography>
 
-            <Stack
-                direction={'row'}
-                justifyContent={'space-between'}
-                alignItems={'center'}
-                flexWrap={'wrap'}
-                spacing={2}
-                useFlexGap>
+                    <Button
+                        endIcon={<Check />}
+                        onClick={handleSubmit((/*data*/) => {
+                            toast.success('Mock save')
+                        })}>
+                        Salvar
+                    </Button>
+                </Stack>
 
-                <Typography>Personagem</Typography>
+                <Divider />
 
-                <Button
-                    endIcon={<Check />}
-                    onClick={handleSubmit((/*data*/) => { toast.success('Mock save') })}>
-                    Salvar
-                </Button>
+                <Stack direction={'row'} flexWrap={'wrap'} alignItems={'flex-start'} useFlexGap spacing={3} padding={1}>
+                    <CustomTextField
+                        name={'name'}
+                        control={control}
+                        label={'Nome'}
+                        width={250}
+                        placeholder={'Digite o nome do personagem'}
+                    />
+                </Stack>
 
+                <DeleteBar
+                    deleteFunc={() => {
+                        toast.success('Mock delete')
+                        navigate('/entity')
+                    }}
+                    instance_name={'personagem'}
+                />
             </Stack>
-
-            <Divider />
-
-            <Stack
-                direction={'row'}
-                flexWrap={'wrap'}
-                alignItems={'flex-start'}
-                useFlexGap
-                spacing={3}
-                padding={1}>
-
-                <CustomTextField
-                    name={'name'}
-                    control={control}
-                    label={'Nome'}
-                    width={250}
-                    placeholder={"Digite o nome do personagem"}/>
-
-            </Stack>
-
-            <DeleteBar
-                deleteFunc={() => { toast.success('Mock delete'); navigate('/entity') }}
-                instance_name={'personagem'} />
-
-        </Stack>
         </Paper>
-
     )
 }

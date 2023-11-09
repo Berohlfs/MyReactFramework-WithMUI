@@ -10,7 +10,6 @@ import { useEffect, useContext, useState } from 'react'
 import { AppContext } from '../../App'
 
 export const EntityIndex = () => {
-
     const { setLoading } = useContext(AppContext)!
 
     // GET - Characters
@@ -23,16 +22,16 @@ export const EntityIndex = () => {
     const [characters, setCharacters] = useState<Characters>([])
 
     const getCharacters = async () => {
-        setLoading({render: true})
+        setLoading({ render: true })
         try {
             const res = await axios.get('https://hp-api.onrender.com/api/characters/house/gryffindor')
             setCharacters(res.data)
             console.log(res.data)
         } catch (erro) {
             console.log(erro)
-            toast.error('API Error.', {id: 'Error'})
+            toast.error('API Error.', { id: 'Error' })
         } finally {
-            setLoading({render: false})
+            setLoading({ render: false })
         }
     }
 
@@ -47,7 +46,6 @@ export const EntityIndex = () => {
     }, [])
 
     return (
-
         <CustomTable
             title={'Personagens'}
             id={'id'}
@@ -55,11 +53,11 @@ export const EntityIndex = () => {
             columns={[
                 { name: 'Nome', key: 'name', show_domain_path: '/entity' },
                 { name: 'Espécie', key: 'species' },
-                { name: 'Gênero', key: 'gender', enum: { 'male': 'primary', 'female': 'secondary' } },
+                { name: 'Gênero', key: 'gender', enum: { male: 'primary', female: 'secondary' } }
             ]}
             data={characters}
             hidden_actions={[{ name: 'Retornar ID', function: action }]}
-            actions={[{ name: 'Retornar ID', function: action, icon: TaskAltOutlined }]} />
-
+            actions={[{ name: 'Retornar ID', function: action, icon: TaskAltOutlined }]}
+        />
     )
 }
