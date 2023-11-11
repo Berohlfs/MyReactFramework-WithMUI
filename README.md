@@ -15,6 +15,7 @@ Meu mini framework pessoal de React.js.
 * `react-hook-form` e `yup` para validação de formulário.
 * `js-cookie` para gerenciar alguns dos cookies da aplicação.
 * `dayjs` para manipulação de datas.
+* `prettier` para formatação de código.
 
 ## Extensões do VS Code recomendadas
 
