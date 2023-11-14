@@ -12,14 +12,7 @@ import { AppContext } from '../../App'
 export const EntityIndex = () => {
     const { setLoading } = useContext(AppContext)!
 
-    // GET - Characters
-    type Character = {
-        [key: string]: string
-    }
-
-    type Characters = Character[]
-
-    const [characters, setCharacters] = useState<Characters>([])
+    const [characters, setCharacters] = useState<{ [key: string]: string }[]>([])
 
     const getCharacters = async () => {
         setLoading({ render: true })

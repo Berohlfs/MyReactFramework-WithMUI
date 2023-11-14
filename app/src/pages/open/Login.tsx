@@ -5,15 +5,15 @@ import { CustomTextField } from '../../components/widgets/CustomTextField'
 import { PageCard } from '../../components/containers/PageCard'
 // Libs
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { object } from 'yup'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import { useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie'
 // React
 import { useContext } from 'react'
 import { AppContext } from '../../App'
 // Scripts
-import { cpf, string_required } from '../../scripts/yupModules'
+import { cpf, string_required } from '../../scripts/zodModules'
 
 export const Login = () => {
     const { setLoading } = useContext(AppContext)!
@@ -21,19 +21,13 @@ export const Login = () => {
     const navigate = useNavigate()
 
     // Schema de validação
-    const validacao = object({
+    const validation = z.object({
         cpf: cpf,
         password: string_required
     })
 
-    // Hook form
-    type Inputs = {
-        cpf: string
-        password: string
-    }
-
-    const { handleSubmit, control } = useForm<Inputs>({
-        resolver: yupResolver(validacao),
+    const { handleSubmit, control } = useForm<z.infer<typeof validation>>({
+        resolver: zodResolver(validation),
         defaultValues: {
             cpf: '',
             password: ''

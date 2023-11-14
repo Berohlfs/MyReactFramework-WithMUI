@@ -5,28 +5,23 @@ import { Add } from '@mui/icons-material'
 import { toast } from 'sonner'
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { object } from 'yup'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 // Components
 import { CustomTextField } from '../../components/widgets/CustomTextField'
 // Scripts
-import { string_required } from '../../scripts/yupModules'
+import { string_required } from '../../scripts/zodModules'
 
 export const EntityCreate = () => {
     const navigate = useNavigate()
 
     // Schema de validação
-    const validacao = object({
+    const validation = z.object({
         name: string_required
     })
 
-    // Hook form
-    type Inputs = {
-        name: string
-    }
-
-    const { handleSubmit, control } = useForm<Inputs>({
-        resolver: yupResolver(validacao),
+    const { handleSubmit, control } = useForm<z.infer<typeof validation>>({
+        resolver: zodResolver(validation),
         defaultValues: {
             name: ''
         }

@@ -5,8 +5,8 @@ import { Check } from '@mui/icons-material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { object } from 'yup'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import axios from 'axios'
 // React
 import { useEffect, useContext } from 'react'
@@ -15,7 +15,7 @@ import { AppContext } from '../../App'
 import { DeleteBar } from '../../components/widgets/DeleteBar'
 import { CustomTextField } from '../../components/widgets/CustomTextField'
 // Scripts
-import { string_required } from '../../scripts/yupModules'
+import { string_required } from '../../scripts/zodModules'
 
 export const EntityShow = () => {
     const { id } = useParams()
@@ -25,17 +25,12 @@ export const EntityShow = () => {
     const { setLoading } = useContext(AppContext)!
 
     // Schema de validação
-    const validacao = object({
+    const validation = z.object({
         name: string_required
     })
 
-    // Hook form
-    type Inputs = {
-        name: string
-    }
-
-    const { handleSubmit, control, reset } = useForm<Inputs>({
-        resolver: yupResolver(validacao),
+    const { handleSubmit, control, reset } = useForm<z.infer<typeof validation>>({
+        resolver: zodResolver(validation),
         defaultValues: {
             name: ''
         }
