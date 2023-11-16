@@ -5,7 +5,7 @@ import MuiMenu from '@mui/material/Menu'
 import { IconButton, MenuItem } from '@mui/material'
 import { MoreHoriz } from '@mui/icons-material'
 
-type HiddenAction = {
+export type HiddenAction = {
     name: string
     function: (id: string) => void
 }

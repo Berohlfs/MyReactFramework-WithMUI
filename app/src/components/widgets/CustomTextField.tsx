@@ -14,14 +14,14 @@ type InputProps = {
 }
 
 export const Mask = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { onChange, ...other } = props
+    const { onChange, name, ...other } = props
 
     return (
         <IMaskInput
             {...other}
             inputRef={ref}
             unmask={true}
-            onAccept={(value) => onChange({ target: { name: props.name, value } })}
+            onAccept={(value) => onChange({ target: { name: name, value } })}
             overwrite
         />
     )
@@ -66,9 +66,10 @@ export const CustomTextField = ({
         <Controller
             name={name}
             control={control}
-            render={({ field, fieldState: { error } }) => (
+            render={({ field: {value, ...other}, fieldState: { error } }) => (
                 <TextField
-                    {...field}
+                    {...other}
+                    value={String(value)}
                     disabled={disabled}
                     fullWidth={full_width}
                     sx={{ width: width }}

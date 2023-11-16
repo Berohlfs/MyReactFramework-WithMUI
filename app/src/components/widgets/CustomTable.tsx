@@ -22,6 +22,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useMemo, FC } from 'react'
 // Components
 import { Menu } from './Menu'
+// Types
+import { type HiddenAction } from './Menu'
 
 type Enum = {
     [key: string]: 'primary' | 'secondary' | 'success' | 'error' | 'warning'
@@ -38,11 +40,6 @@ type Action = {
     name: string
     function: (id: string) => void
     icon: FC<{ sx?: { fontSize: number } }>
-}
-
-type HiddenAction = {
-    name: string
-    function: (id: string) => void
 }
 
 type DataInstance = {
