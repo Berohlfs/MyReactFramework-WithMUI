@@ -1,6 +1,6 @@
 // MUI
 import { Stack, Typography, Button, Divider, Paper } from '@mui/material'
-import { Check } from '@mui/icons-material'
+import { Check, Add } from '@mui/icons-material'
 // Libs
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
@@ -17,7 +17,11 @@ import { CustomTextField } from '../../components/widgets/CustomTextField'
 // Scripts
 import { string_required } from '../../scripts/zodModules'
 
-export const EntityShow = () => {
+type Props = {
+    role: 'create' | 'show'
+}
+
+export const SinglePotion = ({ role }: Props) => {
     const { id } = useParams()
 
     const navigate = useNavigate()
@@ -36,12 +40,24 @@ export const EntityShow = () => {
         }
     })
 
-    // GET - Character
-    const getCharacter = async () => {
+    type Potion = {
+        attributes: {
+            name: string
+        }
+    }
+
+    type Response = {
+        data: {
+            data: Potion
+        }
+    }
+
+    const showPotion = async () => {
         setLoading({ render: true })
         try {
-            const res = await axios.get(`https://hp-api.onrender.com/api/character/${id}`)
-            reset(res.data[0])
+            const res: Response = await axios.get(`https://api.potterdb.com/v1/potions/${id}`)
+            reset({name: res.data.data.attributes.name})
+            console.log(res.data)
         } catch (erro) {
             console.log(erro)
             toast.error('Erro de API (500)')
@@ -50,10 +66,23 @@ export const EntityShow = () => {
         }
     }
 
-    // OnLoad
+    const mockCreate = ()=> {
+        toast.success('Criado', {id: 'created'})
+        navigate(`/potions/af984889-3b1f-4b43-a49c-71c45d6fc012`)
+    }
+
+    const mockDelete = ()=> {
+        toast.success('Excluído', {id: 'deleted'})
+        navigate('/potions')
+    }
+
+    const mockUpdate = ()=> {
+        toast.success('Atualizado', {id: 'updated'})
+    }
+
     useEffect(() => {
-        getCharacter()
-    }, [])
+        role === 'show' && showPotion()
+    }, [role])
 
     return (
         <Paper>
@@ -65,14 +94,14 @@ export const EntityShow = () => {
                     flexWrap={'wrap'}
                     spacing={2}
                     useFlexGap>
-                    <Typography>Personagem</Typography>
+                    <Typography>Poção</Typography>
 
                     <Button
-                        endIcon={<Check />}
+                        endIcon={role === "show" ? <Check/> : <Add/>}
                         onClick={handleSubmit((/*data*/) => {
-                            toast.success('Mock save')
+                            role === 'show' ? mockUpdate() : mockCreate()
                         })}>
-                        Salvar
+                        {role === "show" ? 'Salvar' : 'Criar'}
                     </Button>
                 </Stack>
 
@@ -84,17 +113,13 @@ export const EntityShow = () => {
                         control={control}
                         label={'Nome'}
                         width={250}
-                        placeholder={'Digite o nome do personagem'}
+                        placeholder={'Digite o nome da poção'}
                     />
                 </Stack>
 
-                <DeleteBar
-                    deleteFunc={() => {
-                        toast.success('Mock delete')
-                        navigate('/entity')
-                    }}
-                    instance_name={'personagem'}
-                />
+                {role === 'show' &&
+                <DeleteBar deleteFunc={mockDelete} instance_name={'poção'}/> }
+
             </Stack>
         </Paper>
     )

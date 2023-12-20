@@ -5,13 +5,6 @@ import axios from 'axios'
 import { toast } from 'sonner'
 import Cookies from 'js-cookie'
 
-// Essa é uma instância de axios personalizada para meu uso pessoal.
-// Sua funcionalidade é compatível com as API's que desenvolvo.
-
-// ====== EXEMPLO DE UTILIZAÇÃO ======
-// import { APIInstance } from '?'
-// const res = await APIInstance(navigate, false).get('?')
-
 export const APIInstance = (navigate?: (path: string) => void, success_toast = true) => {
     const instance = axios.create({
         baseURL: 'backend_url',

@@ -7,6 +7,7 @@ import {
     TableContainer,
     TableHead,
     TableRow,
+    TablePagination,
     IconButton,
     Chip,
     Tooltip,
@@ -46,18 +47,44 @@ type DataInstance = {
     [key: string]: any
 }
 
+type PaginationData = {
+    records: number,
+    current: number
+}
+
 type Props = {
     title: string
     add_link?: string
     id: string
     data: DataInstance[]
+    pagination_data?: PaginationData
     columns: Column[]
     actions?: Action[]
     hidden_actions?: HiddenAction[]
+    fetchFunction: (page: number)=> void
 }
 
-export const CustomTable = ({ title, add_link, id, data, columns, actions, hidden_actions }: Props) => {
+export const CustomTable = ({ title, add_link, id, data, pagination_data, columns, actions, hidden_actions, fetchFunction }: Props) => {
     const navigate = useNavigate()
+
+    const getCellData = (key: string, row_data: DataInstance): string | number => {
+        const error = 'Sem dado'
+        const result = key.split('.').reduce((accumulator: DataInstance | string | number | boolean, prop) => {
+            if(typeof accumulator === 'string' || typeof accumulator === 'number' || typeof accumulator === 'boolean'){
+                return accumulator
+            }
+            if(!accumulator[prop]){
+                return error
+            }
+            return accumulator[prop]
+        }, row_data)
+
+        if(typeof result === 'object' || typeof result === 'boolean'){
+            return error
+        }
+
+        return result
+    }
 
     const table = useMemo(
         () => (
@@ -66,7 +93,7 @@ export const CustomTable = ({ title, add_link, id, data, columns, actions, hidde
                     <Typography>{title}</Typography>
 
                     {add_link && (
-                        <Button variant={'outlined'} endIcon={<Add />} onClick={() => navigate(add_link)}>
+                        <Button endIcon={<Add />} onClick={() => navigate(add_link)}>
                             Adicionar
                         </Button>
                     )}
@@ -99,15 +126,15 @@ export const CustomTable = ({ title, add_link, id, data, columns, actions, hidde
                                     )}
 
                                     {columns.map((column, index) => (
-                                        <TableCell key={index}>
+                                        <TableCell key={index} sx={{maxWidth: 150, overflow: 'hidden'}}>
                                             {column.enum ? (
-                                                <Chip color={column.enum[row[column.key]]} label={row[column.key]} />
+                                                <Chip color={column.enum[getCellData(column.key, row)]} label={getCellData(column.key, row)} />
                                             ) : column.show_domain_path ? (
                                                 <Link to={`${column.show_domain_path}/${row[id]}`}>
-                                                    {row[column.key]}
+                                                    {getCellData(column.key, row)}
                                                 </Link>
                                             ) : (
-                                                row[column.key]
+                                                getCellData(column.key, row)
                                             )}
                                         </TableCell>
                                     ))}
@@ -127,6 +154,14 @@ export const CustomTable = ({ title, add_link, id, data, columns, actions, hidde
                         </TableBody>
                     </Table>
                 </TableContainer>
+                { pagination_data &&
+                <TablePagination
+                    component={"div"}
+                    rowsPerPage={15}
+                    rowsPerPageOptions={[15]}
+                    page={pagination_data.current - 1}
+                    onPageChange={(e: unknown, page)=> fetchFunction(page + 1)}
+                    count={pagination_data.records}/> }
             </Paper>
         ),
         [data]

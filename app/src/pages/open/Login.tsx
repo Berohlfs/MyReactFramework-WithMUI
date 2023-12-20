@@ -40,7 +40,7 @@ export const Login = () => {
         setTimeout(() => {
             setLoading({ render: false })
             Cookies.set('access', 'access')
-            navigate('/entity')
+            navigate('/potions')
         }, 1500)
     }
 

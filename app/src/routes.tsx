@@ -2,9 +2,8 @@
 import { Login } from './pages/open/Login'
 import { NotFound } from './pages/open/NotFound'
 // Auth
-import { EntityIndex } from './pages/auth/Index'
-import { EntityShow } from './pages/auth/Show'
-import { EntityCreate } from './pages/auth/Create'
+import { ListPotions } from './pages/auth/List'
+import { SinglePotion } from './pages/auth/Single'
 
 export const open_routes = [
     { path: '/', component: <Login /> },
@@ -12,7 +11,7 @@ export const open_routes = [
 ]
 
 export const auth_routes = [
-    { path: '/entity', component: <EntityIndex /> },
-    { path: '/entity/:id', component: <EntityShow /> },
-    { path: '/new/entity', component: <EntityCreate /> }
+    { path: '/potions', component: <ListPotions /> },
+    { path: '/potions/:id', component: <SinglePotion role={'show'}/> },
+    { path: '/new/potion', component: <SinglePotion role={'create'}/> },
 ]

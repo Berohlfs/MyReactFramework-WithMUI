@@ -85,10 +85,10 @@ export const Static = () => {
 
     const navigation: { title: string; icon: FC<{ sx: { width: number } }>; path: string }[][] = [
         [
-            { title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' },
-            { title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' }
+            { title: 'Lista de poções', icon: Groups2Outlined, path: '/potions' },
+            { title: 'Lista de poções', icon: Groups2Outlined, path: '/potions' }
         ],
-        [{ title: 'Lista de personagens', icon: Groups2Outlined, path: '/entity' }]
+        [{ title: 'Lista de poções', icon: Groups2Outlined, path: '/potions' }]
     ]
 
     const menu: { title: string; icon: FC<{ fontSize: 'small' }>; function: () => void }[][] = [
