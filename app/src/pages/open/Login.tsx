@@ -13,18 +13,14 @@ import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { AppContext } from '../../App'
 // Scripts
-import { cpf, string_required } from '../../scripts/zodModules'
+import { loginSchema } from '../../scripts/zodFormSchemas'
 
 export const Login = () => {
     const { setLoading } = useContext(AppContext)!
 
     const navigate = useNavigate()
 
-    // Schema de validação
-    const validation = z.object({
-        cpf: cpf,
-        password: string_required
-    })
+    const validation = loginSchema()
 
     const { handleSubmit, control } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
@@ -34,7 +30,6 @@ export const Login = () => {
         }
     })
 
-    // onSubmit
     const login = async (/*data: Inputs*/) => {
         setLoading({ render: true, text: 'Entrando' })
         setTimeout(() => {

@@ -6,7 +6,7 @@ export const NotFound = () => {
         <PageCard
             title={'Erro 404'}
             caption={'Página não encontrada.'}
-            link={{ text: 'Voltar ao início?', path: '/entity', label: 'Voltar!' }}
+            link={{ text: 'Voltar ao início?', path: '/potions', label: 'Voltar!' }}
         />
     )
 }

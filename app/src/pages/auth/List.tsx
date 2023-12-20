@@ -17,10 +17,10 @@ export const ListPotions = () => {
             attributes: {
                 name: string
             }
-        }[],
+        }[]
         meta: {
             pagination: {
-                current: number,
+                current: number
                 records: number
             }
         }
@@ -35,7 +35,9 @@ export const ListPotions = () => {
     const indexPotions = async (page: number = 1) => {
         setLoading({ render: true })
         try {
-            const res: Response = await axios.get(`https://api.potterdb.com/v1/potions?page[size]=15&page[number]=${page}`)
+            const res: Response = await axios.get(
+                `https://api.potterdb.com/v1/potions?page[size]=15&page[number]=${page}`
+            )
             setPotions(res.data)
             console.log(res.data)
         } catch (erro) {
@@ -62,22 +64,28 @@ export const ListPotions = () => {
             add_link={'/new/potion'}
             columns={[
                 { name: 'Nome', key: 'attributes.name', show_domain_path: '/potions' },
-                { name: 'Ingredientes', key: 'attributes.ingredients'},
-                { name: 'Dificuldade', key: 'attributes.difficulty',
+                { name: 'Ingredientes', key: 'attributes.ingredients' },
+                {
+                    name: 'Dificuldade',
+                    key: 'attributes.difficulty',
                     enum: {
-                        'Advanced': 'error',
+                        Advanced: 'error',
                         'Moderate to Advanced': 'warning',
-                        'Moderate': 'primary',
+                        Moderate: 'primary',
                         'Beginner to Moderate': 'secondary',
-                        'Beginner': 'success',
+                        Beginner: 'success'
                     }
                 }
             ]}
             data={potions ? potions.data : []}
-            pagination_data={potions ? {
-                records: potions.meta.pagination.records,
-                current: potions.meta.pagination.current
-            } : undefined}
+            pagination_data={
+                potions
+                    ? {
+                          records: potions.meta.pagination.records,
+                          current: potions.meta.pagination.current
+                      }
+                    : undefined
+            }
             fetchFunction={indexPotions}
             hidden_actions={[{ name: 'Retornar ID', function: action }]}
             actions={[{ name: 'Retornar ID', function: action, icon: TaskAltOutlined }]}

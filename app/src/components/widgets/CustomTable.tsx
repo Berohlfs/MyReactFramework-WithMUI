@@ -48,7 +48,7 @@ type DataInstance = {
 }
 
 type PaginationData = {
-    records: number,
+    records: number
     current: number
 }
 
@@ -61,25 +61,39 @@ type Props = {
     columns: Column[]
     actions?: Action[]
     hidden_actions?: HiddenAction[]
-    fetchFunction: (page: number)=> void
+    fetchFunction: (page: number) => void
 }
 
-export const CustomTable = ({ title, add_link, id, data, pagination_data, columns, actions, hidden_actions, fetchFunction }: Props) => {
+export const CustomTable = ({
+    title,
+    add_link,
+    id,
+    data,
+    pagination_data,
+    columns,
+    actions,
+    hidden_actions,
+    fetchFunction
+}: Props) => {
     const navigate = useNavigate()
 
     const getCellData = (key: string, row_data: DataInstance): string | number => {
         const error = 'Sem dado'
         const result = key.split('.').reduce((accumulator: DataInstance | string | number | boolean, prop) => {
-            if(typeof accumulator === 'string' || typeof accumulator === 'number' || typeof accumulator === 'boolean'){
+            if (
+                typeof accumulator === 'string' ||
+                typeof accumulator === 'number' ||
+                typeof accumulator === 'boolean'
+            ) {
                 return accumulator
             }
-            if(!accumulator[prop]){
+            if (!accumulator[prop]) {
                 return error
             }
             return accumulator[prop]
         }, row_data)
 
-        if(typeof result === 'object' || typeof result === 'boolean'){
+        if (typeof result === 'object' || typeof result === 'boolean') {
             return error
         }
 
@@ -126,9 +140,12 @@ export const CustomTable = ({ title, add_link, id, data, pagination_data, column
                                     )}
 
                                     {columns.map((column, index) => (
-                                        <TableCell key={index} sx={{maxWidth: 150, overflow: 'hidden'}}>
+                                        <TableCell key={index} sx={{ maxWidth: 150, overflow: 'hidden' }}>
                                             {column.enum ? (
-                                                <Chip color={column.enum[getCellData(column.key, row)]} label={getCellData(column.key, row)} />
+                                                <Chip
+                                                    color={column.enum[getCellData(column.key, row)]}
+                                                    label={getCellData(column.key, row)}
+                                                />
                                             ) : column.show_domain_path ? (
                                                 <Link to={`${column.show_domain_path}/${row[id]}`}>
                                                     {getCellData(column.key, row)}
@@ -154,14 +171,16 @@ export const CustomTable = ({ title, add_link, id, data, pagination_data, column
                         </TableBody>
                     </Table>
                 </TableContainer>
-                { pagination_data &&
-                <TablePagination
-                    component={"div"}
-                    rowsPerPage={15}
-                    rowsPerPageOptions={[15]}
-                    page={pagination_data.current - 1}
-                    onPageChange={(e: unknown, page)=> fetchFunction(page + 1)}
-                    count={pagination_data.records}/> }
+                {pagination_data && (
+                    <TablePagination
+                        component={'div'}
+                        rowsPerPage={15}
+                        rowsPerPageOptions={[15]}
+                        page={pagination_data.current - 1}
+                        onPageChange={(e: unknown, page) => fetchFunction(page + 1)}
+                        count={pagination_data.records}
+                    />
+                )}
             </Paper>
         ),
         [data]

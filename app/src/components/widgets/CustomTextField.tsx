@@ -66,7 +66,7 @@ export const CustomTextField = ({
         <Controller
             name={name}
             control={control}
-            render={({ field: {value, ...other}, fieldState: { error } }) => (
+            render={({ field: { value, ...other }, fieldState: { error } }) => (
                 <TextField
                     {...other}
                     value={String(value)}

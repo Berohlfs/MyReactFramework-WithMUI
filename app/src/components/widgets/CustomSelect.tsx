@@ -4,7 +4,7 @@ import { FormControl, InputLabel, FormHelperText, MenuItem, Select } from '@mui/
 import { Controller, FieldError, Control } from 'react-hook-form'
 
 type Option = {
-    value: string
+    value: string | number
     label: string
 }
 

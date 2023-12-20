@@ -12,6 +12,6 @@ export const open_routes = [
 
 export const auth_routes = [
     { path: '/potions', component: <ListPotions /> },
-    { path: '/potions/:id', component: <SinglePotion role={'show'}/> },
-    { path: '/new/potion', component: <SinglePotion role={'create'}/> },
+    { path: '/potions/:id', component: <SinglePotion role={'show'} /> },
+    { path: '/new/potion', component: <SinglePotion role={'create'} /> }
 ]

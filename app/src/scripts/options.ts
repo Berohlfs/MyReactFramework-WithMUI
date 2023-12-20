@@ -1,6 +1,11 @@
-// Select input options
+// Mock select and radiogroup options
 
-export const species = [
-    { label: 'Tigre', value: '1' },
-    { label: 'Leão', value: '2' }
+export const mock_select = [
+    { label: 'Option 1', value: 1 },
+    { label: 'Option 1', value: 2 }
+]
+
+export const mock_radiogroup = [
+    { label: 'Option 1', value: '1' },
+    { label: 'Option 1', value: '2' }
 ]
