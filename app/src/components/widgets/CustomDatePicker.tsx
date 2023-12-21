@@ -11,7 +11,7 @@ type Props = {
     width?: number
 }
 
-export const CustomDatePicker = ({ control, label, name, width }: Props) => {
+export const CustomDatePicker = ({ control, label, name, width = 180 }: Props) => {
     return (
         <Controller
             name={name}

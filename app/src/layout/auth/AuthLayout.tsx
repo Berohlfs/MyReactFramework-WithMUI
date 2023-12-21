@@ -17,8 +17,15 @@ export const AuthLayout = ({ children }: Props) => {
         <>
             <Static />
 
-            <Box position={'relative'} top={'55px'} paddingY={3} paddingLeft={2} paddingRight={9}>
+            <Box
+                position={'relative'}
+                top={'55px'}
+                paddingY={3}
+                paddingLeft={2}
+                paddingRight={9}>
+
                 {children}
+
             </Box>
         </>
     ) : (

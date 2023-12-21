@@ -22,12 +22,14 @@ export const Login = () => {
 
     const validation = loginSchema()
 
+    const default_values = {
+        cpf: '',
+        password: ''
+    }
+
     const { handleSubmit, control } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
-        defaultValues: {
-            cpf: '',
-            password: ''
-        }
+        defaultValues: default_values
     })
 
     const login = async (/*data: Inputs*/) => {

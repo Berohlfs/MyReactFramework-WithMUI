@@ -18,7 +18,7 @@ type Props = {
     full_width?: true
 }
 
-export const CustomSelect = ({ control, form_control_error, label, name, options, full_width, width }: Props) => {
+export const CustomSelect = ({ control, form_control_error, label, name, options, full_width, width = 180 }: Props) => {
     return (
         <FormControl sx={{ width: width }} fullWidth={full_width}>
             <InputLabel error={form_control_error ? true : false}>{label}</InputLabel>

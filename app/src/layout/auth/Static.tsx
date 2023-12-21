@@ -97,12 +97,11 @@ export const Static = () => {
                 title: 'Trocar tema',
                 icon: dark_mode ? LightModeOutlined : ModeNightOutlined,
                 function: () => setDarkMode((state) => !state)
-            }
+            },
         ],
-        [{ title: 'Log out', icon: Logout, function: () => setLogoutModalOpen(true) }]
+        [{ title: 'Sair', icon: Logout, function: () => setLogoutModalOpen(true) }]
     ]
 
-    // Handle logout
     const logout = () => {
         Cookies.remove('access')
         navigate('/')
@@ -144,7 +143,7 @@ export const Static = () => {
                                     </MenuItem>
                                 ))}
 
-                                {group.length === group_index + 1 && <Divider />}
+                                {group_index + 1 !== menu.length  && <Divider />}
                             </Box>
                         ))}
                     </Menu>
@@ -165,7 +164,10 @@ export const Static = () => {
                 </Stack>
 
                 <Stack>
-                    <img src={logo} alt={'logo'} style={{ width: 25, display: 'block', margin: '15px auto' }} />
+                    <img
+                        src={logo}
+                        alt={'logo'}
+                        style={{ width: 25, display: 'block', margin: '15px auto' }} />
 
                     {navigation.map((group, group_index) => (
                         <Box key={group_index}>

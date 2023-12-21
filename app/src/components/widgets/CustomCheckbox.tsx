@@ -18,7 +18,7 @@ export const CustomCheckbox = ({ control, label, name, form_control_error }: Pro
             render={({ field: { value, ...other } }) => (
                 <FormControlLabel
                     control={<Checkbox {...other} value={Boolean(value)} checked={Boolean(value)} />}
-                    label={label + (form_control_error ? ' ~ missing default value ~' : '')}
+                    label={label + (form_control_error ? ' ~ possible missing default value ~' : '')}
                 />
             )}
         />

@@ -35,15 +35,17 @@ export const SinglePotion = ({ role }: Props) => {
 
     const validation = potionSchema()
 
+    const default_values = {
+        name: '',
+        select: 1,
+        checkbox: true,
+        datepicker: '10-30-2023',
+        radiogroup: '1'
+    }
+
     const { handleSubmit, control, reset, formState: { errors} } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
-        defaultValues: {
-            name: '',
-            select: 1,
-            checkbox: true,
-            datepicker: '10-30-2023',
-            radiogroup: '1'
-        }
+        defaultValues: default_values
     })
 
     type Potion = {
@@ -88,9 +90,8 @@ export const SinglePotion = ({ role }: Props) => {
 
     useEffect(() => {
         role === 'show' && showPotion()
+        role === 'create' && reset(default_values)
     }, [role])
-
-    {console.log(errors)}
 
     return (
         <Paper>
@@ -133,14 +134,12 @@ export const SinglePotion = ({ role }: Props) => {
                         options={mock_select}
                         control={control}
                         label={'Select'}
-                        width={180}
                         name={'select'}/>
 
                     <CustomDatePicker
                         control={control}
                         label={'Date picker'}
-                        name={'datepicker'}
-                        width={180}/>
+                        name={'datepicker'}/>
 
                     <CustomCheckbox
                         form_control_error={errors.checkbox}
