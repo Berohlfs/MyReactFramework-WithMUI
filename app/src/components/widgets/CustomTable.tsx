@@ -83,14 +83,14 @@ export const CustomTable = ({
         const result = split_key.reduce((accumulator: JSONDataInstance | string | number | boolean | (string | number | boolean)[], prop) => {
 
             if(typeof accumulator === 'object' && !(accumulator instanceof Array) && accumulator[prop]){
-            return accumulator[prop]
+                return accumulator[prop]
             }else{
-            return accumulator
+                return accumulator
             }
 
         }, row_data)
 
-        if (typeof result !== 'string' || typeof result !== 'number') {
+        if (typeof result !== 'string' && typeof result !== 'number') {
             return error
         }
 
