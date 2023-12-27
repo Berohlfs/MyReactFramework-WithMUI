@@ -43,8 +43,8 @@ type Action = {
     icon: FC<{ sx?: { fontSize: number } }>
 }
 
-type DataInstance = {
-    [key: string]: any
+export type JSONDataInstance = {
+    [key: string]: string | number | boolean | JSONDataInstance | (string | number | boolean)[]
 }
 
 type PaginationData = {
@@ -56,7 +56,7 @@ type Props = {
     title: string
     add_link?: string
     id: string
-    data: DataInstance[]
+    data: JSONDataInstance[]
     pagination_data?: PaginationData
     columns: Column[]
     actions?: Action[]
@@ -77,27 +77,24 @@ export const CustomTable = ({
 }: Props) => {
     const navigate = useNavigate()
 
-    const getCellData = (key: string, row_data: DataInstance): string | number => {
+    const getCellData = (key: string, row_data: JSONDataInstance): string => {
         const error = 'Sem dado'
-        const result = key.split('.').reduce((accumulator: DataInstance | string | number | boolean, prop) => {
-            if (
-                typeof accumulator === 'string' ||
-                typeof accumulator === 'number' ||
-                typeof accumulator === 'boolean'
-            ) {
-                return accumulator
-            }
-            if (!accumulator[prop]) {
-                return error
-            }
+        const split_key = key.split('.')
+        const result = split_key.reduce((accumulator: JSONDataInstance | string | number | boolean | (string | number | boolean)[], prop) => {
+
+            if(typeof accumulator === 'object' && !(accumulator instanceof Array) && accumulator[prop]){
             return accumulator[prop]
+            }else{
+            return accumulator
+            }
+
         }, row_data)
 
-        if (typeof result === 'object' || typeof result === 'boolean') {
+        if (typeof result !== 'string' || typeof result !== 'number') {
             return error
         }
 
-        return result
+        return String(result)
     }
 
     const table = useMemo(
@@ -132,10 +129,10 @@ export const CustomTable = ({
 
                         <TableBody>
                             {data.map((row) => (
-                                <TableRow key={row[id]}>
+                                <TableRow key={getCellData(id, row)}>
                                     {hidden_actions && (
                                         <TableCell>
-                                            <Menu id={row[id]} hidden_actions={hidden_actions} />
+                                            <Menu id={getCellData(id, row)} hidden_actions={hidden_actions} />
                                         </TableCell>
                                     )}
 
@@ -160,7 +157,7 @@ export const CustomTable = ({
                                         actions.map((action, index) => (
                                             <TableCell key={index}>
                                                 <Tooltip placement={'left'} title={action.name}>
-                                                    <IconButton onClick={() => action.function(row[id])}>
+                                                    <IconButton onClick={() => action.function(getCellData(id, row))}>
                                                         <action.icon sx={{ fontSize: 15 }} />
                                                     </IconButton>
                                                 </Tooltip>
