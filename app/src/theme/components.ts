@@ -137,7 +137,7 @@ export const components = (): Components => ({
     MuiFormLabel: {
         styleOverrides: {
             root: {
-                fontSize: 11
+                fontSize: 10
             }
         }
     },

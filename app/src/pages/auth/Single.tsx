@@ -1,5 +1,5 @@
 // MUI
-import { Stack, Typography, Button, Divider, Paper } from '@mui/material'
+import { Button, Paper } from '@mui/material'
 import { Check, Add } from '@mui/icons-material'
 // Libs
 import { useNavigate, useParams } from 'react-router-dom'
@@ -18,9 +18,12 @@ import { CustomCheckbox } from '../../components/widgets/CustomCheckbox'
 import { CustomDatePicker } from '../../components/widgets/CustomDatePicker'
 import { CustomSelect } from '../../components/widgets/CustomSelect'
 import { CustomRadioGroup } from '../../components/widgets/CustomRadioGroup'
-// Scripts
-import { potionSchema } from '../../scripts/zodFormSchemas'
-import { mock_select, mock_radiogroup } from '../../scripts/options'
+import { FormSubtitle, FormHeaderStack, VStack, FormBodyStack } from '../../components/containers/CustomStacks'
+// Validation
+import { potionSchema } from '../../validation/zodSchemas'
+import { potion_default_values } from '../../validation/defaultValues'
+// Utils
+import { mock_select, mock_radiogroup } from '../../utils/options'
 
 type Props = {
     role: 'create' | 'show'
@@ -35,17 +38,9 @@ export const SinglePotion = ({ role }: Props) => {
 
     const validation = potionSchema()
 
-    const default_values = {
-        name: '',
-        select: 1,
-        checkbox: true,
-        datepicker: '10-30-2023',
-        radiogroup: '1'
-    }
-
     const { handleSubmit, control, reset, formState: { errors} } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
-        defaultValues: default_values
+        defaultValues: potion_default_values
     })
 
     type Potion = {
@@ -90,21 +85,13 @@ export const SinglePotion = ({ role }: Props) => {
 
     useEffect(() => {
         role === 'show' && showPotion()
-        role === 'create' && reset(default_values)
+        role === 'create' && reset(potion_default_values)
     }, [role])
 
     return (
         <Paper>
-            <Stack padding={2} spacing={2}>
-                <Stack
-                    direction={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    flexWrap={'wrap'}
-                    spacing={2}
-                    useFlexGap>
-                    <Typography>Poção</Typography>
-
+            <VStack>
+                <FormHeaderStack title={'Poção'}>
                     <Button
                         endIcon={role === 'show' ? <Check /> : <Add />}
                         onClick={handleSubmit((/*data*/) => {
@@ -112,15 +99,11 @@ export const SinglePotion = ({ role }: Props) => {
                         })}>
                         {role === 'show' ? 'Salvar' : 'Criar'}
                     </Button>
-                </Stack>
+                </FormHeaderStack>
 
-                <Divider />
+                <FormSubtitle divider={false}subtitle={'1º parte'}/>
 
-                <Stack
-                    flexWrap={'wrap'}
-                    alignItems={'flex-start'}
-                    useFlexGap
-                    spacing={3}>
+                <FormBodyStack>
 
                     <CustomTextField
                         name={'name'}
@@ -147,6 +130,12 @@ export const SinglePotion = ({ role }: Props) => {
                         label={'Checkbox'}
                         name={'checkbox'}/>
 
+                </FormBodyStack>
+
+                <FormSubtitle subtitle={'2º parte'}/>
+
+                <FormBodyStack>
+
                     <CustomRadioGroup
                         form_control_error={errors.radiogroup}
                         options={mock_radiogroup}
@@ -154,10 +143,10 @@ export const SinglePotion = ({ role }: Props) => {
                         label={'Radio group'}
                         name={'radiogroup'}/>
 
-                </Stack>
+                </FormBodyStack>
 
                 {role === 'show' && <DeleteBar deleteFunc={mockDelete} instance_name={'poção'} />}
-            </Stack>
+            </VStack>
         </Paper>
     )
 }

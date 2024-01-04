@@ -3,6 +3,7 @@ import { Stack, Button } from '@mui/material'
 // Components
 import { CustomTextField } from '../../components/widgets/CustomTextField'
 import { PageCard } from '../../components/containers/PageCard'
+import { VStack } from '../../components/containers/CustomStacks'
 // Libs
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -12,8 +13,9 @@ import Cookies from 'js-cookie'
 // React
 import { useContext } from 'react'
 import { AppContext } from '../../App'
-// Scripts
-import { loginSchema } from '../../scripts/zodFormSchemas'
+// Validation
+import { loginSchema } from '../../validation/zodSchemas'
+import { login_default_values } from '../../validation/defaultValues'
 
 export const Login = () => {
     const { setLoading } = useContext(AppContext)!
@@ -22,18 +24,13 @@ export const Login = () => {
 
     const validation = loginSchema()
 
-    const default_values = {
-        cpf: '',
-        password: ''
-    }
-
     const { handleSubmit, control } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
-        defaultValues: default_values
+        defaultValues: login_default_values
     })
 
     const login = async (/*data: Inputs*/) => {
-        setLoading({ render: true, text: 'Entrando' })
+        setLoading({ render: true })
         setTimeout(() => {
             setLoading({ render: false })
             Cookies.set('access', 'access')
@@ -48,7 +45,7 @@ export const Login = () => {
             caption={'Seja bem vindo!'}
             link={{ text: 'Ainda não é cadastrado?', path: '/register', label: 'Cadastre-se!' }}>
             <form onSubmit={handleSubmit((/*data*/) => login())}>
-                <Stack spacing={2}>
+                <VStack padding={false}>
                     <CustomTextField
                         control={control}
                         name={'cpf'}
@@ -66,7 +63,7 @@ export const Login = () => {
                     />
 
                     <Button type={'submit'}>Login</Button>
-                </Stack>
+                </VStack>
             </form>
         </PageCard>
     )

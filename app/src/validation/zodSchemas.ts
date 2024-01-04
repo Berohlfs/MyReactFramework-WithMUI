@@ -2,7 +2,7 @@
 
 // Libs
 import { z } from 'zod'
-import { string_required, date, number_required, boolean_required, cpf } from './zodFormModules'
+import { string_required, date, number_required, boolean_required, cpf } from './zodModules'
 
 export const potionSchema = ()=> {
     return (

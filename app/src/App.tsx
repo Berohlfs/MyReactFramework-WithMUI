@@ -23,7 +23,7 @@ import { useState, createContext, Dispatch, SetStateAction } from 'react'
 
 type Loading = {
     render: boolean
-    text?: string
+    text?: 'Criando' | 'Excluindo'
 }
 
 type AppValues = {
