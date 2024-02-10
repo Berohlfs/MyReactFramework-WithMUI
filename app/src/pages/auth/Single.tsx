@@ -20,8 +20,7 @@ import { CustomSelect } from '../../components/widgets/CustomSelect'
 import { CustomRadioGroup } from '../../components/widgets/CustomRadioGroup'
 import { FormSubtitle, FormHeaderStack, VStack, FormBodyStack } from '../../components/containers/CustomStacks'
 // Validation
-import { potionSchema } from '../../validation/zodSchemas'
-import { potion_default_values } from '../../validation/defaultValues'
+import { potionSchema, potion_default_values} from '../../validation/potion'
 // Utils
 import { mock_select, mock_radiogroup } from '../../utils/options'
 

@@ -14,8 +14,7 @@ import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { AppContext } from '../../App'
 // Validation
-import { loginSchema } from '../../validation/zodSchemas'
-import { login_default_values } from '../../validation/defaultValues'
+import { loginSchema, login_default_values } from '../../validation/login'
 
 export const Login = () => {
     const { setLoading } = useContext(AppContext)!

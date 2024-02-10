@@ -37,7 +37,7 @@ import { toast } from 'sonner'
 // Components
 import { Modal } from '../../components/containers/Modal'
 // Images
-import logo from '../../images/logo.webp'
+import logo from '../../assets/logo.webp'
 
 const StyledHeader = styled(Paper)((/*{theme}*/) => ({
     position: 'fixed',

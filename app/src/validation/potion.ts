@@ -1,8 +1,6 @@
-// Zod validation modules
-
 // Libs
 import { z } from 'zod'
-import { string_required, date, number_required, boolean_required, cpf } from './zodModules'
+import { string_required, date, number_required, boolean_required } from '../utils/zodModules'
 
 export const potionSchema = ()=> {
     return (
@@ -16,11 +14,13 @@ export const potionSchema = ()=> {
     )
 }
 
-export const loginSchema = ()=> {
-    return (
-        z.object({
-            cpf: cpf,
-            password: string_required
-        })
-    )
+export const potion_default_values = {
+    name: '',
+    select: 1,
+    checkbox: true,
+    datepicker: '10-30-2023',
+    radiogroup: '1'
 }
+
+
+
