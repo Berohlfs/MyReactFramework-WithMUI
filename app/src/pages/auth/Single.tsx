@@ -18,7 +18,7 @@ import { CustomCheckbox } from '../../components/widgets/CustomCheckbox'
 import { CustomDatePicker } from '../../components/widgets/CustomDatePicker'
 import { CustomSelect } from '../../components/widgets/CustomSelect'
 import { CustomRadioGroup } from '../../components/widgets/CustomRadioGroup'
-import { FormSubtitle, FormHeaderStack, VStack, FormBodyStack } from '../../components/containers/CustomStacks'
+import { FormSubtitle, FormHeaderStack, FormVStack, FormBodyStack } from '../../components/containers/FormStacks'
 // Validation
 import { potionSchema, potion_default_values} from '../../validation/potion'
 // Utils
@@ -37,7 +37,7 @@ export const SinglePotion = ({ role }: Props) => {
 
     const validation = potionSchema()
 
-    const { handleSubmit, control, reset, formState: { errors} } = useForm<z.infer<typeof validation>>({
+    const { handleSubmit, control, reset, setValue, formState: { errors} } = useForm<z.infer<typeof validation>>({
         resolver: zodResolver(validation),
         defaultValues: potion_default_values
     })
@@ -58,7 +58,7 @@ export const SinglePotion = ({ role }: Props) => {
         setLoading({ render: true })
         try {
             const res: Response = await axios.get(`https://api.potterdb.com/v1/potions/${id}`)
-            reset({ name: res.data.data.attributes.name })
+            setValue('name', res.data.data.attributes.name)
             console.log(res.data)
         } catch (erro) {
             console.log(erro)
@@ -70,7 +70,7 @@ export const SinglePotion = ({ role }: Props) => {
 
     const mockCreate = () => {
         toast.success('Criado', { id: 'created' })
-        navigate(`/potions/af984889-3b1f-4b43-a49c-71c45d6fc012`)
+        navigate(`/potions/eb918612-81ae-4bb6-9712-4a8194c89384`)
     }
 
     const mockDelete = () => {
@@ -89,7 +89,7 @@ export const SinglePotion = ({ role }: Props) => {
 
     return (
         <Paper>
-            <VStack>
+            <FormVStack>
                 <FormHeaderStack title={'Poção'}>
                     <Button
                         endIcon={role === 'show' ? <Check /> : <Add />}
@@ -100,7 +100,7 @@ export const SinglePotion = ({ role }: Props) => {
                     </Button>
                 </FormHeaderStack>
 
-                <FormSubtitle divider={false}subtitle={'1º parte'}/>
+                <FormSubtitle divider={false} subtitle={'1º parte'}/>
 
                 <FormBodyStack>
 
@@ -145,7 +145,7 @@ export const SinglePotion = ({ role }: Props) => {
                 </FormBodyStack>
 
                 {role === 'show' && <DeleteBar deleteFunc={mockDelete} instance_name={'poção'} />}
-            </VStack>
+            </FormVStack>
         </Paper>
     )
 }

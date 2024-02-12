@@ -97,7 +97,7 @@ export const Static = () => {
                 title: 'Trocar tema',
                 icon: dark_mode ? LightModeOutlined : ModeNightOutlined,
                 function: () => setDarkMode((state) => !state)
-            },
+            }
         ],
         [{ title: 'Sair', icon: Logout, function: () => setLogoutModalOpen(true) }]
     ]

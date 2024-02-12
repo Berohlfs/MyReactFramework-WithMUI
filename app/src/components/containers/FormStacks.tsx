@@ -3,12 +3,12 @@ import { Stack, Typography, Divider } from "@mui/material"
 // React
 import { ReactNode } from "react"
 
-type VStackProps = {
+type FormVStackProps = {
     children: ReactNode
     padding?: boolean
 }
 
-export const VStack = ({children, padding = true}: VStackProps)=> {
+export const FormVStack = ({children, padding = true}: FormVStackProps)=> {
     return (
         <Stack padding={padding ? 2 : 0} spacing={2}>
             {children}
@@ -16,12 +16,12 @@ export const VStack = ({children, padding = true}: VStackProps)=> {
     )
 }
 
-type HeaderStackProps = {
+type FormHeaderStackProps = {
     children: ReactNode
     title: string
 }
 
-export const FormHeaderStack = ({children, title}: HeaderStackProps)=> {
+export const FormHeaderStack = ({children, title}: FormHeaderStackProps)=> {
     return (<>
         <Stack
             direction={'row'}

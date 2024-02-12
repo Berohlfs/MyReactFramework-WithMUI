@@ -4,7 +4,7 @@ import { FormControl, FormLabel, Radio, RadioGroup, FormControlLabel } from '@mu
 import { Controller, FieldError, Control } from 'react-hook-form'
 
 type Option = {
-    value: string
+    value: string | number
     label: string
 }
 

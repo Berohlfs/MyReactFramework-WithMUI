@@ -15,20 +15,20 @@ export const APIInstance = (navigate?: (path: string) => void, success_toast = t
     instance.interceptors.response.use(
         (response) => {
             success_toast &&
-                toast.success(`${response?.data?.message} (${response?.status})`, { id: 'server-success-feedback' })
+                toast.success(`${response.data.message} (${response.status})`, { id: 'server-success-feedback' })
 
             return response
         },
         (error) => {
             if (error?.code === 'ECONNABORTED' && error?.message.includes('timeout')) {
                 toast.error('Servidor indisponível.', { id: 'timeout' })
-            } else if (error?.response?.status) {
+            } else if (error?.response.status) {
                 if (error.response.status === 401) {
                     navigate && navigate('/')
                     Cookies.remove('access')
                 }
 
-                toast.warning(`${error.response?.data?.message} (${error.response.status})`, {
+                toast.warning(`${error.response?.data.message} (${error.response.status})`, {
                     id: 'server-error-feedback'
                 })
             } else {

@@ -9,7 +9,7 @@ export const components = (): Components => ({
             elevation: 0
         },
         styleOverrides: {
-            root: ({ theme }: any) => ({
+            root: ({ theme }: any) => ({ // Could not find type in docs
                 borderRadius: 8,
                 border: '1px solid',
                 borderColor: theme.palette.divider
@@ -26,7 +26,7 @@ export const components = (): Components => ({
                 padding: '5px 12px',
                 fontSize: '10px'
             },
-            root: ({ theme }: any) => ({
+            root: ({ theme }: any) => ({ // Could not find type in docs
                 whiteSpace: 'nowrap',
                 borderColor: theme.palette.divider,
                 color: theme.palette.text.secondary

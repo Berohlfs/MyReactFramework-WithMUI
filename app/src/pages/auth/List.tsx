@@ -26,11 +26,11 @@ export const ListPotions = () => {
         }
     }
 
+    const [potions, setPotions] = useState<Potions | null>(null)
+    
     type Response = {
         data: Potions
     }
-
-    const [potions, setPotions] = useState<Potions | null>(null)
 
     const indexPotions = async (page: number = 1) => {
         setLoading({ render: true })
@@ -59,9 +59,9 @@ export const ListPotions = () => {
 
     return (
         <CustomTable
-            title={'Poções '}
+            title={'Poções'}
             id={'id'}
-            add_link={'/new/potion'}
+            add_route={'/new/potion'}
             columns={[
                 { name: 'Nome', key: 'attributes.name', show_domain_path: '/potions' },
                 { name: 'Ingredientes', key: 'attributes.ingredients' },
@@ -81,8 +81,8 @@ export const ListPotions = () => {
             pagination_data={
                 potions
                     ? {
-                          records: potions.meta.pagination.records,
-                          current: potions.meta.pagination.current
+                          total_records: potions.meta.pagination.records,
+                          current_page: potions.meta.pagination.current
                       }
                     : undefined
             }

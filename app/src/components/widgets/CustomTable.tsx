@@ -48,13 +48,13 @@ export type JSONDataInstance = {
 }
 
 type PaginationData = {
-    records: number
-    current: number
+    total_records: number
+    current_page: number
 }
 
 type Props = {
     title: string
-    add_link?: string
+    add_route?: string
     id: string
     data: JSONDataInstance[]
     pagination_data?: PaginationData
@@ -66,7 +66,7 @@ type Props = {
 
 export const CustomTable = ({
     title,
-    add_link,
+    add_route,
     id,
     data,
     pagination_data,
@@ -103,8 +103,8 @@ export const CustomTable = ({
                 <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} spacing={1} padding={2}>
                     <Typography>{title}</Typography>
 
-                    {add_link && (
-                        <Button endIcon={<Add />} onClick={() => navigate(add_link)}>
+                    {add_route && (
+                        <Button endIcon={<Add />} onClick={() => navigate(add_route)}>
                             Adicionar
                         </Button>
                     )}
@@ -173,9 +173,9 @@ export const CustomTable = ({
                         component={'div'}
                         rowsPerPage={15}
                         rowsPerPageOptions={[15]}
-                        page={pagination_data.current - 1}
+                        page={pagination_data.current_page - 1}
                         onPageChange={(e: unknown, page) => fetchFunction(page + 1)}
-                        count={pagination_data.records}
+                        count={pagination_data.total_records}
                     />
                 )}
             </Paper>

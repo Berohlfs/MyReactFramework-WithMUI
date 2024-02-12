@@ -1,9 +1,9 @@
 // MUI
-import { Stack, Button } from '@mui/material'
+import { Button } from '@mui/material'
 // Components
 import { CustomTextField } from '../../components/widgets/CustomTextField'
 import { PageCard } from '../../components/containers/PageCard'
-import { VStack } from '../../components/containers/CustomStacks'
+import { FormVStack } from '../../components/containers/FormStacks'
 // Libs
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -44,7 +44,7 @@ export const Login = () => {
             caption={'Seja bem vindo!'}
             link={{ text: 'Ainda não é cadastrado?', path: '/register', label: 'Cadastre-se!' }}>
             <form onSubmit={handleSubmit((/*data*/) => login())}>
-                <VStack padding={false}>
+                <FormVStack padding={false}>
                     <CustomTextField
                         control={control}
                         name={'cpf'}
@@ -62,7 +62,7 @@ export const Login = () => {
                     />
 
                     <Button type={'submit'}>Login</Button>
-                </VStack>
+                </FormVStack>
             </form>
         </PageCard>
     )
