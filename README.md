@@ -1,6 +1,6 @@
-# MyReactFramework
+# React-Vite-MUI-Template
 
-Meu mini framework pessoal de React.js.
+Template pessoal para aplicações em React, utilizando `Vite.js` (toolchain) e Material UI (UI library)
 
 ## Libs utilizadas
 
