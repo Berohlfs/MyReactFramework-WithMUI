@@ -1,4 +1,4 @@
-# React-Vite-MUI-Template
+# MyReactFramework-WithMUI
 
 Template pessoal para aplicações em React, utilizando `Vite.js` (toolchain) e Material UI (UI library)
 
