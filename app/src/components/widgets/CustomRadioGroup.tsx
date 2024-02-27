@@ -4,7 +4,7 @@ import { FormControl, FormLabel, Radio, RadioGroup, FormControlLabel } from '@mu
 import { Controller, FieldError, Control } from 'react-hook-form'
 
 type Option = {
-    value: string | number
+    value: string
     label: string
 }
 
@@ -33,7 +33,7 @@ export const CustomRadioGroup = ({ control, form_control_error, label, name, opt
                         {options.map((option) => (
                             <FormControlLabel
                                 key={option.value}
-                                value={option.value}
+                                value={String(option.value)}
                                 control={<Radio />}
                                 label={option.label}
                             />

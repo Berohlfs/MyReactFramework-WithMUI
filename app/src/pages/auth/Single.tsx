@@ -78,8 +78,9 @@ export const SinglePotion = ({ role }: Props) => {
         navigate('/potions')
     }
 
-    const mockUpdate = () => {
+    const mockUpdate = (data: z.infer<typeof validation>) => {
         toast.success('Atualizado', { id: 'updated' })
+        console.log(data)
     }
 
     useEffect(() => {
@@ -93,8 +94,8 @@ export const SinglePotion = ({ role }: Props) => {
                 <FormHeaderStack title={'Poção'}>
                     <Button
                         endIcon={role === 'show' ? <Check /> : <Add />}
-                        onClick={handleSubmit((/*data*/) => {
-                            role === 'show' ? mockUpdate() : mockCreate()
+                        onClick={handleSubmit((data) => {
+                            role === 'show' ? mockUpdate(data) : mockCreate()
                         })}>
                         {role === 'show' ? 'Salvar' : 'Criar'}
                     </Button>

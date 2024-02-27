@@ -19,7 +19,7 @@ export const Footer = () => {
 
     return (
         <StyledFooter>
-            <Typography fontSize={'9px'}>&copy;{year} - MyReactFramework</Typography>
+            <Typography fontSize={'9px'}>&copy;{year} - MyReactFramework-WithMUI</Typography>
         </StyledFooter>
     )
 }

@@ -33,7 +33,11 @@ export const Menu = ({ hidden_actions, id }: Props) => {
                 <MoreHoriz fontSize={'small'} />
             </IconButton>
 
-            <MuiMenu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleMenuClose} onClick={handleMenuClose}>
+            <MuiMenu 
+                anchorEl={anchorEl} 
+                open={Boolean(anchorEl)} 
+                onClose={handleMenuClose} 
+                onClick={handleMenuClose}>
                 {hidden_actions.map((action) => (
                     <MenuItem key={action.name} onClick={() => action.function(id)}>
                         {action.name}

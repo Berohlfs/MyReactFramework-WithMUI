@@ -44,7 +44,7 @@ type Action = {
 }
 
 export type JSONDataInstance = {
-    [key: string]: string | number | boolean | JSONDataInstance | (string | number | boolean)[]
+    [key: string]: string | number | boolean | JSONDataInstance | (string | number | boolean | JSONDataInstance)[]
 }
 
 type PaginationData = {
@@ -80,7 +80,7 @@ export const CustomTable = ({
     const getCellData = (key: string, row_data: JSONDataInstance): string => {
         const error = 'Sem dado'
         const split_key = key.split('.')
-        const result = split_key.reduce((accumulator: JSONDataInstance | string | number | boolean | (string | number | boolean)[], prop) => {
+        const result = split_key.reduce((accumulator: JSONDataInstance | string | number | boolean | (string | number | boolean | JSONDataInstance)[], prop) => {
 
             if(typeof accumulator === 'object' && !(accumulator instanceof Array) && accumulator[prop]){
                 return accumulator[prop]
@@ -174,7 +174,7 @@ export const CustomTable = ({
                         rowsPerPage={15}
                         rowsPerPageOptions={[15]}
                         page={pagination_data.current_page - 1}
-                        onPageChange={(e: unknown, page) => fetchFunction(page + 1)}
+                        onPageChange={(_, page) => fetchFunction(page + 1)}
                         count={pagination_data.total_records}
                     />
                 )}

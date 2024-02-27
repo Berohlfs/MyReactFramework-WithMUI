@@ -25,11 +25,12 @@ type Props = {
     max_width: number
     title: string
     handleClose: () => void
+    keep_mounted?: boolean
 }
 
-export const Modal = ({ children, open, handleClose, title = 'Modal', max_width = 400 }: Props) => {
+export const Modal = ({ children, open, handleClose, title = 'Modal', max_width = 400, keep_mounted }: Props) => {
     return (
-        <MuiModal open={open} onClose={handleClose}>
+        <MuiModal keepMounted={keep_mounted} open={open} onClose={handleClose}>
             <StyledPaper sx={{ maxWidth: max_width }}>
                 <Tooltip title={'Fechar'} sx={{ position: 'absolute', top: 3, right: 3 }}>
                     <IconButton onClick={handleClose}>
